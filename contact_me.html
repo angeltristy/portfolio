@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contact Me - Angel Clarke</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <div class="background">
+        <!--Top bar-->
+        <header class="topbar">
+            <a href="index.html" class="fa-solid fa-house"></a>
+        
+            <nav class="navbar">
+                <a href="about.html">ABOUT</a>
+                <a href="resume.html">RESUME</a>
+                <a href="projects.html">PROJECTS</a>
+                <a href="contact_me.html" class="contact-button active" class>CONTACT</a>
+            </nav>
+        </header>
+
+  <!--Body-->
+    <main class="contactbody">
+      <div class="leftside">
+        <!-- ╔══════════════════════════════════╗ -->
+        <!-- ║           LEFT SIDE              ║ -->
+        <!-- ╚══════════════════════════════════╝ -->
+        <h1>contact me</h1>
+        <p>Have any questions? Just want to chat? <br>
+          Fill out this form and I'll get back to you!</p>
+      </div>
+      
+      <form class="contact-form">
+        <!-- ╔══════════════════════════════════╗ -->
+        <!-- ║           CONTACT FORM           ║ -->
+        <!-- ╚══════════════════════════════════╝ -->
+        <div class="field-row">
+          <div class="field">
+            <label for="first">First name</label>
+            <input id="first" name="first" placeholder="Jason" />
+          </div>
+          <div class="field">
+            <label for="last">Last name</label>
+            <input id="last" name="last" placeholder="Hudson" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="email">Email address</label>
+          <input id="email" name="email" placeholder="jasonhudson@email.com">
+        </div>
+
+        <div class="field">
+          <label for="message">Your message</label>
+          <textarea id="message" name="message" placeholder="Enter your question or message"></textarea>
+        </div>
+        <button type="submit" id="submitbutton">SUBMIT</button>
+      </form>
+    
+    <div id="popup" class="popup">
+      <div class="popupbox">
+          <p>Your message has been sent! 💕</p>
+          <button id="closepopup">OK</button>
+      </div>
+    </div>
+
+    </main>
+
+    <!--Footer-->
+    <footer class="footer">
+        <div class="footer-line"></div>
+        <div class="footer-inner">
+            <span class="footer-name">Angel Clarke</span>
+            <div class="footer-icons">
+                <a href="https://github.com/angeltristy" class="fa-brands fa-github"></a>
+                <a href="https://www.youtube.com/@angeltristy/videos" class="fa-brands fa-youtube"></a>
+                <a href="https://www.instagram.com/angeltristy/" class="fa-brands fa-instagram"></a>
+            </div>
+        </div>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Homepage - Angel Clarke</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="main.js" defer></script>
+</head>
+
+<body>
+    <div class="homepagebackground">
+        <div class="heroslideshow">
+            <div class="slide">
+                <img src="hero1.png">
+            </div>
+            <div class="slide">
+                <img src="hero2.png">
+            </div>
+            <div class="slide">
+                <img src="hero3.png">
+            </div>
+            <div class="slide">
+                <img src="hero4.png">
+            </div>
+        </div>
+        <!--Top bar-->
+        <header class="topbar" id="topbar">
+            <a href="index.html" class="fa-solid fa-house"></a>
+
+            <nav class="navbar">
+                <a href="about.html">ABOUT</a>
+                <a href="resume.html">RESUME</a>
+                <a href="projects.html">PROJECTS</a>
+                <a class="contact-button" href="contact_me.html">CONTACT</a>
+            </nav>
+        </header>
+
+        <!--Body-->
+        <main class="homepagebody">
+            <section class="homepagetitle">
+                <h1 id="periods">angel clarke</h1>
+                <h2>Gamer, designer, student.</h2>
+            </section>
+
+            <!-- ╔══════════════════════════════════╗ -->
+            <!-- ║      DOwN ARROW SECTION          ║ -->
+            <!-- ╚══════════════════════════════════╝ -->
+            <div class="downarrowSection">
+                <button id="downArrow"><i class="fa-solid fa-chevron-down"></i></button>
+            </div>
+
+            <!-- ╔══════════════════════════════════╗ -->
+            <!-- ║           ABOUT ME               ║ -->
+            <!-- ╚══════════════════════════════════╝ -->
+            <section class="aboutmehomepage homepagesection">
+                <h2 class="homepageheader">ABOUT ME</h2>
+                <p class="homepagesubtitle">I'm a Computer Science student who loves to solve puzzles.
+                    For more info, please check out my <a href="about.html">ABOUT ME</a></p>
+            </section>
+
+            <!-- ╔══════════════════════════════════╗ -->
+            <!-- ║            RESUME                ║ -->
+            <!-- ╚══════════════════════════════════╝ -->
+            <section class="homepagesection">
+                <h2 class="homepageheader">MY RESUME</h2>
+                <p class="homepagesubtitle">To see more about my professional experience, check out my <a href="resume.html">RESUME</a> page</p>
+                <a href="resume.html" class="resumestats">
+                    <div class="stat">
+                        <span class="statnumber">3+</span>
+                        <span class="statlabel">Years Coding</span>
+                    </div>
+                    <div class="stat">
+                        <span class="statnumber">7</span>
+                        <span class="statlabel">Projects</span>
+                    </div>
+                    <div class="stat">
+                        <span class="statnumber">5</span>
+                        <span class="statlabel">Core Skills</span>
+                    </div>
+                    <div class="stat">
+                        <span class="statnumber">1</span>
+                        <span class="statlabel">Certificate</span>
+                    </div>
+                </a>
+            </section>
+
+            <!-- ╔══════════════════════════════════╗ -->
+            <!-- ║           PROJECT CARDS          ║ -->
+            <!-- ╚══════════════════════════════════╝ -->
+
+            <section class="homepagesection">
+                <h2 class="homepageheader">RECENT PROJECTS</h2>
+                <p class="homepagesubtitle">To see more, check out my full <a href="projects.html"> PROJECTS</a> page</p>
+                <div class="carousel">
+                    <button class="carouselbutton" id="backbutton">▶</button>
+                    <div class="carouseltrack">
+                        <article class="carouselitem">
+                            <div class="carouseldescription">
+                                <a href="https://github.com/angeltristy/Priority-Queue" target="_blank"><h2>Priority Queue</h2></a>
+                                <p>Description: Java Class and Interface for a Priority Queue that returns the largest values first.</p>
+                                <p> Tags: <span class="chips">Java</span>
+                                    <span class="chips">2025</span>
+                                    <span class="chips">Professional</span>
+                                </p>
+                            </div>
+                        </article>
+                        <article class="carouselitem">
+                            <div class="carouseldescription">
+                                <a href="https://github.com/angeltristy/Console-bank-app-in-Java" target="_blank"><h2>Console Bank App</h2></a>
+                                <p>Description: Bank App that runs on the console. You can apply interest, withdraw, deposit, and view the current balance. </p>
+                                <p> Tags: <span class="chips">Java</span> 
+                                        <span class="chips">2025</span>
+                                        <span class="chips">Professional</span>
+                                </p>
+                            </div>
+                        </article>
+                        <article class="carouselitem">
+                            <div class="carouseldescription">
+                                <a href="https://github.com/angeltristy/Countdown-Website" target="_blank"><h2>Countdown Timer Website</h2></a>
+                                <p>Description: Countdown timer that allows you to set custom date and text.</p>
+                                <p> Tags: <span class="chips">HTML / CSS / JavaScript</span>
+                                    <span class="chips">2025</span>
+                                    <span class="chips">Personal</span>
+                                </p>
+                            </div>
+                        </article>
+                        <article class="carouselitem">
+                            <div class="carouseldescription">
+                                <a href="https://github.com/angeltristy/ShipBattle" target="_blank"><h2>ShipBattle</h2></a>
+                                <p>Description: ShipBattle is a game where enemy ships are hidden on a grid and the player has to guess where. </p>
+                                <p> Tags: <span class="chips">C</span>
+                                    <span class="chips">2025</span>
+                                    <span class="chips">Personal</span>
+                                </p>
+                            </div>
+                        </article>
+                        <article class="carouselitem">
+                            <div class="carouseldescription">
+                                <a href="https://github.com/angeltristy/Mobility-Profile" target="_blank"><h2>Mobility Profile</h2></a>
+                                <p>Description: This program is a contact tracing tool that generates mobility profiles then compares profiles to detect potential matches.</p>
+                                <p> Tags: <span class="chips">Python</span>
+                                    <span class="chips">2024</span>
+                                    <span class="chips">Professional</span>
+                            </div>
+                        </article>
+                    </div>
+                    <button class="carouselbutton" id="nextbutton">▶</button>
+                </div>
+            </section>
+
+            <!-- ╔══════════════════════════════════╗ -->
+            <!-- ║           CONTACT ME             ║ -->
+            <!-- ╚══════════════════════════════════╝ -->
+            <section class="homepagesection">
+                <h2 class="homepageheader">CONTACT</h2>
+                <p class="homepagesubtitle">You can find me on the social links on the bottom right, or you can press <a href="contact_me.html">CONTACT</a></p>
+            </section>
+
+        </main>
+
+
+        <!--Footer-->
+        <footer class="footer">
+            <div class="footer-line"></div>
+            <div class="footer-inner">
+                <span class="footer-name">Angel Clarke</span>
+                <div class="footer-icons">
+                    <a href="https://github.com/angeltristy" class="fa-brands fa-github"></a>
+                    <a href="https://www.youtube.com/@angeltristy/videos" class="fa-brands fa-youtube"></a>
+                    <a href="https://www.instagram.com/angeltristy/" class="fa-brands fa-instagram"></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

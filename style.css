@@ -1,0 +1,948 @@
+/* ╔══════════════════════════════════╗ */
+/* ║           GENERAL THEME          ║ */
+/* ╚══════════════════════════════════╝ */
+
+:root {
+    --backgroundcolour: #010001;
+    --brandaccent: #E03D9A;
+    --accentdeep: #23288C;
+    --textprimary: #DCDDE3;
+    --textsecondary: #D1C5C0;
+    --bg-overlay-top: rgba(10, 0, 30, 0.85);
+    --bg-overlay-bottom: #010001;
+}
+
+body {
+    background-color: var(--backgroundcolour);
+    color: var(--textprimary);
+    font-family: 'Fira Code';
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+html, body {
+    height: 100%;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 64px;
+    color: var(--brandaccent);
+    filter: drop-shadow(0 8px 0 var(--backgroundcolour));
+    line-height: auto;
+}
+
+h2 {
+    font-weight: regular;
+    font-size: 24px;
+    color: var(--textsecondary);
+    line-height: 100%;
+}
+
+label {
+    font-size: 16px;
+}
+
+input, textarea {
+    background: var(--textprimary);
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 24px;
+}
+
+textarea {
+    min-height: 138px;
+    resize: vertical;
+}
+
+input:focus,
+textarea:focus {
+    border-color: var(--brandaccent);
+    box-shadow: 0 0 15px var(--brandaccent);
+    outline: none;
+}
+
+p {
+    font-size: 20px;
+}
+
+/* ╔══════════════════════════════════╗ */
+/* ║            DOWN ARROW            ║ */
+/* ╚══════════════════════════════════╝ */
+.downarrowSection {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 330px;
+}
+
+#downArrow {
+    background-color: transparent;
+    color: var(--textprimary);
+    font-family: "Fira Code";
+    appearance: none; 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    position: relative;
+    transition: opacity 0.25s ease 0.25s;
+    border: none;
+    margin-bottom: 100px;
+}
+
+/* ╔══════════════════════════════════╗ */
+/* ║         HEADER + FOOTER          ║ */
+/* ╚══════════════════════════════════╝ */
+.background {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to bottom, var(--bg-overlay-top), var(--backgroundcolour)), url("hero1.png") center/cover no-repeat fixed;
+}
+
+.background::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image: url("noise.png");
+    background-size: 300px;
+    opacity: 0.5; 
+    pointer-events: none; 
+    mix-blend-mode: soft-light; 
+}
+
+.topbar, 
+.main,
+.footer,
+.resumebody {
+    position: relative;
+    z-index: 1;
+}
+
+.topbar {
+    background-color: rgba(21, 22, 28, 0.53);
+    top: 0;
+    position: fixed;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 50px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: background-color 0.5s ease;
+}
+
+.navbar {
+    display: flex;
+    gap: 150px;
+}
+
+.navbar a {
+    color: var(--textprimary);
+    font-size: 20px;
+    text-decoration: none;
+    margin: 0;
+}
+
+.navbar a:hover {
+    text-shadow: 0 0 6px var(--brandaccent);
+}
+
+.navbar a.active {
+    text-shadow: 0 0 6px var(--brandaccent);
+}
+
+.navbar a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 2px;
+    background: var(--brandaccent);
+    box-shadow: 0 0 6px var(--brandaccent);
+}
+
+.footer {
+    font-size: 24px;
+    padding-bottom: 30px;
+}
+
+.footer-line {
+    height: 1px;
+    background-color: #FFFFFF;
+    max-width: 1440px;
+    width: 100%;
+    margin: 32px auto 20px;
+    display: block;
+    padding: 0 50px;
+    box-sizing: border-box;
+}
+
+.footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 50px;    
+}
+
+.fa-brands, 
+.fa-download, 
+.fa-solid {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+/* ╔══════════════════════════════════╗ */
+/* ║           HOMEPAGE               ║ */
+/* ╚══════════════════════════════════╝ */
+/* HOMEPAGE LAYOUT + SLIDESHOW */
+.homepagebackground {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    z-index: 0;
+}
+
+.homepagesection {
+    margin: auto;
+    margin-top: 30px;
+}
+
+.homepagetitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.homepagebody {
+    display: flex;
+    flex-direction: column;
+    padding-top: 250px;
+    position: relative;
+    z-index: 1;
+}
+
+.homepageheader {
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+}
+
+.homepagesubtitle {
+    display: flex;
+    justify-content: center;
+}
+
+.homepagesection .homepagesubtitle a {
+    text-decoration-line: underline;
+    text-decoration-style: wavy;
+    text-decoration-color: var(--brandaccent);
+    color: var(--brandaccent);
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.homepagesection .homepagesubtitle a:visited {
+    color: var(--brandaccent);
+    text-decoration-line: underline;
+    text-decoration-style: wavy;
+    text-decoration-color: var(--brandaccent);
+}
+
+.heroslideshow {
+    position: absolute;
+    inset: 0;
+    z-index: -2;         
+    overflow: hidden;
+}
+
+.heroslideshow::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;           
+    pointer-events: none;
+    background: linear-gradient(to bottom, var(--bg-overlay-top), var(--bg-overlay-bottom));
+}
+
+.slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;   
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+/* Resume section */
+.resumestats {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    background: #111;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: left;
+    cursor: pointer;
+    position: relative;
+    height: 170px;
+    display: flex;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(rgba(0,0,0,0.77), rgba(0,0,0,0.77)), url(cover.jpg);
+    border: 2px solid var(--brandaccent);
+    padding: 30px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 35px;
+}
+
+.resumestats:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+    box-shadow: 0 0 12px var(--brandaccent);
+}
+
+.homepagesection a {
+    text-decoration: none;
+} 
+.stat {
+    text-align: center;
+    min-width: 100px;
+}
+
+.statnumber {
+    display: block;
+    font-size: 45px;
+    font-weight: bold;
+    color: var(--brandaccent);
+    text-shadow: 0 0 8px var(--brandaccent);
+}
+
+.statlabel {
+    font-size: 18px;
+    color: var(--textsecondary);
+}
+
+/* Project section */
+.carousel {
+    max-width: 1300px;
+    display: flex;
+    overflow: hidden;
+    flex: 1;
+}
+
+.carouseltrack {
+    display: flex;
+    gap: 27px;
+    transition: transform 0.4s ease;
+    padding-top: 30px;
+}
+
+.carouselitem {
+    flex: 0 0  calc((100% - 32px * 2) / 3);
+    background: #111;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: left;
+    cursor: pointer;
+    position: relative;
+    height: 270px;
+    display: flex;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(rgba(0,0,0,0.77), rgba(0,0,0,0.77)), url(cover.jpg);
+    border: 2px solid var(--brandaccent);
+}
+
+.carouselitem p {
+    font-size: 16px;
+}
+.carouselitem a {
+    text-decoration: underline solid var(--brandaccent);
+}
+
+.carouselitem a:visited {
+    text-decoration: underline solid #550080;
+}
+.carouselitem:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+    box-shadow: 0 0 12px var(--brandaccent);
+}
+
+.carouseldescription {
+    padding: 10px 20px 10px 20px; 
+    color: var(--textprimary);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#backbutton {
+    color: var(--textprimary);
+    font-size: 50px;
+    transform: scale(-1, 1) translateX(55px) translateY(125px);
+}
+
+#nextbutton {
+    color: var(--textprimary);
+    font-size: 50px;
+    
+    transform: translateX(1300px) translateY(125px);
+}
+
+.carouselbutton {
+    z-index: 50;   
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    align-items: center;
+    background: none;
+    position: absolute;
+}
+
+.carouselbutton:hover {
+    text-shadow: 0 0 10px var(--brandaccent);
+}
+
+/* ╔══════════════════════════════════╗ */
+/* ║           ABOUT ME               ║ */
+/* ╚══════════════════════════════════╝ */
+.aboutbody {
+    display: flex;
+    gap: 32px;
+    max-width: 1440px;
+    flex: 1;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px 50px 0px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.leftside {
+    max-width: 800px;
+}
+
+.collage {
+    column-count: 2;         
+    column-gap: 30px;           
+    width: 100%;
+    max-width: 450px; 
+    padding-top: 100px;
+}
+
+.aboutimage {
+    width: 100%;                
+    display: block;
+    margin-bottom: 30px;      
+    border-radius: 16px;      
+    break-inside: avoid;         
+    box-shadow: 0 6px 12px rgba(0,0,0,0.35);
+}
+
+.funfactwindow {
+    display: flex;
+    gap: 30px;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.funfactcard {
+    width: 150px;
+    height: 200px;
+    position: relative;
+    background-color: transparent;
+    perspective: 1000px;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.funfactcard:hover {
+    transform: translateY(-5px);
+    transition: transform 0.5s ease;
+}
+
+.funfactcard-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+    
+    box-shadow: 0 0 12px var(--brandaccent);
+}
+
+.funfactcard.flipped .funfactcard-inner {
+    transform: rotateY(180deg);
+}
+
+.funfacttext {
+    color: black !important; 
+    margin: 0;
+    padding: 10px;
+    font-size: 14px;
+    line-height: 1.2;
+    text-align: center;
+    font-family: 'Fira Code';
+}
+
+.flipcardfront, 
+.flipcardback {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    inset: 0;
+    border-radius: 5px;
+}
+
+.cardimage {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 5px;
+}
+.flipcardback {
+    background-color: white;
+    transform: rotateY(180deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ╔══════════════════════════════════╗ */
+/* ║             RESUME               ║ */
+/* ╚══════════════════════════════════╝ */
+.resumetitle {
+    max-width: 1440px;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: flex-start;
+    width: 100%;
+    margin: 0 auto;
+    padding: 80px 50px 40px 50px;
+}
+
+.resumebody {
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 50px 40px 50px;
+}
+
+#resumebutton {
+    display: inline-block;
+    padding: 10px 16px;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-radius: 9999px;
+    border: 2px solid rgba(255, 255, 255, 0.08);
+}
+
+#resumebutton:hover {
+    text-shadow: 0 0 6px var(--brandaccent);
+}
+
+.timeline {
+    position: relative;
+    padding-left: 80px;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 40px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--textprimary);
+}
+
+.timelineitem {    
+    position: relative;
+    margin-bottom: 32px;
+}
+
+.timelineitem::before {
+    content: "";
+    position: absolute;
+    left: -49px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--textprimary);
+}
+
+.timelineitem:hover .timelinedetails {
+    max-height: 400px; 
+    opacity: 1;
+}
+
+.timelineitem:hover .timelinedate {
+    font-size: 22px;
+}
+
+.timelineitem:hover::before {
+    content: "";
+    position: absolute;
+    left: -49px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--brandaccent);
+    box-shadow: 0 0 10px var(--brandaccent), 0 0 20px var(--brandaccent);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timelinedate {
+    position: relative;
+    top: 0;
+    left: 0;
+    font-size: 18px;
+    color: var(--textsecondary);
+    transition: font-size 0.25s ease, opacity 0.25s ease;
+}
+
+.timelinedetails {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease, opacity 0.25s ease;
+}
+
+.skills {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.skillitem {
+    flex: 1;
+    min-width: 150px;
+    background: var(--brandaccent);
+    color: var(--textprimary);
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 12px;
+    cursor: default;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 0 0 rgba(0,0,0,0.6);
+}
+
+.skillitem:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.7),
+                0 0 12px rgba(224,61,154,0.7);
+}
+
+.skillitem p {
+    font-size: 16px;
+}
+#resumecarousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ╔══════════════════════════════════╗ */
+/* ║           PROJECT PAGE           ║ */
+/* ╚══════════════════════════════════╝ */
+#projecttitle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 150px;
+}
+.projectmain {
+    margin: 140px auto 0 auto;
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+        "filters topbar"
+        "filters cards";
+    column-gap: 40px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.topofpagebar { 
+    grid-area: topbar;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.topofpagebar p {
+    margin: 0;
+    align-items: center;
+}
+
+
+#displayText {
+    font-style: italic;
+}
+
+#sortingalgo {
+    background-color: rgba(21,22,28,0.7);
+    color: var(--textprimary);
+    border: 2px solid var(--textprimary);
+    padding: 8px 32px 8px 32px;
+    font-family: "Fira Code";
+    font-size: 16px;
+    border-radius: 6px;
+    appearance: none; 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.filterlist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.filters { 
+    grid-area: filters;
+    align-self: flex-start;
+}
+
+.checkboxcontainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    position: relative;
+}
+
+.checkboxcontainer input {
+    appearance: none;
+    position: absolute;
+    opacity: 0;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.checkboxcontainer input:checked + .newcheckbox {
+    background-color: var(--brandaccent); /* your purple-blue */
+    border-color: var(--brandaccent);
+}
+
+.checkboxcontainer input:checked + .newcheckbox::after {
+    opacity: 1;
+}
+
+.newcheckbox {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--textprimary);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.newcheckbox::after {
+    content: "";
+    width: 12px;
+    height: 12px;
+    background: var(--brandaccent);
+    opacity: 0;
+}
+
+.projectcards { 
+    grid-area: cards;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.projectitem {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 32px;
+}
+
+.projectitem a {
+    text-decoration: underline solid var(--brandaccent);
+}
+
+.projectitem a:visited {
+    text-decoration: underline solid #550080;
+}
+
+.projectthumbs {
+    width: 300px;
+    height: 250px;
+    object-fit: cover;
+    flex-shrink: 0;
+    border-radius: 10px;
+}
+
+.projectdescription {
+    flex: 1;
+}
+
+.chips {
+    display: inline-flex;
+    padding: 2px 10px;
+    border-radius: 999px;
+    background: var(--brandaccent);
+}
+
+.prevnextbuttons {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+}
+
+#previouspage,
+#nextpage {
+    background-color: rgba(21,22,28,0.7);
+    color: var(--textprimary);
+    border: 2px solid var(--textprimary);
+    padding: 8px 32px 8px 32px;
+    font-family: "Fira Code";
+    font-size: 16px;
+    border-radius: 6px;
+    appearance: none; 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    position: relative;
+}
+
+/* ╔══════════════════════════════════╗ */
+/* ║           CONTACT FORM           ║ */
+/* ╚══════════════════════════════════╝ */
+
+.contactbody {
+    display: flex;
+    gap: 32px;
+    max-width: 1440px;
+    flex: 1;
+    width: 100%;
+    margin: 0 auto;
+    padding: 80px 50px 40px;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 50px;
+}
+
+.leftside p {
+    color: var(--textsecondary);
+    font-size: 20px;
+}
+
+.contact-form {
+    max-width: 550px;
+    flex: 1;
+    padding: 32px 40px 40px;
+    background-color: rgba(21, 22, 28, 0.53);
+    border-radius: 18px;
+    overflow: visible;
+}
+
+.field {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.field-row {
+    display: flex;
+    line-height: 24px;
+    gap: 32px;
+}
+
+#submitbutton {
+    margin-top: 20px;
+    background: var(--brandaccent);
+    color: var(--textprimary);
+    width: 100%;
+    line-height: 30px;
+    padding: 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 20px;
+    font-family: 'Fira Code';
+}
+
+#submitbutton:hover {
+    box-shadow: 0 0 10px var(--brandaccent);
+    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    transform: translateY(-5px);
+}
+
+.popup {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 100;
+    transition: opacity 0.3s ease;
+}
+
+.popup.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#closepopup {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: var(--brandaccent);
+    color: var(--textprimary);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Fira Code';
+}
+
+.popupbox {
+    background: rgba(21, 22, 28, 0.9);
+    padding: 30px 40px;
+    border-radius: 12px;
+    text-align: center;
+    border: 2px solid var(--brandaccent);
+    box-shadow: 0 0 20px var(--brandaccent);
+}

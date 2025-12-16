@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Projects - Angel Clarke</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="main.js" defer></script>
+
+</head>
+
+<body>
+    <div class="background">
+        <!--Top bar-->
+        <header class="topbar" id="topbar">
+            <a href="index.html" class="fa-solid fa-house"></a>
+        
+            <nav class="navbar">
+                <a href="about.html">ABOUT</a>
+                <a href="resume.html">RESUME</a>
+                <a href="projects.html" class="active">PROJECTS</a>
+                <a class="contact-button" href="contact_me.html">CONTACT</a>
+            </nav>
+        </header>
+
+        <!--Body-->
+        <h1 id="projecttitle">projects</h1>
+        <main class="projectmain">
+            <section class="filters">
+                <!-- ╔══════════════════════════════════╗ -->
+                <!-- ║           FILTERS                ║ -->
+                <!-- ╚══════════════════════════════════╝ -->
+                Programming Language
+                <ul class="filterlist">
+                    <li>
+                        <label class="checkboxcontainer">
+                            <input class="checkboxes" id="javabox"  type="checkbox" name="language" value="Java">
+                            <span class="newcheckbox"></span>
+                            Java
+                        </label>
+                    </li>
+                    <li>
+                        <label class="checkboxcontainer">
+                            <input class="checkboxes" id="pythonbox" type="checkbox" name="language" value="Python">
+                            <span class="newcheckbox"></span>
+                            Python
+                        </label>
+                    </li>
+                    <li>
+                        <label class="checkboxcontainer">
+                            <input class="checkboxes" id="cbox" type="checkbox" name="language" value="C">
+                            <span class="newcheckbox"></span>
+                            C
+                        </label>
+                        
+                    </li>
+                    <li>
+                        <label class="checkboxcontainer">
+                            <input class="checkboxes" id="htmlcssbox" type="checkbox" name="language" value="HTML / CSS / JavaScript">
+                            <span class="newcheckbox"></span>
+                            HTML / CSS / JavaScript
+                        </label>
+                    </li>
+                </ul>
+                <br>
+                Year Finished
+                <ul class="filterlist">
+                    <li>
+                        <label class="checkboxcontainer">    
+                            <input class="checkboxes" id="2025box" type="checkbox" name="year" value="2025">
+                            <span class="newcheckbox"></span>
+                            2025
+                        </label>
+                    </li>
+                    <li>
+                        <label class="checkboxcontainer">
+                            <input class="checkboxes" id="2024box" type="checkbox" name="year" value="2024">
+                            <span class="newcheckbox"></span>
+                            2024
+                        </label>
+                    </li>
+                    <li>
+                        <label class="checkboxcontainer">
+                            <input class="checkboxes" id="2023box" type="checkbox" name="year" value="2023">
+                            <span class="newcheckbox"></span>
+                            2023
+                        </label>
+                    </li>
+                </ul>
+                <br>
+                Personal or Professional
+                <ul class="filterlist">
+                    <li>
+                        <label class="checkboxcontainer">
+                            <input class="checkboxes" id="professionalbox" type="checkbox" name="kind" value="Professional">
+                            <span class="newcheckbox"></span>
+                            Professional
+                        </label> 
+                    </li>
+                    <li>
+                        <label class="checkboxcontainer">
+                            <input class="checkboxes" id="personalbox" type="checkbox" name="kind" value="Personal">
+                            <span class="newcheckbox"></span>
+                            Personal
+                        </label>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="topofpagebar">
+                <!-- ╔══════════════════════════════════╗ -->
+                <!-- ║           TOP BAR                ║ -->
+                <!-- ╚══════════════════════════════════╝ -->
+                <p id="displayText">Displaying page 1 of 2...</p>
+                <select id="sortingalgo">
+                    <option selected disabled>Sort by...</option>
+                    <option value="newest">Newest</option>
+                    <option value="oldest">Oldest</option>
+                    <option value="nameaz">Name A-Z</option>
+                    <option value="nameza">Name Z-A</option>
+                </select>
+            </section>
+
+            <section class="projectcards">
+                <!-- ╔══════════════════════════════════╗ -->
+                <!-- ║           PROJECT CARDS          ║ -->
+                <!-- ╚══════════════════════════════════╝ -->
+                <div class="projectitem" data-language="Java" data-year="2025" data-kind="Personal"> 
+                    <img class="projectthumbs" src="cover.jpg">
+                    <div class="projectdescription">
+                        <a href="https://github.com/angeltristy/Console-bank-app-in-Java" target="_blank"><h2>Console Bank App</h2></a>
+                        <p>Description: Bank App that runs on the console. You can apply interest, withdraw, deposit, and view the current balance. </p>
+                        <p> Tags: <span class="chips">Java</span> 
+                                <span class="chips">2025</span>
+                                <span class="chips">Professional</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="projectitem" data-language="Java" data-year="2025" data-kind="Professional">
+                    <img class="projectthumbs" src="cover.jpg">
+                    <div class="projectdescription">
+                        <a href="https://github.com/angeltristy/Priority-Queue" target="_blank"><h2>Priority Queue</h2></a>
+                        <p>Description: Java Class and Interface for a Priority Queue that returns the largest values first.</p>
+                        <p> Tags: <span class="chips">Java</span>
+                            <span class="chips">2025</span>
+                            <span class="chips">Professional</span>
+                        </p>
+                    </div>
+                </div>     
+                <div class="projectitem" data-language="HTML / CSS / JavaScript" data-year="2025" data-kind="Personal">
+                    <img class="projectthumbs" src="cover.jpg">
+                    <div class="projectdescription">
+                        <a href="https://github.com/angeltristy/Countdown-Website" target="_blank"><h2>Countdown Timer Website</h2></a>
+                        <p>Description: Countdown timer that allows you to set custom date and text.</p>
+                        <p> Tags: <span class="chips">HTML / CSS / JavaScript</span>
+                            <span class="chips">2025</span>
+                            <span class="chips">Personal</span>
+                        </p>
+                    </div>
+                </div>     
+                <div class="projectitem" data-language="C" data-year="2025" data-kind="Personal">
+                    <img class="projectthumbs" src="cover.jpg">
+                    <div class="projectdescription">
+                        <a href="https://github.com/angeltristy/ShipBattle" target="_blank"><h2>ShipBattle</h2></a>
+                        <p>Description: ShipBattle is a game where enemy ships are hidden on a grid and the player has to guess where. </p>
+                        <p> Tags: <span class="chips">C</span>
+                            <span class="chips">2025</span>
+                            <span class="chips">Personal</span>
+                        </p>
+                    </div>
+                </div>     
+                <div class="projectitem" data-language="Python" data-year="2024" data-kind="Professional"> 
+                    <img class="projectthumbs" src="cover.jpg">
+                    <div class="projectdescription">
+                        <a href="https://github.com/angeltristy/Mobility-Profile" target="_blank"><h2>Mobility Profile</h2></a>
+                        <p>Description: This program is a contact tracing tool that generates mobility profiles for patients and non-patients across five time-period/location checkpoints, then compares profiles to detect potential matches.</p>
+                        <p> Tags: <span class="chips">Python</span>
+                            <span class="chips">2024</span>
+                            <span class="chips">Professional</span>
+                        </p>
+                    </div>
+                </div>     
+                <div class="projectitem" data-language="Python" data-year="2023" data-kind="Personal">
+                    <img class="projectthumbs" src="cover.jpg">
+                    <div class="projectdescription">
+                        <a href="https://github.com/angeltristy/Cookie-Monster-Drawing" target="_blank"><h2>Cookie Monster Drawing</h2></a>
+                        <p>Description: A drawing of Cookie Monster using the Processing Development Environment.</p>
+                        <p> Tags: <span class="chips">Python</span>
+                            <span class="chips">2023</span>
+                            <span class="chips">Personal</span>
+                        </p>
+                    </div>
+                </div>     
+
+                <!-- ╔══════════════════════════════════╗ -->
+                <!-- ║           BUTTONS                ║ -->
+                <!-- ╚══════════════════════════════════╝ -->
+                <div class="prevnextbuttons">
+                    <button id="previouspage">Previous Page</button>
+                    <button id="nextpage">Next Page</button>
+                </div>           
+            </section>
+        </main>
+
+        
+        <!--Footer-->
+        <footer class="footer">
+            <div class="footer-line"></div>
+            <div class="footer-inner">
+                <span class="footer-name">Angel Clarke</span>
+                <div class="footer-icons">
+                    <a href="https://github.com/angeltristy" class="fa-brands fa-github"></a>
+                    <a href="https://www.youtube.com/@angeltristy/videos" class="fa-brands fa-youtube"></a>
+                    <a href="https://www.instagram.com/angeltristy/" class="fa-brands fa-instagram"></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
