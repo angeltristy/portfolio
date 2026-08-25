@@ -1,0 +1,794 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>MATH 164 — Intro to Linear Algebra</title><meta name="data-notion-page-icon" content="🦋"/><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%A6%8B%3C%2Ftext%3E%3C%2Fsvg%3E"/><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+/*
+ * Toggles and callouts hold arbitrary content, so they can easily be taller
+ * than a page. They must stay breakable: avoiding breaks inside them makes
+ * Chromium push the whole block onto the next page, which leaves the previous
+ * page mostly empty before every long toggle.
+ */
+details,
+aside {
+	margin: 1.25em 0;
+}
+
+/* Keep a toggle's title on the same page as the start of its content. */
+summary {
+	page-break-after: avoid;
+	break-after: avoid;
+}
+
+/*
+ * Toggle headings render as <h1/h2/h3 style="display:inline-block"> inside
+ * <summary>. Without this reset, the heading's margin-top pushes it below the
+ * ::marker (▼), so the triangle and the title appear on separate lines.
+ */
+summary h1,
+summary h2,
+summary h3,
+summary h4 {
+	margin-top: 0;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="5c16d127-d3ca-42c5-a524-9a9271e35d96" class="page mono" data-notion-page-icon="🦋"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1531366936337-7c912a4589a7?ixlib=rb-4.1.0&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon" data-emoji="🦋"></span></div><h1 class="page-title" dir="auto">MATH 164 — Intro to Linear Algebra</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><nav id="3c7a48b7-c22e-80ce-a1c8-fd300e482207" class="block-color-blue table_of_contents" data-notion-highlight="blue" data-notion-toc="" dir="ltr"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e3a48b7-c22e-810f-a37b-dd3ff11c87e2">Systems of Equations</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e3a48b7-c22e-81d3-abab-e10b73e83020">1.1 Systems of Equations - Geometric</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e3a48b7-c22e-8196-a32c-c3f9ae111973">1.2 Systems of Equations - Algebraic Procedures</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3c7a48b7-c22e-80da-ae5a-fcb8d3128d4e">Matrices</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e3a48b7-c22e-81a0-bda7-e6924f30fb30">2.1 Matrix Addition and Scalar Multiplication</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e3a48b7-c22e-8192-b04c-f0efcdc335cf">2.2 Matrix Multiplication</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e3a48b7-c22e-81dc-b56e-d7d1e4ade03b">2.3 The Transpose</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e3a48b7-c22e-8173-8a03-efa900bf9d61">2.4 The Identity Matrix and Matrix Inverses</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e3a48b7-c22e-81a0-a991-ec3f3942ed8d">2.5 Finding the Inverse of a Matrix</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e3a48b7-c22e-81fa-86a5-cce1c1496315">2.6 Elementary Matrices</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e3a48b7-c22e-819c-aeef-cba67bfafccd">2.7 Two Theorems on Matrix Inverses</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e3a48b7-c22e-81d1-974a-e9019a8040e3">2.8 LU Factorization</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3c7a48b7-c22e-80e6-9fa2-edd9996c2256">Determinants</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e3a48b7-c22e-8195-a95f-f9c23a2e3130">3.1 Determinants Basic Techniques and Properties</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e3a48b7-c22e-812b-8c05-d26b327e1431">3.2 Applications of the Determinant</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3c7a48b7-c22e-80c6-98a3-c4ad5a840551">ℝn</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e3a48b7-c22e-8146-839d-ff2dcaa8d007">4.1 Vectors in Rn: Geometry</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e3a48b7-c22e-8153-9643-ddd95bafdbf8">4.2 Vectors in Rn Algebra</a></div></nav><h1 id="2e3a48b7-c22e-810f-a37b-dd3ff11c87e2" class="" dir="auto">Systems of Equations</h1><h2 id="2e3a48b7-c22e-81d3-abab-e10b73e83020" class="" dir="auto">1.1 Systems of Equations - Geometric</h2><ul id="2e3a48b7-c22e-81ae-b805-f827affe0331" class="bulleted-list" dir="auto"><li style="list-style-type:disc">A system is just one or more linear equations that can be solved by finding the variable value that makes every equation true.</li></ul><figure id="2e3a48b7-c22e-81d3-bf9e-fd5dfc1d8570" class="image" data-notion-image="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image1.png" dir="ltr"><a href="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image1.png"><img style="width:700px" src="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image1.png"/></a></figure><ul id="2e3a48b7-c22e-818f-b030-daa4fce26193" class="bulleted-list" dir="auto"><li style="list-style-type:disc">You can find solutions by graphing</li></ul><h2 id="2e3a48b7-c22e-8196-a32c-c3f9ae111973" class="" dir="auto">1.2 Systems of Equations - Algebraic Procedures</h2><ul id="2e3a48b7-c22e-81c1-b083-f42cc98399d1" class="bulleted-list" dir="auto"><li style="list-style-type:disc">A system of linear equations is a list of equations, where aij and bj are real numbers.</li></ul><ul id="2e3a48b7-c22e-81e4-b8d3-c43216303559" class="bulleted-list" dir="auto"><li style="list-style-type:disc">aij represents the ith row and jth column element of a matrix A, where A is a matrix of coefficients.</li></ul><ul id="2e3a48b7-c22e-8102-9e4b-c9332edc5789" class="bulleted-list" dir="auto"><li style="list-style-type:disc">System of equations with m equations and m variables.</li></ul><ul id="2e3a48b7-c22e-817c-abc7-dc2ab490a371" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Scalars = any real number</li></ul><ul id="2e3a48b7-c22e-8106-a44c-efcd13b2e32a" class="bulleted-list" dir="auto"><li style="list-style-type:disc">A system of equations is homogeneous if every equation = 0.</li></ul><ul id="2e3a48b7-c22e-8121-85f2-ede3e36212e1" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Solution set are the values for x1 … xn which solves all equations.</li></ul><ul id="2e3a48b7-c22e-8173-a537-cda62133f892" class="bulleted-list" dir="auto"><li style="list-style-type:disc">System of linear equations is consistent if there is at least 1 solution.</li></ul><ul id="2e3a48b7-c22e-81ad-bca6-e76d13c5fe69" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Inconsistent if no solution.</li></ul><ul id="2e3a48b7-c22e-81ef-89ab-f866ee005ad1" class="bulleted-list" dir="auto"><li style="list-style-type:disc">2 systems are equivalent if they have the same solution set.</li></ul><ul id="2e3a48b7-c22e-819b-825a-f0832bc7a022" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Elementary Operations</strong><ol type="1" id="2e3a48b7-c22e-818a-8a1b-cb002a9cd5c3" class="numbered-list" start="1" dir="auto"><li>Interchange the order equations are listed.</li></ol><ol type="1" id="2e3a48b7-c22e-8121-aa31-f3d488ed6839" class="numbered-list" start="2" dir="auto"><li>Multiply any equation by a nonzero number</li></ol><ol type="1" id="2e3a48b7-c22e-81af-ad27-f9c9f80127e0" class="numbered-list" start="3" dir="auto"><li>Add a multiple of one equation to another equation.</li></ol></li></ul><figure id="2e3a48b7-c22e-8179-8c84-f339a604fc4d" class="image" data-notion-image="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image3.png" dir="ltr"><a href="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image3.png"><img style="width:650px" src="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image3.png"/></a></figure><ul id="2e3a48b7-c22e-8130-8f38-de0b4b161395" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Gaussian Elimination</strong><ul id="2e3a48b7-c22e-8127-b646-cbe6c15f8dba" class="bulleted-list" dir="auto"><li style="list-style-type:circle">First represent system with an augmented matrix.<ul id="2e3a48b7-c22e-810c-a947-dcacd1cf7a1e" class="bulleted-list" dir="auto"><li style="list-style-type:square">A matrix is a rectangle array of numbers.</li></ul><ul id="2e3a48b7-c22e-81c8-b58b-d0088942be26" class="bulleted-list" dir="auto"><li style="list-style-type:square">Size represented by m x n, where m = rows, n = col.</li></ul><ul id="2e3a48b7-c22e-8102-850b-d9f333221002" class="bulleted-list" dir="auto"><li style="list-style-type:square">To create augmented matrix, create a coefficient matrix and a constant matrix.</li></ul><ul id="2e3a48b7-c22e-815e-892e-f6e0023f103d" class="bulleted-list" dir="auto"><li style="list-style-type:square">Coefficients from 1 equation create 1 row of the augmented matrix.</li></ul></li></ul></li></ul><ul id="2e3a48b7-c22e-817d-957c-e9046d0526d4" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Elementary Row Operations</strong><ol type="1" id="2e3a48b7-c22e-8145-bf3a-c3bde6fa7bd4" class="numbered-list" start="1" dir="auto"><li>Switch 2 rows.<ul id="2e3a48b7-c22e-81c6-a8a1-e35d2b17784b" class="bulleted-list" dir="auto"><li style="list-style-type:disc">A -&gt; B</li></ul><ul id="2e3a48b7-c22e-8198-828a-ec33c74d3dec" class="bulleted-list" dir="auto"><li style="list-style-type:disc">ri&lt;-&gt;rj</li></ul></li></ol><ol type="1" id="2e3a48b7-c22e-81e3-a257-f5c80121e90e" class="numbered-list" start="2" dir="auto"><li>Multiply a row by a nonzero number, k.<ul id="2e3a48b7-c22e-81d9-bd8a-d8d8cef9e90c" class="bulleted-list" dir="auto"><li style="list-style-type:disc">A -&gt; B</li></ul><ul id="2e3a48b7-c22e-8142-9294-eb9bc4c11375" class="bulleted-list" dir="auto"><li style="list-style-type:disc">kri</li></ul></li></ol><ol type="1" id="2e3a48b7-c22e-81f9-a048-d80034ec1c67" class="numbered-list" start="3" dir="auto"><li>Add a multiple of one row to <em>another</em> row.<ul id="2e3a48b7-c22e-812c-b5d0-dfbc1ea0bb44" class="bulleted-list" dir="auto"><li style="list-style-type:disc">A -&gt; B</li></ul><ul id="2e3a48b7-c22e-812d-9c01-e278b868e867" class="bulleted-list" dir="auto"><li style="list-style-type:disc">kri + rj</li></ul></li></ol></li></ul><ul id="2e3a48b7-c22e-810c-a9fb-f06cb119b705" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Augmented Matrix is row Form if:</strong><ol type="1" id="2e3a48b7-c22e-8117-84ef-e3c33b23efad" class="numbered-list" start="1" dir="auto"><li>All nonzero rows are above zero rows.</li></ol><ol type="1" id="2e3a48b7-c22e-818d-ae05-d6184a743a35" class="numbered-list" start="2" dir="auto"><li>Each leading entry of a row is in a column to the right of the leading entries of any row above m.</li></ol><ol type="1" id="2e3a48b7-c22e-813a-9b1c-f52ae76e8f74" class="numbered-list" start="3" dir="auto"><li>Each leading entry of a row is equal to 1.</li></ol></li></ul><ul id="2e3a48b7-c22e-81a0-b614-fb1dd6f96e18" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>In reduced row form if:</strong><ol type="1" id="2e3a48b7-c22e-8106-89c2-dba088ee770e" class="numbered-list" start="1" dir="auto"><li>All entries in a column above and below a leading entry are zero.</li></ol></li></ul><ul id="2e3a48b7-c22e-8193-bd4a-f0cd8cd82321" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Leading entry is first nonzero entry.</li></ul><ul id="2e3a48b7-c22e-81cc-91dd-e7a10a2204a9" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Gaussian Elimination - row echelon form</li></ul><ul id="2e3a48b7-c22e-815f-8432-ccae86fbddcd" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Gauss-Jordan Elimination - reduced row echelon form.</li></ul><ul id="2e3a48b7-c22e-81d1-839a-db94a8e47fdd" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Row Reducing a Matrix</strong></li></ul><figure id="2e3a48b7-c22e-81dd-abc3-de907dcd51e2" class="image" data-notion-image="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image4.png" dir="ltr"><a href="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image4.png"><img style="width:602px" src="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image4.png"/></a></figure><ul id="2e3a48b7-c22e-81e3-8547-c6e34a9712a8" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Rank and Homogeneous Systems</strong><ul id="2e3a48b7-c22e-81f0-8752-c9832eb10889" class="bulleted-list" dir="auto"><li style="list-style-type:circle">A system is homogeneous if every equation = 0.</li></ul><ul id="2e3a48b7-c22e-816c-bb85-ec00fe1f400b" class="bulleted-list" dir="auto"><li style="list-style-type:circle">The trivial solution is 0 being the solution.</li></ul><ul id="2e3a48b7-c22e-8195-bc97-e4dd0e2b6544" class="bulleted-list" dir="auto"><li style="list-style-type:circle">We want to find nontrivial solution.</li></ul><ul id="2e3a48b7-c22e-8143-805a-ee2b474afd6c" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Suppose we have a homogeneous system of m equations, with n variables and suppose that n &gt; m. Equations with more variables than equations always have a nontrivial solution.</li></ul><ul id="2e3a48b7-c22e-8140-9e48-db8192659242" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Linear combinations are obtained by multiplying matrices by scalars and adding them together.</li></ul><ul id="2e3a48b7-c22e-815c-97d2-c467e491c5ba" class="bulleted-list" dir="auto"><li style="list-style-type:circle">A linear combo of the basic solutions to a homogeneous system is a solution to the system.</li></ul><ul id="2e3a48b7-c22e-8163-81c9-cc559eef752d" class="bulleted-list" dir="auto"><li style="list-style-type:circle">To find rank, use row reduction. The rank is the number of non-zero rows.</li></ul><ul id="2e3a48b7-c22e-81bf-b2b9-c0e33dd4ef31" class="bulleted-list" dir="auto"><li style="list-style-type:circle">The system has a unique solution if r = n.</li></ul><ul id="2e3a48b7-c22e-8193-8fea-f0c817d29a6f" class="bulleted-list" dir="auto"><li style="list-style-type:circle">The system has infinite solutions if r &lt; n.</li></ul></li></ul><h1 id="3c7a48b7-c22e-80da-ae5a-fcb8d3128d4e" class="" dir="auto">Matrices</h1><h2 id="2e3a48b7-c22e-81a0-bda7-e6924f30fb30" class="" dir="auto">2.1 Matrix Addition and Scalar Multiplication</h2><blockquote id="2e3a48b7-c22e-8198-bb5e-eded3c26fd94" class="" dir="auto">Definition 2.4: The Identity Matrix</blockquote><ul id="2e3a48b7-c22e-811b-81a2-e2f339bbe114" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The matrix is all zeroes, except the diagonal which are ones.</li></ul><blockquote id="2e3a48b7-c22e-8172-a755-efc7fe40f117" class="" dir="auto">Definition 2.6: Addition of Matrices</blockquote><ul id="2e3a48b7-c22e-8102-bf48-ffdfcc45fb33" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Add corresponding elements, aka numbers in same spot.</li></ul><blockquote id="2e3a48b7-c22e-81ad-83fd-ffdd8bfc9df6" class="" dir="auto"><p id="2e3a48b7-c22e-81a1-beca-cb26541bd601" class="" dir="auto">Definition 2.9: Scalar Multiplication</p></blockquote><ul id="2e3a48b7-c22e-813b-8b00-e0fb3310d80a" class="bulleted-list" dir="auto"><li style="list-style-type:disc">If A = [aij] and k is a scalar, then [kaij]</li></ul><h2 id="2e3a48b7-c22e-8192-b04c-f0efcdc335cf" class="" dir="auto">2.2 Matrix Multiplication</h2><blockquote id="2e3a48b7-c22e-8196-bd8b-d027176cd198" class="" dir="auto">Definition 2.12: Vectors</blockquote><ul id="2e3a48b7-c22e-8116-b520-e1e2f7b636ff" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Vectors are matrices of size n x 1.</li></ul><ul id="2e3a48b7-c22e-813b-8ae6-c018fa1fba2f" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Vectors will often be denoted by a lowercase letter + an arrow.</li></ul><ul id="2e3a48b7-c22e-8143-91fd-d2b79bc0335c" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The dot product is where we multiply matching numbers.</li></ul><ul id="2e3a48b7-c22e-81dd-956a-c97411b28bdd" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Matrix A rows = Matrix B columns.</li></ul><figure id="2e3a48b7-c22e-81b8-b1dd-fa8531b06028" class="image" data-notion-image="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image7.png" dir="ltr"><a href="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image7.png"><img style="width:700px" src="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image7.png"/></a></figure><ul id="2e3a48b7-c22e-81be-9309-d710cbbc6b39" class="bulleted-list" dir="auto"><li style="list-style-type:disc">If you put matrices in dimensional form, ex. (3x2) (3x2) and inside numbers do not match, multiplication is undefined.</li></ul><figure id="2e3a48b7-c22e-817d-be4d-eb1873fb1d95" class="image" data-notion-image="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image8.png" dir="ltr"><a href="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image8.png"><img style="width:588px" src="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image8.png"/></a></figure><ul id="2e3a48b7-c22e-81cc-8acc-d01ee0a444e4" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Find entry of a product (3,2) go to element in 3rd row, 2 column.</li></ul><h2 id="2e3a48b7-c22e-81dc-b56e-d7d1e4ade03b" class="" dir="auto">2.3 The Transpose</h2><blockquote id="2e3a48b7-c22e-8137-9cd5-f831f7bacd28" class="" dir="auto">Definition 2.27: The Transpose of a Matrix</blockquote><ul id="2e3a48b7-c22e-81ce-a6cb-d623919ef8d2" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Denoted by AT</li></ul><ul id="2e3a48b7-c22e-81ea-9c6b-f6573c7f0ab2" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Flips the I and j.</li></ul><ul id="2e3a48b7-c22e-8155-9e5d-fb55b1d770e3" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The (I, j)-entry of A becomes the (j, i)-entry.</li></ul><figure id="2e3a48b7-c22e-814a-9c88-c193b80a0dd0" class="image" data-notion-image="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image9.png" dir="ltr"><a href="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image9.png"><img style="width:700px" src="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image9.png"/></a></figure><blockquote id="2e3a48b7-c22e-81fc-9835-c365da12db0e" class="" dir="auto">Definition 2.30: Symmetric and Skew Symmetric</blockquote><ul id="2e3a48b7-c22e-817c-875d-c18b0bd7894c" class="bulleted-list" dir="auto"><li style="list-style-type:disc">An nxn matrix A is said to be symmetric if A=AT</li></ul><ul id="2e3a48b7-c22e-81f8-aff9-ceaea08ae7ba" class="bulleted-list" dir="auto"><li style="list-style-type:disc">It is said to be skew symmetric if A = -AT</li></ul><figure id="2e3a48b7-c22e-81a8-b1e5-c4c3e28ff521" class="image" data-notion-image="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image10.png" dir="ltr"><a href="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image10.png"><img style="width:700px" src="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image10.png"/></a></figure><h2 id="2e3a48b7-c22e-8173-8a03-efa900bf9d61" class="" dir="auto">2.4 The Identity Matrix and Matrix Inverses</h2><blockquote id="2e3a48b7-c22e-816f-add2-d9ce7e046c02" class="" dir="auto">Definition of an Invertible Matrix</blockquote><ul id="2e3a48b7-c22e-81b9-b6c5-de45a1a19b57" class="bulleted-list" dir="auto"><li style="list-style-type:disc">An invertible matrix (aka non-singular matrix) is a square matrix that has an inverse.</li></ul><ul id="2e3a48b7-c22e-81c5-ab62-c1f966aa6e74" class="bulleted-list" dir="auto"><li style="list-style-type:disc">A is invertible if there is another matrix B of the same size such that AB = BA = I, where I is the identity matrix.</li></ul><ul id="2e3a48b7-c22e-81b0-8c18-c22a41f39bb3" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Inverse denoted as A1</li></ul><ul id="2e3a48b7-c22e-8175-a9a6-c650ebf3d2a7" class="bulleted-list" dir="auto"><li style="list-style-type:disc">B is a witness that A is invertible</li></ul><blockquote id="2e3a48b7-c22e-81de-a480-e46e3f578a85" class="" dir="auto"><p id="2e3a48b7-c22e-811b-8982-f39a5118be17" class="" dir="auto">Non-invertible 2x2 matrix</p><figure id="2e3a48b7-c22e-818c-b7ca-d19800d60ba1" class="image" data-notion-image="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image12.png" dir="ltr"><a href="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image12.png"><img style="width:657px" src="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image12.png"/></a></figure></blockquote><h2 id="2e3a48b7-c22e-81a0-a991-ec3f3942ed8d" class="" dir="auto">2.5 Finding the Inverse of a Matrix</h2><blockquote id="2e3a48b7-c22e-8108-95f7-ffdf80016ad0" class="" dir="auto">Algorithm 2.39: Matrix Inversion</blockquote><ul id="2e3a48b7-c22e-8168-824b-c942cfdc4eba" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Suppose A is an nxn matrix.</li></ul><ul id="2e3a48b7-c22e-81c6-8734-db23ee329f39" class="bulleted-list" dir="auto"><li style="list-style-type:disc">To find A1 if it exists, form the augmented nx2n matrix.<ul id="2e3a48b7-c22e-8168-a0dc-df30f9136dd7" class="bulleted-list" dir="auto"><li style="list-style-type:circle">[A|I]</li></ul></li></ul><ul id="2e3a48b7-c22e-81a3-b356-d1b646bcb142" class="bulleted-list" dir="auto"><li style="list-style-type:disc">If possible, do row operations until you obtain [I|B] where B = A1.</li></ul><figure id="2e3a48b7-c22e-816a-a171-d8cb55c98b0a" class="image" data-notion-image="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image13.png" dir="ltr"><a href="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image13.png"><img style="width:553px" src="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image13.png"/></a></figure><figure id="2e3a48b7-c22e-81ce-866e-ea071b3ab1aa" class="image" data-notion-image="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image14.png" dir="ltr"><a href="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image14.png"><img style="width:609px" src="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image14.png"/></a></figure><figure id="2e3a48b7-c22e-8105-a438-f1974d67784c" class="image" data-notion-image="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image15.png" dir="ltr"><a href="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image15.png"><img style="width:639px" src="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image15.png"/></a></figure><h2 id="2e3a48b7-c22e-81fa-86a5-cce1c1496315" class="" dir="auto">2.6 Elementary Matrices</h2><ul id="2e3a48b7-c22e-8183-b6fb-dcc4cf19bf05" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Any elementary matrix, which we often denote E, is obtained from applying ONE row operation to the identity matrix of the same size.</li></ul><ul id="2e3a48b7-c22e-81eb-9a49-e866aef8a863" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Those which involve switching rows are called permutation matrices.</li></ul><ul id="2e3a48b7-c22e-8171-bf94-fe4d2a88ce40" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Every elementary matrix is invertible and its inverse is also an elementary matrix.</li></ul><ul id="2e3a48b7-c22e-81b3-b75f-d977797e068b" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Find inverse by doing the reverse row operations on I.</li></ul><ul id="2e3a48b7-c22e-817c-bcb7-f44a8a950804" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Matrix A is invertible if it can be obtained by multiplying elementary matrices.</li></ul><h2 id="2e3a48b7-c22e-819c-aeef-cba67bfafccd" class="" dir="auto">2.7 Two Theorems on Matrix Inverses</h2><blockquote id="2e3a48b7-c22e-816e-b2bd-e0603ee08562" class="" dir="auto">Theorem 2.63: Unique Inverse of a Matrix</blockquote><ul id="2e3a48b7-c22e-81e8-965a-f78fd2efde14" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Suppose A and B are square matrices.</li></ul><ul id="2e3a48b7-c22e-81dd-927a-e0316d70538d" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Such that AB = I where I = identity matrix.</li></ul><ul id="2e3a48b7-c22e-81c1-9f6d-e8ca434a9762" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Then it follows that BA = I.</li></ul><ul id="2e3a48b7-c22e-812e-bdea-f6210aca4f69" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Thus, both A and B are invertible and B=A1 and A = B1.</li></ul><blockquote id="2e3a48b7-c22e-81a4-b5ba-df2cd3231e70" class="" dir="auto">Theorem 2.64: The RREF of an Invertible Matrix</blockquote><ul id="2e3a48b7-c22e-8172-868f-cccb03effb64" class="bulleted-list" dir="auto"><li style="list-style-type:disc">For any matrix A, the following conditions are equivalent:<ul id="2e3a48b7-c22e-81bd-afc6-e843ce86bed1" class="bulleted-list" dir="auto"><li style="list-style-type:circle">A is invertible</li></ul><ul id="2e3a48b7-c22e-81ef-9aca-db4ac0bce964" class="bulleted-list" dir="auto"><li style="list-style-type:circle">The RREF of A is an identity matrix</li></ul></li></ul><h2 id="2e3a48b7-c22e-81d1-974a-e9019a8040e3" class="" dir="auto">2.8 LU Factorization</h2><blockquote id="2e3a48b7-c22e-8113-8202-e8cd21ebf2c3" class="" dir="auto">Triangle Matrices</blockquote><ul id="2e3a48b7-c22e-8184-bd47-de825c6fc19d" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Upper triangle matrix if every entry below the main diagonal is 0.</li></ul><ul id="2e3a48b7-c22e-8133-a32c-ec2fefd05896" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Lower triangle matrix if every entry above the main diagonal is 0.</li></ul><ul id="2e3a48b7-c22e-8137-bcf2-cfdf9c46d99c" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Triangle matrix if it is either upper or lower.</li></ul><blockquote id="2e3a48b7-c22e-817d-8aac-e426d53561ac" class="" dir="auto">LU Factorization</blockquote><ul id="2e3a48b7-c22e-810a-a415-e3124e9ba156" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Factor A as a product of lower triangle matrix and upper triangle matrix, where L has ones along the diagonal.</li></ul><blockquote id="2e3a48b7-c22e-814b-b5f5-e2bd4520c50e" class="" dir="auto">Direct Computation</blockquote><ul id="2e3a48b7-c22e-8157-a121-f4f5555874a6" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Matrices that can be put into RREF without switching rows, can be LU factored.</li></ul><figure id="2e3a48b7-c22e-816e-9f0b-da6cebf519d1" class="image" data-notion-image="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image16.png" dir="ltr"><a href="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image16.png"><img style="width:649px" src="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image16.png"/></a></figure><blockquote id="2e3a48b7-c22e-8121-8ad3-dc278f456c37" class="" dir="auto">LU Factorization via the Multiplier Method</blockquote><ul id="2e3a48b7-c22e-81f5-bbf3-fc98387febc1" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Use elementary operations to create upper triangle, not the multipliers and corresponding multipliers to obtain zero is the equal value in lower triangle.</li></ul><h1 id="3c7a48b7-c22e-80e6-9fa2-edd9996c2256" class="" dir="auto">Determinants</h1><h2 id="2e3a48b7-c22e-8195-a95f-f9c23a2e3130" class="" dir="auto">3.1 Determinants Basic Techniques and Properties</h2><blockquote id="2e3a48b7-c22e-814d-a005-f693ff99aff8" class="" dir="auto">Definition 3.1: Determinant of a 1x1 Matrix</blockquote><ul id="2e3a48b7-c22e-81a3-bd94-d3522b0329f7" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Let A = [a]</li></ul><ul id="2e3a48b7-c22e-81f3-8a52-f9d04602c5a6" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Then det(A) = a</li></ul><blockquote id="2e3a48b7-c22e-8154-8d20-d7c321f0cb3a" class="" dir="auto">Definition 3.2: Determinant of a 2x2 Matrix</blockquote><ul id="2e3a48b7-c22e-81f5-8a65-d7b22d8f049f" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Let A = [ a b, c d]</li></ul><ul id="2e3a48b7-c22e-81b3-981a-fcadfa25b991" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Then det(A)= ad - cb</li></ul><blockquote id="2e3a48b7-c22e-819f-875b-f8be38b8c1c6" class="" dir="auto">Definition 3.4: The ijth Minor of a Matrix</blockquote><ul id="2e3a48b7-c22e-817c-be13-f4c8f349a9a3" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Let A be a 3x3 matrix.</li></ul><ul id="2e3a48b7-c22e-8116-b927-cd020f224ca6" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The ijth minor, denoted a minor(A)ij, if the dot of the 2x2 matrix which results from deleting the ith row and jth column.</li></ul><blockquote id="2e3a48b7-c22e-81dd-a633-f55aefd40ea0" class="" dir="auto">Definition 3.6: The ijth Cofactor of a Matrix</blockquote><ul id="2e3a48b7-c22e-8184-80e5-c90cb8366822" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Suppose A is an nxn matrix.</li></ul><ul id="2e3a48b7-c22e-817c-bfa3-eab143c83f80" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The ijth cofactor, denoted by cof(A)ij is defined to be:<ul id="2e3a48b7-c22e-81f1-b2c8-eb80fd3d1497" class="bulleted-list" dir="auto"><li style="list-style-type:circle">cof(A)ij = (-1)i+jminor(A)ij</li></ul></li></ul><blockquote id="2e3a48b7-c22e-8102-b2d8-e21345c91878" class="" dir="auto">Definition 3.8: Determinant of a 3x3 Matrix</blockquote><ul id="2e3a48b7-c22e-81d8-ac6d-deb37b61e48e" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Let A be a 3x3 matrix.</li></ul><ul id="2e3a48b7-c22e-8123-9fe5-f8e535cff60c" class="bulleted-list" dir="auto"><li style="list-style-type:disc">We calculate det(A) by picking a row (or column) and taking the product of each entry in that row (or column) with its cofactor and adding those products together.</li></ul><ul id="2e3a48b7-c22e-8140-9e24-fc60ad2c74dd" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Known as expanding along the ith row (or column) as is given by:<ul id="2e3a48b7-c22e-812f-a2f4-c6a18445c0e8" class="bulleted-list" dir="auto"><li style="list-style-type:circle">det(A) = di1cof(A)i1 + ai2cof(A)i2 + ai3cof(A)i3</li></ul></li></ul><ul id="2e3a48b7-c22e-818e-9f81-fda9102b0af5" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Known as Laplace Expansion or Cofactor Expansion.</li></ul><blockquote id="2e3a48b7-c22e-8165-82f5-f7026476731e" class="" dir="auto">Finding Determinants using Row Operations</blockquote><ul id="2e3a48b7-c22e-815d-aa3f-e4ccd8f642e5" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Use row operations to a column or row, making the every one but the first number = 0.</li></ul><ul id="2e3a48b7-c22e-81aa-b35d-e1c53924d25c" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Use Laplace.</li></ul><h2 id="2e3a48b7-c22e-812b-8c05-d26b327e1431" class="" dir="auto">3.2 Applications of the Determinant</h2><blockquote id="2e3a48b7-c22e-812d-86a8-f414a9e81473" class="" dir="auto">Cramer&#x27;s Rule</blockquote><ul id="2e3a48b7-c22e-81cc-83ab-e51ed4c2a882" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Cramer&#x27;s Rule gives a formula for the solutions X in the special case that A is a square invertible matrix.</li></ul><ul id="2e3a48b7-c22e-810c-b147-d565d0f23c4c" class="bulleted-list" dir="auto"><li style="list-style-type:disc">If AX = B and A1 exists.</li></ul><figure id="2e3a48b7-c22e-8152-9a0d-c5ce4038f74d" class="image" data-notion-image="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image17.png" dir="ltr"><a href="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image17.png"><img style="width:240px" src="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image17.png"/></a></figure><blockquote id="2e3a48b7-c22e-8109-8ec6-c64847b9ea4e" class="" dir="auto">Procedure 3.46</blockquote><ul id="2e3a48b7-c22e-817b-b7f1-f3870402cb9f" class="bulleted-list" dir="auto"><li style="list-style-type:disc">xi = det(Ai) / det(A)</li></ul><ul id="2e3a48b7-c22e-814c-9be5-cb131ff88172" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Where Ai is the matrix obtained by replacing the ith column of A with the column matrix</li></ul><figure id="2e3a48b7-c22e-8150-8585-eda77ab786e7" class="image" data-notion-image="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image18.png" dir="ltr"><a href="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image18.png"><img style="width:189px" src="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image18.png"/></a></figure><h1 id="3c7a48b7-c22e-80c6-98a3-c4ad5a840551" class="" dir="auto">ℝn</h1><h2 id="2e3a48b7-c22e-8146-839d-ff2dcaa8d007" class="" dir="auto">4.1 Vectors in Rn: Geometry</h2><ul id="2e3a48b7-c22e-8153-9656-e6028b60e84e" class="bulleted-list" dir="auto"><li style="list-style-type:disc">You can use arrows to represent vectors.</li></ul><ul id="2e3a48b7-c22e-8117-8f9f-e441e77b1643" class="bulleted-list" dir="auto"><li style="list-style-type:disc">They have both magnitude (measured by the length of the area) and direction (orientation of the arrow).</li></ul><ul id="2e3a48b7-c22e-8140-85f3-d04204254f20" class="bulleted-list" dir="auto"><li style="list-style-type:disc">If vectors have same magnitude and direction, they&#x27;re equal.</li></ul><blockquote id="2e3a48b7-c22e-8119-904e-feebad4b5cec" class="" dir="auto">The Geometry of Scalar Multiplication</blockquote><ul id="2e3a48b7-c22e-811c-99a2-e14388fa38a0" class="bulleted-list" dir="auto"><li style="list-style-type:disc">If K is a positive real number, then K v(arrow) that points in same direction and length is k times the length of r(arrow).</li></ul><ul id="2e3a48b7-c22e-816e-85ff-f712c48b3fd0" class="bulleted-list" dir="auto"><li style="list-style-type:disc">If k is a negative number, the direction is opposite, while length is k times the length of v(arrow).</li></ul><blockquote id="2e3a48b7-c22e-8171-93b1-dc1d1b02d8e8" class="" dir="auto">The Geometry of Vector Addition</blockquote><ul id="2e3a48b7-c22e-8185-b840-fbbb8331ad52" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Slide v(arrow) so that the tail of v(arrow) is on the point of u(arrow).</li></ul><ul id="2e3a48b7-c22e-819c-9df7-f85df8cb5ae6" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Draw the arrow which goes from the tail of u(arrow) to the point of v(arrow). This arrow represent u(arrow) + v(arrow).</li></ul><figure id="2e3a48b7-c22e-810c-885b-dff17bb39005" class="image" data-notion-image="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image19.png" dir="ltr"><a href="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image19.png"><img style="width:421px" src="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image19.png"/></a></figure><h2 id="2e3a48b7-c22e-8153-9643-ddd95bafdbf8" class="" dir="auto">4.2 Vectors in Rn Algebra</h2><blockquote id="2e3a48b7-c22e-8178-8998-f8322843331b" class="" dir="auto"><figure id="2e3a48b7-c22e-81f0-9cdf-d7ae93d11e4b" class="image" data-notion-image="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image21.png" dir="ltr"><a href="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image21.png"><img style="width:627px" src="MATH%20164%20%E2%80%94%20Intro%20to%20Linear%20Algebra/image21.png"/></a></figure></blockquote></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

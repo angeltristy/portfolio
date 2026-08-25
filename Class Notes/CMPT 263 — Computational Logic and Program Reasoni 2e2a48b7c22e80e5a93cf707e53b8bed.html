@@ -1,0 +1,794 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>CMPT 263 — Computational Logic and Program Reasoning</title><meta name="data-notion-page-icon" content="🌺"/><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%8C%BA%3C%2Ftext%3E%3C%2Fsvg%3E"/><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+/*
+ * Toggles and callouts hold arbitrary content, so they can easily be taller
+ * than a page. They must stay breakable: avoiding breaks inside them makes
+ * Chromium push the whole block onto the next page, which leaves the previous
+ * page mostly empty before every long toggle.
+ */
+details,
+aside {
+	margin: 1.25em 0;
+}
+
+/* Keep a toggle's title on the same page as the start of its content. */
+summary {
+	page-break-after: avoid;
+	break-after: avoid;
+}
+
+/*
+ * Toggle headings render as <h1/h2/h3 style="display:inline-block"> inside
+ * <summary>. Without this reset, the heading's margin-top pushes it below the
+ * ::marker (▼), so the triangle and the title appear on separate lines.
+ */
+summary h1,
+summary h2,
+summary h3,
+summary h4 {
+	margin-top: 0;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="2e2a48b7-c22e-80e5-a93c-f707e53b8bed" class="page mono" data-notion-page-icon="🌺"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1748189199242-f1cf469f0273?ixlib=rb-4.1.0&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon" data-emoji="🌺"></span></div><h1 class="page-title" dir="auto">CMPT 263 — Computational Logic and Program Reasoning</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><nav id="2e2a48b7-c22e-80ac-a040-cf77db96cfcd" class="block-color-pink table_of_contents" data-notion-highlight="pink" data-notion-toc="" dir="ltr"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e2a48b7-c22e-8114-9cc6-d282218faa76">Chapter 1: Propositional Logic </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e2a48b7-c22e-8157-867b-d191c391ff50">1.2 Natural deduction </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e2a48b7-c22e-8167-9c0b-f445a7728cb0">1.2.1 Rules for natural deduction </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e2a48b7-c22e-81ac-a419-c3fe5cea75a0">1.3 Propositional logic as a formal language </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e2a48b7-c22e-81f7-a789-ed677dd7281f">1.4 Semantics of propositional logic</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e2a48b7-c22e-81c9-ac9a-df3f7dd8ddbc">1.5 Normal Forms </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e2a48b7-c22e-8135-b33f-f017442ce309">Chapter 2: Predicate Logic </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e2a48b7-c22e-8106-8672-d739ab6a030e">2.1 The need for a richer language</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e2a48b7-c22e-81fa-9b3a-cad2897427f0">2.2 Predicate logic as a formal language</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e2a48b7-c22e-81a2-86c8-c7f42cee110d">2.3 Proof theory of predicate logic</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e2a48b7-c22e-8155-ab48-cf1867b75698">2.4 Semantics of predicate logic </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e2a48b7-c22e-81c5-8ce3-ed6fc555e5aa">2.5 Undecidability of predicate logic</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e2a48b7-c22e-8160-abf0-e3909d143f4a">Transition Systems</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e2a48b7-c22e-81fd-8681-d04780afb137">Chapter 3: </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e2a48b7-c22e-8198-800e-e3000c47ea29">3.1 Motivation for verification</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e2a48b7-c22e-818a-b108-fc72b63a02fd">3.2 Linear-time temporal logic </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e2a48b7-c22e-81ea-8f5a-f31c90ebc44b">3.2.2 Semantics of LTL </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e2a48b7-c22e-8191-877b-e3460764a0ec">3.4 Branching-time logic </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e2a48b7-c22e-815e-a335-ce5a6a150700">3.6.1 The CTL model-checking algorithm </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e2a48b7-c22e-81c6-ba56-db65e37a1175">Section 10.2 Probabilistic Computation Tree Logic from another textbook, Principles of Model Checking. </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e2a48b7-c22e-81e8-9a35-ccd1f2a5522b">PCTL bounded until for DTMCs</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e2a48b7-c22e-81b6-9a1d-d3ada932ee92">PCTL until </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e2a48b7-c22e-819d-b6ce-eaf0ec1ee09e">6.5 The Poisson Distribution</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e2a48b7-c22e-81e6-9480-f3e112eee2ae">7.1 The Uniform Distribution </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e2a48b7-c22e-8147-9bc9-c02093605aa5">7.2 The Exponential Distribution </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e2a48b7-c22e-81d9-9cd7-da86f82cb289">9.10 Continuous-Time Markov Chains </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e2a48b7-c22e-81eb-9928-dae61eac79c3">10.2.2 Gaussian Elimination and LU Factorizations</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e2a48b7-c22e-81c1-a7a7-e5257289fd73">10.3.1 The Power Method</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e2a48b7-c22e-81b9-94a4-ea706b14426e">10.7.2 The Uniformization Method for Large State Spaces</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e2a48b7-c22e-81dd-902a-c47d860a8e03">Chapter 4 </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e2a48b7-c22e-8162-b407-cc26e082ca5a">Topics that were on the final </a></div></nav><h2 id="2e2a48b7-c22e-8114-9cc6-d282218faa76" class="" dir="auto">Chapter 1: Propositional Logic </h2><ul id="2e2a48b7-c22e-8177-ba7e-f5d88db8c50d" class="bulleted-list" dir="auto"><li style="list-style-type:disc">1.1 Declarative sentences <figure id="2e2a48b7-c22e-813a-b741-c86ad067b429" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image1.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image1.png"><img style="width:700px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image1.png"/></a></figure></li></ul><blockquote id="2e2a48b7-c22e-813a-97f4-ec4e7876c8a0" class="" dir="auto">In order to make arguments rigorous, we need to develop a language in which we can express sentences in such a way that brings out their logical structure. The language we begin with is the language of propositional logic. It is based on propositions, or declarative sentences which one can, in principle, argue as being true or false.</blockquote><ul id="2e2a48b7-c22e-81ed-955a-c2752ed6e09c" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The logic we intend to design is symbolic in nature. Our strategy is to consider certain declarative sentences as being atomic, or indecomposable.</li></ul><figure id="2e2a48b7-c22e-806b-9815-d164eae39517" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image.png"><img style="width:709.953125px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image.png"/></a></figure><ul id="2e2a48b7-c22e-816d-89ab-f63a8a8db8c7" class="bulleted-list" dir="auto"><li style="list-style-type:disc">turnstile symbol (⊢), which denotes syntactic implication or provability. It indicates that a formula (or statement) on the right can be derived from the formulas on the left using the rules of a specific logical system.</li></ul><ul id="2e2a48b7-c22e-8177-916b-fbcda171d8cd" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Convention 1.3</strong> ¬ binds more tightly than ∨ and ∧, and the latter two bind more tightly than →. Implication → is right-associative: expressions of the form p → q → r denote p → (q → r).<figure id="2e2a48b7-c22e-81f0-9035-ce02bf57ebb1" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image3.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image3.png"><img style="width:640.9801025390625px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image3.png"/></a></figure></li></ul><h3 id="2e2a48b7-c22e-8157-867b-d191c391ff50" class="" dir="auto">1.2 Natural deduction </h3><ul id="2e2a48b7-c22e-816e-ba7c-f0263624f031" class="bulleted-list" dir="auto"><li style="list-style-type:disc">In natural deduction, we have a collection of proof rules. They allow us to infer formulas from other formulas.</li></ul><ul id="2e2a48b7-c22e-8173-b244-c8158b43c1f4" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Suppose we have a set of formulas4 φ1, φ2, φ3, ... , φn, which we will call premises, and another formula, ψ, which we will call a conclusion. By applying proof rules to the premises, we hope to get some more formulas, and by applying more proof rules to those, to eventually obtain the conclusion. This intention we denote by φ1, φ2,...,φn |- ψ.</li></ul><ul id="2e2a48b7-c22e-8171-8f9d-d31463e7e7be" class="bulleted-list" dir="auto"><li style="list-style-type:disc">This expression is called a sequent; it is valid if a proof for it can be found.</li></ul><h3 id="2e2a48b7-c22e-8167-9c0b-f445a7728cb0" class="" dir="auto">1.2.1 Rules for natural deduction </h3><ul id="2e2a48b7-c22e-8162-8dad-ec313e2eef3c" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>The rules for conjunction</strong>. It allows us to conclude φ ∧ ψ, given that we have already concluded φ and ψ separately. We write this rule as<figure id="2e2a48b7-c22e-811c-82b8-edf561eedc2f" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image4.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image4.png"><img style="width:154.9857940673828px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image4.png"/></a></figure><ul id="2e2a48b7-c22e-81d4-b5ba-edf13914af2d" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Above the line are 2 premises of the rule. Below the line goes the conclusion. The right, is name of the rule. ^I is read &quot;and-introduction&quot;.</li></ul><figure id="2e2a48b7-c22e-817a-8669-e738cb312517" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image5.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image5.png"><img style="width:700px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image5.png"/></a></figure><figure id="2e2a48b7-c22e-8139-8ee7-c0ae81b5ae80" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image6.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image6.png"><img style="width:700px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image6.png"/></a></figure></li></ul><ul id="2e2a48b7-c22e-81eb-8677-d52fc01bb7e0" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>The rules of double negation</strong>. Intuitively, there is no difference between a formula φ and its double negation ¬¬φ, which expresses no more and nothing less than φ itself.<ul id="2e2a48b7-c22e-8175-b16e-fcc24a47936a" class="bulleted-list" dir="auto"><li style="list-style-type:circle">We obtain the rules of elimination and introduction for double negation:</li></ul><figure id="2e2a48b7-c22e-80fb-9af7-ea2966c38a87" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%201.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%201.png"><img style="width:244.95738220214844px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%201.png"/></a></figure></li></ul><ul id="2e2a48b7-c22e-817e-adda-efdac6983749" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>The rule for eliminating implication</strong>. The rule to eliminate -&gt; is one of the best known rules of propositional logic and is often referred to by its Latin name <em>modus ponens</em>, or implies-elimination or arrow-elimination. This rule states that, given phi and known that phi implies psi, we may rightfully conclude psi.</li></ul><figure id="2e2a48b7-c22e-81ee-b5ac-e0d45f24be1f" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image8.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image8.png"><img style="width:194.97158813476562px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image8.png"/></a></figure><figure id="2e2a48b7-c22e-8151-a620-f1cc2df55086" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image9.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image9.png"><img style="width:474.9999694824219px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image9.png"/></a></figure><ul id="2e2a48b7-c22e-81dd-b8fc-e1a16e4a3749" class="bulleted-list" dir="auto"><li style="list-style-type:disc">&quot;p implies (q implies r)&quot; as “p arrow (q arrow r)”</li></ul><ul id="2e2a48b7-c22e-8168-adef-d31c2aceb117" class="bulleted-list" dir="auto"><li style="list-style-type:disc">&quot;⊢&quot; as “therefore” or “entails”</li></ul><ul id="2e2a48b7-c22e-81e7-81e5-dcc9c4f5c650" class="bulleted-list" dir="auto"><li style="list-style-type:disc">&quot;→e&quot; as “implication elimination”</li></ul><ul id="2e2a48b7-c22e-81cb-a136-e8e39c0f06af" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Modus tollens</strong> is a hybrid rule that is like the -&gt;e rule in that it eliminates an implication.<ul id="2e2a48b7-c22e-817a-af7a-f44cdabed35e" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Suppose that p → q and ¬q are the case. Then, if p holds we can use →e to conclude that q holds. Thus, we then have that q and ¬q hold, which is impossible. Therefore, we may infer that p must be false. But this can only mean that ¬p is true</li></ul></li></ul><figure id="2e2a48b7-c22e-81c5-9ef6-eb568a1cd965" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image10.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image10.png"><img style="width:225.9801025390625px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image10.png"/></a></figure><figure id="2e2a48b7-c22e-81c0-a476-f12da19c2608" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image11.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image11.png"><img style="width:682px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image11.png"/></a></figure><ul id="2e2a48b7-c22e-81bb-bf41-f70672d189cf" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>The rule implies introduction</strong>. Showing p → q using the rule →i is now called type checking, an important topic in the construction of compilers for typed programming languages.</li></ul><figure id="2e2a48b7-c22e-80fa-87c2-efae6f50958e" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%202.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%202.png"><img style="width:201.97442626953125px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%202.png"/></a></figure><figure id="2e2a48b7-c22e-816b-bc0d-c2212a997cb4" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image13.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image13.png"><img style="width:519.9857788085938px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image13.png"/></a></figure><ul id="2e2a48b7-c22e-81d8-bdfd-ccff98227fb8" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The rules for disjunction. For or-introduction:</li></ul><figure id="2e2a48b7-c22e-813e-9ce1-d644e4b34c56" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image14.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image14.png"><img style="width:299px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image14.png"/></a></figure><ul id="2e2a48b7-c22e-8177-9979-fb590c498f34" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Let us imagine that we want to show some proposition χ by assuming φ ∨ ψ. Since we don’t know which of φ and ψ is true, we have to give two separate proofs which we need to combine into one argument:</li></ul><blockquote id="2e2a48b7-c22e-81e5-9f4b-f0df1231f48e" class="" dir="auto">1. First, we assume φ is true and have to come up with a proof of χ.<p id="2e2a48b7-c22e-8145-9697-c016e0b3723f" class="" dir="auto">2. Next, we assume ψ is true and need to give a proof of χ as well.</p><p id="2e2a48b7-c22e-81ee-bdd3-cbd82a425d2f" class="" dir="auto">3. Given these two proofs, we can infer χ from the truth of φ ∨ ψ, since our case analysis above is exhaustive.</p><figure id="2e2a48b7-c22e-8143-bd0d-f4edc4ecb8b5" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image15.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image15.png"><img style="width:273.9772644042969px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image15.png"/></a></figure><figure id="2e2a48b7-c22e-81d2-8e34-cdd80730e902" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image16.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image16.png"><img style="width:529.9857788085938px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image16.png"/></a></figure></blockquote><ul id="2e2a48b7-c22e-81d7-983c-f583ad835ff8" class="bulleted-list" dir="auto"><li style="list-style-type:disc">For it to be a sound argument we have to make sure that the conclusions in each of the two cases (the χ in the rule) are actually the same formula.</li></ul><ul id="2e2a48b7-c22e-81c9-9a22-e0f365c37c21" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The work done by the rule ∨e is the combining of the arguments of the two cases into one.</li></ul><ul id="2e2a48b7-c22e-8192-b025-cf5b3f898e9c" class="bulleted-list" dir="auto"><li style="list-style-type:disc">In each case you may not use the temporary assumption of the other case, unless it is something that has already been shown before those case boxes began.</li></ul><ul id="2e2a48b7-c22e-819e-8028-e6968936d267" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The invocation of rule ∨e in line 6 lists three things: the line in which the disjunction appears (1), and the location of the two boxes for the two cases (2–3 and 4–5).</li></ul><ul id="2e2a48b7-c22e-81b3-bd50-c4305132b514" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>The rules for negation.</strong> We have seen the rules ¬¬i and ¬¬e, but we haven’t seen any rules that introduce or eliminate single negations. These rules involve the notion of contradiction.</li></ul><ul id="2e2a48b7-c22e-81b4-91cb-cba25cb1961f" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Definition 1.19</strong> Contradictions are expressions of the form φ ∧ ¬φ or ¬φ ∧ φ, where φ is any formula.</li></ul><figure id="2e2a48b7-c22e-8044-8f0e-da13b1e10742" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%203.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%203.png"><img style="width:685.984375px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%203.png"/></a></figure><ul id="2e2a48b7-c22e-8198-8cfd-da4ef6944e1d" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>The rule for proof by contradiction (PBC)</strong>. Also called reductio ad absurdum and negation elimination. To prove a statement P, you must assume the opposite (not P) and derive a contradiction. This contradiction implies that your assumption (not P) must be false, so P must be true.<ul id="2e2a48b7-c22e-81ab-977a-db6742e3163e" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><figure id="2e2a48b7-c22e-81f7-b92d-d7a687b978e8" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image18.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image18.png"><img style="width:113.99147033691406px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image18.png"/></a></figure></li></ul></li></ul><ul id="2e2a48b7-c22e-81aa-a161-fcdf5ba6ca70" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>The rule of the excluded middle (LEM)</strong>. Every proposition is either true or false. For any proposition P, either P is true or its negation not P is true.<ul id="2e2a48b7-c22e-81d5-8225-c6efd5128d99" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><figure id="2e2a48b7-c22e-8173-b8c8-fb5ace607eb7" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image19.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image19.png"><img style="width:126.97442626953125px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image19.png"/></a></figure></li></ul></li></ul><blockquote id="2e2a48b7-c22e-8110-a74a-d2ca8ad6c36b" class="" dir="auto"><figure id="2e2a48b7-c22e-811f-8b8a-cc7c63863e0b" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image20.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image20.png"><img style="width:588.991455078125px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image20.png"/></a></figure><figure id="2e2a48b7-c22e-81e4-8343-f5da7c3dea3c" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image21.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image21.png"><img style="width:700px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image21.png"/></a></figure></blockquote><h3 id="2e2a48b7-c22e-81ac-a419-c3fe5cea75a0" class="" dir="auto">1.3 Propositional logic as a formal language </h3><ul id="2e2a48b7-c22e-819f-b7e8-e2903f27d042" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Definition 1.27</strong> The well-formed formulas of propositional logic are those which we obtain by using the construction rules below, and only those, finitely many times:<ul id="2e2a48b7-c22e-814a-8003-db54d3b1536a" class="bulleted-list" dir="auto"><li style="list-style-type:circle">atom: Every propositional atom p, q, r,... and p1, p2, p3,... is a well-formed formula.</li></ul><ul id="2e2a48b7-c22e-8153-b9ae-cde1604d2910" class="bulleted-list" dir="auto"><li style="list-style-type:circle">¬: If φ is a well-formed formula, then so is (¬φ).</li></ul><ul id="2e2a48b7-c22e-8114-99d1-cb5d1818fbdc" class="bulleted-list" dir="auto"><li style="list-style-type:circle">∧: If φ and ψ are well-formed formulas, then so is (φ ∧ ψ).</li></ul><ul id="2e2a48b7-c22e-8199-95ce-e78813bf71e1" class="bulleted-list" dir="auto"><li style="list-style-type:circle">∨: If φ and ψ are well-formed formulas, then so is (φ ∨ ψ).</li></ul><ul id="2e2a48b7-c22e-8111-919f-cfa42745826d" class="bulleted-list" dir="auto"><li style="list-style-type:circle">→: If φ and ψ are well-formed formulas, then so is (φ → ψ).</li></ul></li></ul><ul id="2e2a48b7-c22e-8103-880d-e40f508a25e4" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Inductive definitions, like the one of well-formed propositional logic formulas above, are so frequent that they are often given by a defining grammar in Backus Naur form (BNF).<ul id="2e2a48b7-c22e-811b-aeb5-f0aaf6f3c989" class="bulleted-list" dir="auto"><li style="list-style-type:circle">In that form, the above definition reads more compactly as φ ::= p | (¬φ) | (φ ∧ φ) | (φ ∨ φ) | (φ → φ) (1.3)</li></ul><ul id="2e2a48b7-c22e-8114-8c43-ec42623670f1" class="bulleted-list" dir="auto"><li style="list-style-type:circle">where p stands for any atomic proposition and each occurrence of φ to the right of ::= stands for any already constructed formula.</li></ul></li></ul><ul id="2e2a48b7-c22e-81f2-9cc4-ec9357e4abc1" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Convention. In this section we act as if we are a rigorous computer and we call formulas well-formed iff they can be deduced to be so using the definition above.</li></ul><ul id="2e2a48b7-c22e-8153-b1c3-f7a9187c1bc7" class="bulleted-list" dir="auto"><li style="list-style-type:disc">A subformula is any part of a formula that is itself a valid formula.</li></ul><ul id="2e2a48b7-c22e-816d-a294-caf4e5c6d61b" class="bulleted-list" dir="auto"><li style="list-style-type:disc">A <strong>parse tree</strong> (also called a syntax tree) shows the structure of a formula — how it&#x27;s built up from propositional variables and logical connectives.<ul id="2e2a48b7-c22e-811b-866b-e91368700272" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Work from the outermost connective in.</li></ul><ul id="2e2a48b7-c22e-8170-8334-d5017cac948a" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Every connective is a node; its operands are its children.</li></ul></li></ul><h3 id="2e2a48b7-c22e-81f7-a789-ed677dd7281f" class="" dir="auto">1.4 Semantics of propositional logic</h3><ul id="2e2a48b7-c22e-81af-a44c-f8b84083ecc7" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Logical connectives are <strong>symbols</strong> that combine or modify statements (propositions) to form <strong>compound statements</strong>.</li></ul><ul id="2e2a48b7-c22e-81dd-8578-e6cbdbd22355" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Definition 1.30</strong> The principle of mathematical induction says that, on the grounds of these two pieces of information above, every natural number n has property M(n). The assumption of M(n) in the inductive step is called the induction hypothesis.</li></ul><ul id="2e2a48b7-c22e-8120-943b-eef0494e44f9" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Definition 1.32</strong> Given a well-formed formula φ, we define its height to be 1 plus the length of the longest path of its parse tree.</li></ul><ul id="2e2a48b7-c22e-8184-90ef-e13593c2af33" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Definition 1.34 If, for all valuations in which all φ1, φ2,...,φ evaluate to T, ψ evaluates to T as well, we say that φ1, φ2,...,φn ψ holds and call the semantic entailment relation.</li></ul><ul id="2e2a48b7-c22e-8161-884e-c67f0045c253" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Soundness:</strong> If a formula can be proved, then it must be true (logically valid.)</li></ul><ul id="2e2a48b7-c22e-8176-8d1d-f3358d1f954a" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Completeness:</strong> If a formula is true, than there must be a proof for it.</li></ul><ul id="2e2a48b7-c22e-819f-a0ee-e7602c60c75c" class="bulleted-list" dir="auto"><li style="list-style-type:disc">⊢ϕ: “ϕ” is <strong>provable</strong> (using a formal system).</li></ul><ul id="2e2a48b7-c22e-81e5-8027-d4276057e9b5" class="bulleted-list" dir="auto"><li style="list-style-type:disc">⊨ϕ: “ϕ” is <strong>logically valid</strong> (true in all interpretations).</li></ul><ul id="2e2a48b7-c22e-8173-95eb-ce8caa47b13e" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Definition 1.36 A formula of propositional logic φ is called a tautology iff it evaluates to T under all its valuations, i.e. iff |= φ.</li></ul><h3 id="2e2a48b7-c22e-81c9-ac9a-df3f7dd8ddbc" class="" dir="auto">1.5 Normal Forms </h3><ul id="2e2a48b7-c22e-8182-9040-e6c4c26994fc" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Definition 1.40</strong> Let φ and ψ be formulas of propositional logic. We say that φ and ψ are semantically equivalent iff φ |=ψ and ψ|= φ hold. In that case we write φ ≡ ψ. Further, we call φ valid if |= φ holds.</li></ul><ul id="2e2a48b7-c22e-8181-a59f-da194c28333a" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Definitions: If all valuations of a formula can satisfy this formula, we say it is a tautology.<ul id="2e2a48b7-c22e-8169-886d-ce790e4cb580" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Why satisfiability matters:</li></ul><ul id="2e2a48b7-c22e-817a-b210-c24daf7b41f1" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Satisfiability is central in logic, automated reasoning, AI,</li></ul><ul id="2e2a48b7-c22e-8160-97c8-ec81bb61aedf" class="bulleted-list" dir="auto"><li style="list-style-type:circle">and verification.</li></ul><ul id="2e2a48b7-c22e-81ed-8869-e7ddaca6bd57" class="bulleted-list" dir="auto"><li style="list-style-type:circle">There are industry-level SAT solvers, like Z3, CVC5, etc., can check whether a formula is satisfiable.</li></ul></li></ul><ul id="2e2a48b7-c22e-818d-be43-c75184663d87" class="bulleted-list" dir="auto"><li style="list-style-type:disc">the logical constants ⊥ (‘bottom’) and T (‘top’) denote an unsatisfiable formula, respectively, a tautology</li></ul><ul id="2e2a48b7-c22e-81d9-a4d9-e025c992ee14" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Definition 1.42</strong> A literal L is either an atom p or the negation of an atom ¬p. A formula C is in conjunctive normal form (CNF) if it is a conjunction of clauses, where each clause D is a disjunction of literals:</li></ul><figure id="2e2a48b7-c22e-81b7-a8e3-c5a179318a9f" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image22.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image22.png"><img style="width:364.98577880859375px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image22.png"/></a></figure><ul id="2e2a48b7-c22e-81a8-9423-ef6d87691af7" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Negation Normal Form (NNF) is a way of representing logical formulas where negation symbols (NOT) only appear directly before atomic propositions (variables) and the only allowed logical operators are conjunction (AND) and disjunction (OR</li></ul><ul id="2e2a48b7-c22e-8173-8af7-f063134043b3" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The algorithm to compute a CNF formula equivalent to a given arbitrary formula phi is described as: CNF(NNF(IMPL_FREE)))<ul id="2e2a48b7-c22e-81d9-a114-f69ac4d7c1c1" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Convert the formula to not have implications by using this algorithm:</li></ul></li></ul><figure id="2e2a48b7-c22e-80fb-a317-ca12d08e11c9" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%204.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%204.png"><img style="width:674.984375px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%204.png"/></a></figure><ul id="2e2a48b7-c22e-81ab-b512-c8efaf3a874d" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Convert the implication-free formula to negation normal form.</li></ul><figure id="2e2a48b7-c22e-8095-b581-eb02af2c3c0e" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%205.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%205.png"><img style="width:674.96875px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%205.png"/></a></figure><ul id="2e2a48b7-c22e-8111-8c16-eb4535778bf3" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Convert to CNF with this algorithm.</li></ul><figure id="2e2a48b7-c22e-8024-92d2-e9d7fe6b3963" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%206.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%206.png"><img style="width:674.984375px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%206.png"/></a></figure><ul id="2e2a48b7-c22e-81d6-b500-ef8d6452905e" class="bulleted-list" dir="auto"><li style="list-style-type:disc">In propositional or first-order logic, a clause is a disjunction (OR) of literals (atoms or their negations). A Horn clause is a clause that has:<ul id="2e2a48b7-c22e-8101-a99e-f8aad4518ee5" class="bulleted-list" dir="auto"><li style="list-style-type:circle">At most one positive literal (i.e., not negated),</li></ul><ul id="2e2a48b7-c22e-8163-afe1-ec9be076c5b7" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Any number (including zero) of negative literals (i.e., negated atoms).</li></ul></li></ul><h2 id="2e2a48b7-c22e-8135-b33f-f017442ce309" class="" dir="auto">Chapter 2: Predicate Logic </h2><h3 id="2e2a48b7-c22e-8106-8672-d739ab6a030e" class="" dir="auto">2.1 The need for a richer language</h3><blockquote id="2e2a48b7-c22e-8102-8567-c42ad7ef5f53" class="" dir="auto">Propositional logic:</blockquote><ul id="2e2a48b7-c22e-812e-b0ae-d43270819755" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Using declarative sentences to describe the world.</li></ul><ul id="2e2a48b7-c22e-8119-9a90-f11a4ae8089c" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Can express composite sentences with connectives.</li></ul><ul id="2e2a48b7-c22e-811b-81c0-f5b796f48297" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Limitations: Cannot express sentences with modifiers like &quot;there exists&quot;, &quot;all&quot;, &quot;among&quot;, &quot;only&quot;.</li></ul><blockquote id="2e2a48b7-c22e-811d-9aeb-cd150330430e" class="" dir="auto">Properties are expressed by predicates.</blockquote><ul id="2e2a48b7-c22e-812e-b738-e4d15026c044" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Variables are placeholders for concrete value, we can further generalize these predicates with variables.</li></ul><ul id="2e2a48b7-c22e-8158-ad6e-ed57748aecba" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Now in predicate logic, we go beyond just assigning truth values to variables. We introduce models, which are more complex:</li></ul><ul id="2e2a48b7-c22e-815e-abc7-c12945b8d4c5" class="bulleted-list" dir="auto"><li style="list-style-type:disc">A model includes a domain of objects (what things exist in that world)</li></ul><ul id="2e2a48b7-c22e-8150-b67f-e1d43942441c" class="bulleted-list" dir="auto"><li style="list-style-type:disc">It tells you what each predicate (like “is red” or “loves(x, y)”) means</li></ul><ul id="2e2a48b7-c22e-8155-8ab6-daa43a036d6e" class="bulleted-list" dir="auto"><li style="list-style-type:disc">And how functions and constants behave (e.g., “father of x” or “zero”)</li></ul><ul id="2e2a48b7-c22e-81db-b098-f7f74d052d15" class="bulleted-list" dir="auto"><li style="list-style-type:disc">So instead of just assigning T/F to whole formulas, you evaluate whether formulas are true in a model, which is a whole imagined world with structure.</li></ul><blockquote id="2e2a48b7-c22e-81a7-b1c3-ef48d6ffff66" class="" dir="auto">Two quantifiers: ∀ - forall, and ∃ - exists</blockquote><h3 id="2e2a48b7-c22e-81fa-9b3a-cad2897427f0" class="" dir="auto">2.2 Predicate logic as a formal language</h3><blockquote id="2e2a48b7-c22e-81f5-8623-e5ac45d709f8" class="" dir="auto">A predicate vocab consists of three sets: predicate symbols P, function symbols F, constants C.<p id="2e2a48b7-c22e-81fe-ad49-e7728a014d69" class="" dir="auto">Elements of the formal language of predicate logic: terms, formulas, free and bound variables, substitution.</p></blockquote><ul id="2e2a48b7-c22e-81bf-b68b-c0b648e31dc6" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Terms:<ul id="2e2a48b7-c22e-81c2-9487-c28859c4480f" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Any variable is a term;</li></ul><ul id="2e2a48b7-c22e-815e-a841-dc2b4296d842" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Any constant in C is a term,</li></ul></li></ul><blockquote id="2e2a48b7-c22e-81c6-a419-ee90cd882001" class="" dir="auto">if t1, ..., tn are terms and f ∈ F has arity n, then<p id="2e2a48b7-c22e-8104-838b-ff05a038d83f" class="" dir="auto">f (t1, ..., tn) is a term;</p><p id="2e2a48b7-c22e-8166-b467-ef2403be8d3b" class="" dir="auto">BNF definition of terms: t ::= x|c|f (t, ..., t), where x is a</p><p id="2e2a48b7-c22e-8147-b498-df5eb8dc26c2" class="" dir="auto">variable, c is a constant in C, and f is a function in F with arity n.</p><p id="2e2a48b7-c22e-8127-9030-d6f0180108f6" class="" dir="auto">A predicate’s arity is the number of terms it needs to form a complete proposition.</p><p id="2e2a48b7-c22e-81f2-a9ec-c2ab42ae76a6" class="" dir="auto">Example: 𝑃(x) has arity 1 (unary) — one argument.</p><p id="2e2a48b7-c22e-81d6-becd-e0f859427fe6" class="" dir="auto">R(x,y) has arity 2 (binary) — two arguments.</p></blockquote><ul id="2e2a48b7-c22e-8112-9cee-f31c38d0a2d3" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Formulas: We define the set of formulas over (F, P) inductively, using the already defined set of terms over F.</li></ul><blockquote id="2e2a48b7-c22e-8133-8d52-dd3d2784c63f" class="" dir="auto">If P is a predicate with n ≥ 1 arguments, and t1, ..., tn are terms over F, then P (t1, ..., tn) is a formula;<p id="2e2a48b7-c22e-811d-948f-dbb8b92f8361" class="" dir="auto">If Φ is a formula, then so is ¬Φ;</p><p id="2e2a48b7-c22e-8135-aaf0-f4f82611f05b" class="" dir="auto">If Φ and Ψ are formulas, then so are Φ ∧ Ψ, Φ ∨ Ψ, Φ → Ψ;</p><p id="2e2a48b7-c22e-8195-aa66-c7b5a4e5c548" class="" dir="auto">If Φ is a formula and x is a variable, then ∀xΦ and ∃xΦ are formulas.</p><p id="2e2a48b7-c22e-8177-81ba-cec1418bc5df" class="" dir="auto">BNF definition of formulas:</p><p id="2e2a48b7-c22e-81e0-865f-e9fe0a1c5bb1" class="" dir="auto">Φ ::= P (t1, ..., tn)|(¬Φ)|(Φ ∧ Φ)|(Φ ∨ Φ)|(Φ → Φ)|(∀xΦ)|(∃xΦ) where P is a predicate of arity n, ti are terms, i ∈ 1, ..., n, x is a variable.</p></blockquote><ul id="2e2a48b7-c22e-81eb-aa65-c82a05ef13c9" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Bound variable: A variable is bound if it is within the scope of a quantifier that uses it.</li></ul><ul id="2e2a48b7-c22e-81f4-884a-ecdd11491495" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Free variable: A variable is free if it is not bound by any quantifier.</li></ul><ul id="2e2a48b7-c22e-81bc-9adf-e77a0d78868d" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Substitution:<ul id="2e2a48b7-c22e-8198-b5dd-fdaf42061ebe" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Given a variable x, a term t, and a formula Φ, we define Φ[t/x] to be the formula obtained by replacing each free occurrence of variable x in Φ with t.</li></ul><ul id="2e2a48b7-c22e-8163-861d-c287ba8b14ef" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Definition 2.8 Given a term t, a variable x and a formula φ, we say that t is free for x in φ if no free x leaf in φ occurs in the scope of ∀y or ∃y for any variable y occurring in t.</li></ul></li></ul><ul id="2e2a48b7-c22e-81ab-8166-de08bca2239f" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Natural deduction rules for predicate logic:<ul id="2e2a48b7-c22e-8150-989d-d29b0f3c0b92" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Proof rules from propositional logic</li></ul><ul id="2e2a48b7-c22e-8187-907a-f01c065a6b8a" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Proof rules for equality (self-learning)</li></ul><ul id="2e2a48b7-c22e-81a3-a5f8-e9ce6a600592" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Proof rules for universal quantification (self-learning)</li></ul><ul id="2e2a48b7-c22e-8151-98ec-cd9698256b39" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Proof rules for existential quantification (self-learning)</li></ul></li></ul><ul id="2e2a48b7-c22e-8127-841d-df798994bb2e" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Quantifier equivalences:<ul id="2e2a48b7-c22e-819a-8691-f40c2b03dc38" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Theorem: Let φ and ψ be formulas of predicate logic, then we have the following equivalences:</li></ul><ul id="2e2a48b7-c22e-8186-bcb7-f71e511254e6" class="bulleted-list" dir="auto"><li style="list-style-type:circle">¬∀xφ ⊣⊢ ∃x¬φ.</li></ul><ul id="2e2a48b7-c22e-818b-8b04-f05c87d48e93" class="bulleted-list" dir="auto"><li style="list-style-type:circle">¬∃xφ ⊣⊢ ∀x¬φ</li></ul></li></ul><h3 id="2e2a48b7-c22e-81a2-86c8-c7f42cee110d" class="" dir="auto">2.3 Proof theory of predicate logic</h3><ul id="2e2a48b7-c22e-81f9-a558-d7d5d08d6956" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>The proof rules for equality.</strong><figure id="2e2a48b7-c22e-8184-bd06-f074233e2b0a" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image26.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image26.png"><img style="width:92.98294830322266px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image26.png"/></a></figure><ul id="2e2a48b7-c22e-815c-ab4f-e79f2de2d819" class="bulleted-list" dir="auto"><li style="list-style-type:circle">What we need is a principle that allows us to substitute equals for equals repeatedly. For example, suppose that y ∗ (w + 2) equals y ∗ w + y ∗ 2; then it certainly must be the case that z ≥ y ∗ (w + 2) implies z ≥ y ∗ w + y ∗ 2 and vice versa. We may now express this substitution principle as the rule =e<figure id="2e2a48b7-c22e-817e-914d-cac259fa0075" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image27.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image27.png"><img style="width:208.99147033691406px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image27.png"/></a></figure></li></ul><ul id="2e2a48b7-c22e-81aa-a9dd-dc38d944aaf7" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Note that t1 and t2 have to be free for x in φ, whenever we want to apply the rule =e; this is an example of a side condition of a proof rule.</li></ul></li></ul><ul id="2e2a48b7-c22e-81d3-896e-c1ee2f646bea" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>The proof rules for universal quantification.</strong> It says: If ∀x φ is true, then you could replace the x in φ by any term t (given, as usual, the side condition that t be free for x in φ) and conclude that φ[t/x] is true as well.<figure id="2e2a48b7-c22e-81ba-9112-e133ecdeacda" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image28.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image28.png"><img style="width:109.98579406738281px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image28.png"/></a></figure><ul id="2e2a48b7-c22e-81d6-b02c-df2989d3e449" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Recall that φ[t/x] is obtained by replacing all free occurrences of x in φ by t. You may think of the term t as a more concrete instance of x. Since φ is assumed to be true for all x, that should also be the case for any term t.</li></ul></li></ul><blockquote id="2e2a48b7-c22e-8126-a237-f94c44d5f836" class="" dir="auto">The rule ∀x i is a bit more complicated. It employs a proof box similar to those we have already seen in natural deduction for propositional logic, but this time the box is to stipulate the scope of the ‘dummy variable’ x0 rather than the scope of an assumption. The rule ∀x i is written<figure id="2e2a48b7-c22e-8174-94a1-f30c28ab3f76" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image29.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image29.png"><img style="width:264.98577880859375px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image29.png"/></a></figure></blockquote><ul id="2e2a48b7-c22e-816c-bc0c-f49ba0e5b389" class="bulleted-list" dir="auto"><li style="list-style-type:disc">It says: If, starting with a ‘fresh’ variable x0, you are able to prove some formula φ[x0/x] with x0 in it, then (because x0 is fresh) you can derive ∀x φ. The important point is that x0 is a new variable which doesn’t occur anywhere outside its box ; we think of it as an arbitrary term. Since we assumed nothing about this x0, anything would work in its place; hence the conclusion ∀x φ.</li></ul><figure id="2e2a48b7-c22e-811b-bfa4-d1e3f402e1ec" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image30.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image30.png"><img style="width:700px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image30.png"/></a></figure><ul id="2e2a48b7-c22e-8186-8cd7-c342da0a15b2" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>The proof rules for existential quantification.</strong> We can deduce ∃x φ whenever we have φ[t/x] for some term t (naturally, we impose the side condition that t be free for x in φ).</li></ul><figure id="2e2a48b7-c22e-801c-88d5-c19caab6297a" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%207.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%207.png"><img style="width:194.97158813476562px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%207.png"/></a></figure><figure id="2e2a48b7-c22e-81d0-a310-f912e41dec14" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image32.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image32.png"><img style="width:368.991455078125px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image32.png"/></a></figure><h3 id="2e2a48b7-c22e-8155-ab48-cf1867b75698" class="" dir="auto">2.4 Semantics of predicate logic </h3><blockquote id="2e2a48b7-c22e-8123-bc67-df4368dfe74d" class="" dir="auto">Semantics of Predicate logic</blockquote><ul id="2e2a48b7-c22e-81cf-8013-cd18d588526b" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Models: Let F contain function symbols and P contain predicate symbols. A model M for (F, P) consists of:<ul id="2e2a48b7-c22e-81b3-995a-e4dc0553d68b" class="bulleted-list" dir="auto"><li style="list-style-type:circle">a non-empty set A, which is the universe, means including every elements possible.</li></ul><ul id="2e2a48b7-c22e-8195-a3dd-e3ee3ef4d2a6" class="bulleted-list" dir="auto"><li style="list-style-type:circle">for each f ∈ F with arity n, a concrete function f M : An → A.</li></ul><ul id="2e2a48b7-c22e-8124-83b2-f6ebced0a54a" class="bulleted-list" dir="auto"><li style="list-style-type:circle">for each P ∈ P with arity n, a subset P M ⊆ An of tuples over A.</li></ul></li></ul><ul id="2e2a48b7-c22e-8137-b66a-fe020d53a2df" class="bulleted-list" dir="auto"><li style="list-style-type:disc">A model in predicate logic:<ul id="2e2a48b7-c22e-8103-b78f-cdef57acce8f" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Provides a domain of objects</li></ul><ul id="2e2a48b7-c22e-8158-a697-d80a83409829" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Assigns meanings to constants, predicates, and functions</li></ul><ul id="2e2a48b7-c22e-8107-a8d3-f11b4c27a9a4" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Lets us evaluate whether formulas are true or false in a precise, structured way</li></ul></li></ul><ul id="2e2a48b7-c22e-8157-8b71-cc335b6eaab9" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Definition 2.14</strong> Let F be a set of function symbols and P a set of predicate symbols, each symbol with a fixed number of required arguments. A model M of the pair (F,P) consists of the following set of data:<ul id="2e2a48b7-c22e-810e-96ea-d8a79a9f51c7" class="bulleted-list" dir="auto"><li style="list-style-type:circle">A non-empty set A, the universe of concrete values;</li></ul><ul id="2e2a48b7-c22e-8194-86df-d112bb834b5d" class="bulleted-list" dir="auto"><li style="list-style-type:circle">for each nullary function symbol f ∈ F, a concrete element fM of A (a constant symbol),</li></ul><ul id="2e2a48b7-c22e-81b1-a655-f88e036cb8ef" class="bulleted-list" dir="auto"><li style="list-style-type:circle">for each f ∈ F with arity n &gt; 0, a concrete function fM : An → A from An, the set of n-tuples over A, to A; and</li></ul><ul id="2e2a48b7-c22e-8178-b6fa-c72f19b44845" class="bulleted-list" dir="auto"><li style="list-style-type:circle">for each P ∈ P with arity n &gt; 0, a subset PM ⊆ An of n-tuples over A.</li></ul></li></ul><ul id="2e2a48b7-c22e-8163-8401-efbf71d9f57e" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The distinction between f and fM and between P and PM is most important. The symbols f and P are just that: symbols, whereas fM and PM denote a concrete function (or element) and relation in a model M, respectively</li></ul><ul id="2e2a48b7-c22e-8125-a941-eebcfb9dbb7e" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Definition 2.17</strong> A look-up table or environment for a universe A of concrete values is a function l: var → A from the set of variables var to A. For such an l, we denote by l[x |→ a] the look-up table which maps x to a and any other variable y to l(y).<ul id="2e2a48b7-c22e-81ec-9ee7-cda49e6d458c" class="bulleted-list" dir="auto"><li style="list-style-type:circle">var is the set of all variable names (x, y, z, etc.)</li></ul><ul id="2e2a48b7-c22e-81f5-86bf-e9af800194db" class="bulleted-list" dir="auto"><li style="list-style-type:circle">A is the universe (i.e., the set of actual objects in our model)</li></ul><ul id="2e2a48b7-c22e-8100-bdee-ce0697ea3d7b" class="bulleted-list" dir="auto"><li style="list-style-type:circle">l is a function that tells you: &quot;If a variable appears in a formula, what specific object in A does it refer to?&quot;</li></ul></li></ul><ul id="2e2a48b7-c22e-81d3-9bd2-e0bf3207351d" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Definition 2.18</strong> Given a model M for a pair (F,P) and given an environment l, we define the satisfaction relation M l= l φ for each logical formula φ over the pair (F,P) and look-up table l by structural induction on φ. If M l= l φ holds, we say that φ computes to T in the model M with respect to the environment l.</li></ul><figure id="2e2a48b7-c22e-8025-8751-e8f0539a1af1" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%208.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%208.png"><img style="width:709.984375px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%208.png"/></a></figure><h3 id="2e2a48b7-c22e-81c5-8ce3-ed6fc555e5aa" class="" dir="auto">2.5 Undecidability of predicate logic</h3><ul id="2e2a48b7-c22e-8140-824b-d9492ece11de" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The problem of determining whether a predicate logic formula is valid is known as a decision problem. A solution to a decision problem is a program (written in Java, C, or any other common language) that takes problem instances as input and always terminates, producing a correct ‘yes’ or ‘no’ output.</li></ul><ul id="2e2a48b7-c22e-8109-bd0d-ef98c5482576" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Problem reduction is where we take some other problem, of which we already know that it is not solvable, and we then show that the solvability of our problem entails the solvability of the other one.</li></ul><ul id="2e2a48b7-c22e-81c1-8849-c7efb542bc65" class="bulleted-list" dir="auto"><li style="list-style-type:disc">It&#x27;s undecidable - there&#x27;s no general algorithm that solves all such instances.</li></ul><h3 id="2e2a48b7-c22e-8160-abf0-e3909d143f4a" class="" dir="auto">Transition Systems</h3><ul id="2e2a48b7-c22e-81fe-b330-f5069debb81e" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Definition 2.1.</strong> A transition system TS is a tuple (S, Act, →, I, AP, L) where<ul id="2e2a48b7-c22e-814c-bdb9-d26107670227" class="bulleted-list" dir="auto"><li style="list-style-type:circle">S is a set of states,</li></ul><ul id="2e2a48b7-c22e-8121-b856-f92143d8737a" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Act is a set of actions,</li></ul><ul id="2e2a48b7-c22e-810b-b311-f088dad8f6a9" class="bulleted-list" dir="auto"><li style="list-style-type:circle">−→ ⊆ S × Act × S is a transition relation,</li></ul><ul id="2e2a48b7-c22e-8164-8fa1-e87305772651" class="bulleted-list" dir="auto"><li style="list-style-type:circle">I ⊆ S is a set of initial states,</li></ul><ul id="2e2a48b7-c22e-81fd-8135-e33e37822a42" class="bulleted-list" dir="auto"><li style="list-style-type:circle">AP is a set of atomic propositions, and</li></ul><ul id="2e2a48b7-c22e-8198-abf6-db544c3b4340" class="bulleted-list" dir="auto"><li style="list-style-type:circle">L : S → 2AP is a labeling function.</li></ul><ul id="2e2a48b7-c22e-810f-88f9-e98f0134973c" class="bulleted-list" dir="auto"><li style="list-style-type:circle">TS is called finite if S, Act, and AP are finite.</li></ul></li></ul><ul id="2e2a48b7-c22e-81eb-b16d-e6ecf86a28c4" class="bulleted-list" dir="auto"><li style="list-style-type:disc">States are represented by ovals and transitions by labeled edges. State names are depicted inside the</li></ul><blockquote id="2e2a48b7-c22e-8152-9fb2-d968c42af35c" class="" dir="auto">ovals. Initial states are indicated by having an incoming arrow without source.</blockquote><figure id="2e2a48b7-c22e-8109-9ba3-d5c2b1c2b083" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image34.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image34.png"><img style="width:384.9715881347656px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image34.png"/></a></figure><h2 id="2e2a48b7-c22e-81fd-8681-d04780afb137" class="" dir="auto">Chapter 3: </h2><h3 id="2e2a48b7-c22e-8198-800e-e3000c47ea29" class="" dir="auto">3.1 Motivation for verification</h3><ul id="2e2a48b7-c22e-81df-a422-f36d9f216464" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Formal verification techniques can be thought of as comprising three parts:<ul id="2e2a48b7-c22e-81ee-8887-f7a9e4066dd7" class="bulleted-list" dir="auto"><li style="list-style-type:circle">a framework for modelling systems, typically a description language of some sort;</li></ul><ul id="2e2a48b7-c22e-8187-9ed1-ea1f3f880453" class="bulleted-list" dir="auto"><li style="list-style-type:circle">a specification language for describing the properties to be verified;</li></ul><ul id="2e2a48b7-c22e-81c7-b2f2-f768023e0057" class="bulleted-list" dir="auto"><li style="list-style-type:circle">verification method to establish whether the description of a system satisfies the specification.</li></ul></li></ul><ul id="2e2a48b7-c22e-8148-af6c-db72006c60f2" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Approaches to verification can be classified according to the following criteria:<ul id="2e2a48b7-c22e-8180-a9cf-d4dc1b105689" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><strong>Proof-based vs. model-based</strong>. In a proof-based approach, the system description is a set of formulas Γ (in a suitable logic) and the specification is another formula φ. The verification method consists of trying to find a proof that Γ |− φ. This typically requires guidance and expertise from the user. In a model-based approach, the system is represented by a model M for an appropriate logic. The specification is again represented by a formula φ and the verification method consists of computing whether a model M satisfies φ (written M |= φ). This computation is usually automatic for finite models.</li></ul><ul id="2e2a48b7-c22e-8159-8b60-d328e23bc579" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><strong>Degree of automation</strong>. Approaches differ on how automatic the method is; the extremes are fully automatic and fully manual. Many of the computer-assisted techniques are somewhere in the middle.</li></ul><ul id="2e2a48b7-c22e-81f4-8cbb-f1cccc04e554" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><strong>Full- vs. property-verification</strong>. The specification may describe a single property of the system, or it may describe its full behaviour. The latter is typically expensive to verify. Intended domain of application, which may be hardware or software; sequential or concurrent; reactive or terminating; etc. A reactive system is one which reacts to its environment and is not meant to terminate (e.g., operating systems, embedded systems and computer hardware).</li></ul><ul id="2e2a48b7-c22e-81e0-afae-c517d6e35249" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><strong>Pre- vs. post-development</strong>. Verification is of greater advantage if introduced early in the course of system development, because errors caught earlier in the production cycle are less costly to rectify. (It is alleged that Intel lost millions of dollars by releasing their Pentium chip with the FDIV error.)</li></ul></li></ul><ul id="2e2a48b7-c22e-8180-9d9f-f48ad9ea52e4" class="bulleted-list" dir="auto"><li style="list-style-type:disc">This chapter concerns a verification method called <strong>model checking</strong>. In terms of the above classification, model checking is an automatic, model based, property-verification approach. It is intended to be used for concurrent, reactive systems and originated as a post-development methodology. Concurrency bugs are among the most difficult to find by testing (the activity of running several simulations of important scenarios), since they tend to be non-reproducible or not covered by test cases, so it is well worth having a verification technique that can help one to find them.</li></ul><ul id="2e2a48b7-c22e-81c4-9770-f4b3271e99f5" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Model checking is based on <strong>temporal logic</strong>. The idea of temporal logic is that a formula is not statically true or false in a model, as it is in propositional and predicate logic. Instead, the models of temporal logic contain several states and a formula can be true in some states and false in others. Thus, the static notion of truth is replaced by a dynamic one, in which the formulas may change their truth values as the system evolves from state to state. In model checking, the models M are transition systems and the properties φ are formulas in temporal logic. To verify that a system satisfies a property, we must do three things:<ul id="2e2a48b7-c22e-8186-9334-d4d26fcddaac" class="bulleted-list" dir="auto"><li style="list-style-type:circle">model the system using the description language of a model checker, arriving at a model M;</li></ul><ul id="2e2a48b7-c22e-81a8-8ba8-d2270a6778b5" class="bulleted-list" dir="auto"><li style="list-style-type:circle">code the property using the specification language of the model checker, resulting in a temporal logic formula φ;</li></ul><ul id="2e2a48b7-c22e-814b-a14b-e1d3a4fa8a92" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Run the model checker with inputs M and φ.</li></ul></li></ul><ul id="2e2a48b7-c22e-8148-9459-d8e22048df90" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The model checker outputs the answer ‘yes’ if M |= φ and ‘no’ otherwise; in the latter case, most model checkers also produce a trace of system behaviour which causes this failure. This automatic generation of such ‘counter traces’ is an important tool in the design and debugging of systems</li></ul><ul id="2e2a48b7-c22e-81e5-a13c-f0420ea89666" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Linear time logics think of time as a set of paths, where a path is a sequence of time instances.</li></ul><ul id="2e2a48b7-c22e-81a9-a432-d6fb23cc50e0" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Branching-time logics represent time as a tree, rooted at the present moment and branching out into the future. Branching time appears to make the non-deterministic nature of the future more explicit.</li></ul><ul id="2e2a48b7-c22e-81e6-9a4d-d8b18cce3ce3" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Another quality of time is whether we think of it as being continuous or discrete. The former would be suggested if we study an analogue computer, the latter might be preferred for a synchronous network.</li></ul><ul id="2e2a48b7-c22e-819c-b64d-e2bf04158419" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Model checking is like exhaustively testing every possible behavior of a system <strong>mathematically</strong>, to make sure it never does something bad (like crashing or violating a rule), and always does something good (like eventually responding to a request).</li></ul><h3 id="2e2a48b7-c22e-818a-b108-fc72b63a02fd" class="" dir="auto">3.2 Linear-time temporal logic </h3><ul id="2e2a48b7-c22e-8149-abbf-d6ffe870359b" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Linear-time temporal logic</strong>, or LTL for short, is a temporal logic, with connectives that allow us to refer to the future. It models time as a sequence of states, extending infinitely into the future. This sequence of states is sometimes called a computation path, or simply a path. In general, the future is not determined, so we consider several paths, representing different possible futures, any one of which might be the ‘actual’ path that is realised.<ul id="2e2a48b7-c22e-8114-a66b-f6160ef6ce10" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><strong>Temporal logic</strong> is a type of logic used to reason about <strong>how things change over time</strong>.</li></ul></li></ul><ul id="2e2a48b7-c22e-8120-90c8-d3884953f763" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Definition 3.1</strong> Linear-time temporal logic (LTL) has the following syntax given in Backus Naur form:</li></ul><figure id="2e2a48b7-c22e-80ce-aa29-eff952345f27" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%209.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%209.png"><img style="width:637.96875px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%209.png"/></a></figure><ul id="2e2a48b7-c22e-8160-8b6a-da3276313ad7" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Thus, the symbols and ⊥ are LTL formulas, as are all atoms from Atoms; and ¬φ is an LTL formula if φ is one, etc.</li></ul><ul id="2e2a48b7-c22e-8125-8c3e-c52fa470fe27" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The connectives X, F, G, U, R, and W are called temporal connectives.<ul id="2e2a48b7-c22e-81af-9e38-ed4affa6f644" class="bulleted-list" dir="auto"><li style="list-style-type:circle">X means ‘neXt state,’</li></ul><ul id="2e2a48b7-c22e-8195-b23c-d944e849797f" class="bulleted-list" dir="auto"><li style="list-style-type:circle">means ‘some Future state,’</li></ul><ul id="2e2a48b7-c22e-81d4-b180-ff264bcc367b" class="bulleted-list" dir="auto"><li style="list-style-type:circle">and G means ‘all future states (Globally).’</li></ul><ul id="2e2a48b7-c22e-813f-9d74-d36e3690c8ab" class="bulleted-list" dir="auto"><li style="list-style-type:circle">U means &#x27;Until&#x27;</li></ul><ul id="2e2a48b7-c22e-81a7-b4f4-c56b31d8adf0" class="bulleted-list" dir="auto"><li style="list-style-type:circle">R means &#x27;Release&#x27;</li></ul><ul id="2e2a48b7-c22e-81f7-b3ef-f045cb227608" class="bulleted-list" dir="auto"><li style="list-style-type:circle">W means &#x27;Weak until&#x27;</li></ul></li></ul><figure id="2e2a48b7-c22e-81fa-a4fc-f913e37da020" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image36.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image36.png"><img style="width:700px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image36.png"/></a></figure><ul id="2e2a48b7-c22e-8132-84bf-ed66f1d55797" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Convention 3.2</strong> The unary connectives (consisting of ¬ and the temporal connectives X, F and G) bind most tightly. Next in the order come U, R and W; then come ∧ and ∨; and after that comes →</li></ul><ul id="2e2a48b7-c22e-81fc-8eff-ff706cbe002c" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Definition 3.3</strong> A subformula of an LTL formula φ is any formula ψ whose parse tree is a subtree of φ’s parse tree.<ul id="2e2a48b7-c22e-81a3-b167-e7b2a5de0f6e" class="bulleted-list" dir="auto"><li style="list-style-type:circle">The subformulas of p W (q U r), e.g., are p, q, r, q U r and p W (q U r).</li></ul></li></ul><h3 id="2e2a48b7-c22e-81ea-8f5a-f31c90ebc44b" class="" dir="auto">3.2.2 Semantics of LTL </h3><ul id="2e2a48b7-c22e-81b7-854e-c016235037ad" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Definition 3.4</strong> A transition system M = (S, →, L) is a set of states S endowed with a transition relation → (a binary relation on S), such that every s ∈ S has some s&#x27; ∈ S with s → s&#x27;, and a labelling function L: S → P(Atoms).</li></ul><ul id="2e2a48b7-c22e-8143-adf1-ceb493bf4c69" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Definition 3.5</strong> A path in a model M = (S, →, L) is an infinite sequence of states s1, s2, s3,... in S such that, for each i ≥ 1, si → si+1. We write the path as s1 → s2 → ....</li></ul><h3 id="2e2a48b7-c22e-8191-877b-e3460764a0ec" class="" dir="auto">3.4 Branching-time logic </h3><ul id="2e2a48b7-c22e-815f-8051-fae0303378ea" class="bulleted-list" dir="auto"><li style="list-style-type:disc">In CTL, as well as the temporal operators U, F, G and X of LTL we also have quantifiers A and E which express ‘all paths’ and ‘exists a path’, respectively.</li></ul><ul id="2e2a48b7-c22e-8188-827d-f9679804d379" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Computation Tree Logic, or CTL for short, is a branching-time logic, meaning that its model of time is a tree-like structure in which the future is not determined; there are different paths in the future, any one of which might be the ‘actual’ path that is realised.</li></ul><ul id="2e2a48b7-c22e-81e7-9722-c6a7ddeccffd" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Definition 3.12</strong> We define CTL formulas inductively via a Backus Naur form as done for LTL, where p ranges over a set of atomic formulas:</li></ul><figure id="2e2a48b7-c22e-80f2-a340-c3aa387bec2f" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%2010.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%2010.png"><img style="width:709.875px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%2010.png"/></a></figure><ul id="2e2a48b7-c22e-810d-99e1-caf694272b77" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Usually weak-until (W) and release (R) are not included in CTL, but they are derivable</li></ul><h3 id="2e2a48b7-c22e-815e-a335-ce5a6a150700" class="" dir="auto">3.6.1 The CTL model-checking algorithm </h3><figure id="2e2a48b7-c22e-8089-878a-d3cf7b7e9a09" dir="ltr"><div class="source"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/CTL_model_checking.pdf" data-notion-file="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/CTL_model_checking.pdf" data-notion-file-alias="CTL model checking.pdf">CTL model checking.pdf</a></div></figure><h3 id="2e2a48b7-c22e-81c6-ba56-db65e37a1175" class="" dir="auto">Section 10.2 Probabilistic Computation Tree Logic from another textbook, Principles of Model Checking. </h3><blockquote id="2e2a48b7-c22e-8152-8e7d-e60c1b68f2b1" class="" dir="auto">Definition 10.36. Syntax of PCTL</blockquote><ul id="2e2a48b7-c22e-81d1-96a9-fb1fdae05c09" class="bulleted-list" dir="auto"><li style="list-style-type:disc">PCTL state formulae over the set AP of atomic propositions are formed according to the following grammar:<ul id="2e2a48b7-c22e-819a-8cca-e72f076ade8c" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Φ ::= true | a | Φ1 ∧ Φ2 | ¬Φ | PJ(ϕ) where a ∈ AP, ϕ is a path formula and J ⊆ [0, 1] is an interval with rational bounds.</li></ul></li></ul><ul id="2e2a48b7-c22e-81ac-9444-cd6fda5f7801" class="bulleted-list" dir="auto"><li style="list-style-type:disc">PCTL path formulae are formed according to the following grammar:<ul id="2e2a48b7-c22e-819f-893b-e54cf6a13c29" class="bulleted-list" dir="auto"><li style="list-style-type:circle">ϕ ::= Φ | Φ1 U Φ2 | Φ1 Un Φ2 where Φ, Φ1, and Φ2 are state formulae and n ∈ IN.</li></ul></li></ul><ul id="2e2a48b7-c22e-8123-94f3-ef3de90c97ad" class="bulleted-list" dir="auto"><li style="list-style-type:disc">As in CTL, the linear temporal operators and U (and its bounded variant) are required to be immediately preceded by P.<ul id="2e2a48b7-c22e-81a6-9431-e0d2d2443093" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Rather than writing the intervals explicitly, often abbreviations are used; e.g., P0.5(ϕ) denotes P[0,0.5](ϕ), P=1(ϕ) stands for P[1,1](ϕ), and P&gt;0(ϕ) denotes P]0,1](ϕ)</li></ul></li></ul><blockquote id="2e2a48b7-c22e-818e-b3cf-ec58d8df9dd9" class="" dir="auto">Markov chains are transition systems with probability distributions for the successors of each state. That is, instead of a nondeterministic choice, the next state is chosen probabilistically.<p id="2e2a48b7-c22e-8134-9cce-dcc1b753079a" class="" dir="auto">A DTMC is defined by a transition matrix, usually denoted P, where:</p></blockquote><ul id="2e2a48b7-c22e-8140-bac8-e1492024a2b3" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Each row corresponds to the current state.</li></ul><ul id="2e2a48b7-c22e-81cb-99d1-e81d34cad489" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Each column corresponds to the next state.</li></ul><ul id="2e2a48b7-c22e-818c-9281-e1b537a91b76" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Entry P[i][j] (or Pij) is the probability of going from state i to state j in one step.</li></ul><ul id="2e2a48b7-c22e-81cc-902f-fe8aceb5328b" class="bulleted-list" dir="auto"><li style="list-style-type:disc">All rows sum to 1 because the system must move somewhere.</li></ul><blockquote id="2e2a48b7-c22e-81a0-abdd-cef16b263026" class="" dir="auto">PCTL next for DTMCs</blockquote><ul id="2e2a48b7-c22e-81d3-9bea-cdb30f0fb324" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Sat(P_∼p [ X ϕ ]) = { s ∈ S | Prob(s, X ϕ) ∼ p }<ul id="2e2a48b7-c22e-81b9-87a7-fe5304222250" class="bulleted-list" dir="auto"><li style="list-style-type:circle">The probability that the next state satisfies ϕ is ∼ p&quot; Where ∼ is a comparison operator like &lt;, &gt;, ≤, ≥, and p is a probability threshold. This is equal to the set of states where the probability that from state s, the next state satisfies ϕ satisfies the ~ p condition.</li></ul></li></ul><ul id="2e2a48b7-c22e-8100-ac76-f4f7e3bb9d4b" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Prob(s, X ϕ) = Σ_{s&#x27; ∈ Sat(ϕ)} P(s, s&#x27;)<ul id="2e2a48b7-c22e-818d-ac84-c2c01e40f0c9" class="bulleted-list" dir="auto"><li style="list-style-type:circle">You sum the transition probabilities from s to all states s&#x27; that satisfy ϕ.<ul id="2e2a48b7-c22e-81eb-8c2f-c829d3bc19e2" class="bulleted-list" dir="auto"><li style="list-style-type:square">This gives you the total probability that the next state will satisfy ϕ.</li></ul></li></ul><ul id="2e2a48b7-c22e-816c-876a-de5c2dbe8e6d" class="bulleted-list" dir="auto"><li style="list-style-type:circle">P(s, s&#x27;) is the transition probability from s to s&#x27;.</li></ul></li></ul><ul id="2e2a48b7-c22e-81be-8876-eca370e886e8" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Prob(X ϕ) = P · ϕ<ul id="2e2a48b7-c22e-8139-9214-d2321e05a4c3" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Construct the transition matrix P.</li></ul><ul id="2e2a48b7-c22e-81a4-94b4-c3f02b244056" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Define the property vector φ. If φ holds in states 2 and 3.</li></ul><ul id="2e2a48b7-c22e-811d-b914-d06950285cff" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Φ = [0, 1, 1]</li></ul><ul id="2e2a48b7-c22e-81e5-84af-dbad1d61b072" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Multiply P by φ. This new vector shows the probability of reaching a state where φ holds.</li></ul><ul id="2e2a48b7-c22e-81a1-ad07-ec5da667eebe" class="bulleted-list" dir="auto"><li style="list-style-type:circle">If there&#x27;s a threshold condition such as P &gt;= 0.9, only states that have a probability greater than 0.9 satisfy it.</li></ul></li></ul><figure id="2e2a48b7-c22e-8088-8d80-c45e13185cdd" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%2011.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%2011.png"><img style="width:709.96875px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%2011.png"/></a></figure><h3 id="2e2a48b7-c22e-81e8-9a35-ccd1f2a5522b" class="" dir="auto">PCTL bounded until for DTMCs</h3><ul id="2e2a48b7-c22e-81bc-9b68-c68c8ab460bb" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Sat(P∼p[ Φ1 U≤k Φ2 ]) = { s ∈ S | Prob(s, Φ1 U≤k Φ2) ∼ p }<ul id="2e2a48b7-c22e-8155-bfda-cf96a7641f23" class="bulleted-list" dir="auto"><li style="list-style-type:circle">This defines the set of states s where the probability of reaching Φ2 within k steps, while staying in Φ1, meets the threshold p</li></ul></li></ul><ul id="2e2a48b7-c22e-81cd-822a-c1f3817088f5" class="bulleted-list" dir="auto"><li style="list-style-type:disc">First, identify any trivial cases.<ul id="2e2a48b7-c22e-81c4-9f16-f85c1a713671" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Syes = Sat(Φ2): These states already satisfy Φ2, so the probability is trivially 1.</li></ul><ul id="2e2a48b7-c22e-81a6-abe6-dc5cc6b8e5ea" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Sno = S \ (Sat(Φ1) ∪ Sat(Φ2)): These states satisfy neither Φ1 nor Φ2, so the probability is trivially 0.</li></ul><ul id="2e2a48b7-c22e-81e2-a6d8-c344b921c89b" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Let 𝑆? =𝑆∖(𝑆yes∪𝑆no) These are the “uncertain” states—those that satisfy Φ1 but not yet Φ2.</li></ul></li></ul><ul id="2e2a48b7-c22e-8109-a5a9-d46ce80ce0bb" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Make a new matrix (P&#x27;):<ul id="2e2a48b7-c22e-8162-8f76-ce92998b15c7" class="bulleted-list" dir="auto"><li style="list-style-type:circle">This is like your normal transition matrix, but changed to match the rules of the question:</li></ul><ul id="2e2a48b7-c22e-81fa-a302-cd4cb7c5b81c" class="bulleted-list" dir="auto"><li style="list-style-type:circle">From safe states, use normal transitions.</li></ul><ul id="2e2a48b7-c22e-810e-9658-c2969b08c03b" class="bulleted-list" dir="auto"><li style="list-style-type:circle">From goal states, just stay there forever (absorbing).</li></ul><ul id="2e2a48b7-c22e-8154-bf18-eb76b00d86a6" class="bulleted-list" dir="auto"><li style="list-style-type:circle">From bad states, block all movement (they lead nowhere).</li></ul></li></ul><ul id="2e2a48b7-c22e-81ff-b06a-e7ff3cba2da2" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Start with a vector (p₀):<ul id="2e2a48b7-c22e-819c-9469-f1511e14c301" class="bulleted-list" dir="auto"><li style="list-style-type:circle">This vector says: &quot;Which states are already in the goal?&quot;</li></ul><ul id="2e2a48b7-c22e-8175-90cd-c0833c97e5d4" class="bulleted-list" dir="auto"><li style="list-style-type:circle">1 for goal states</li></ul><ul id="2e2a48b7-c22e-8128-8a0f-e54685eb1a5b" class="bulleted-list" dir="auto"><li style="list-style-type:circle">0 for all others</li></ul></li></ul><ul id="2e2a48b7-c22e-813e-b06b-f2f246946c55" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Update the vector k times:</li></ul><ul id="2e2a48b7-c22e-81d1-98a4-e3f1d4d66be8" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Each time you multiply by P&#x27;, you simulate one more step.</li></ul><ul id="2e2a48b7-c22e-8140-b248-ef2b556a2adf" class="bulleted-list" dir="auto"><li style="list-style-type:disc">After doing this k times:<ul id="2e2a48b7-c22e-819f-93fc-f03a7ae35007" class="bulleted-list" dir="auto"><li style="list-style-type:circle">You get a vector pk</li></ul><ul id="2e2a48b7-c22e-81f2-8211-ccef30e0df52" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Each entry tells you the chance of reaching the goal from that state in ≤ k steps (only through safe states)</li></ul></li></ul><figure id="2e2a48b7-c22e-804f-92a8-ce02075e4768" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%2012.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%2012.png"><img style="width:709.96875px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%2012.png"/></a></figure><h3 id="2e2a48b7-c22e-81b6-9a1d-d3ada932ee92" class="" dir="auto">PCTL until </h3><ul id="2e2a48b7-c22e-81d9-9c18-f546ff730ac4" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Identify Trivial Cases<ul id="2e2a48b7-c22e-81aa-aeb0-ee349f326e63" class="bulleted-list" dir="auto"><li style="list-style-type:circle">𝑆yes=Sat(𝑃≥1[𝜙1 𝑈𝜙2]) These states satisfy the formula with probability 1.</li></ul><ul id="2e2a48b7-c22e-8113-b193-dc29da6c78ba" class="bulleted-list" dir="auto"><li style="list-style-type:circle">𝑆no=Sat(𝑃≤0[𝜙1 𝑈𝜙2]) These states satisfy the formula with probability 0.</li></ul></li></ul><ul id="2e2a48b7-c22e-810c-b7f1-d017cdebbb5a" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Set up equations for unknowns<ul id="2e2a48b7-c22e-81f5-b2cf-d7d94d8359bc" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Let’s call x(s) the probability that s ∈ S? satisfies φ₁ U φ₂.</li></ul><ul id="2e2a48b7-c22e-8164-bcf4-fc88cbfd3a11" class="bulleted-list" dir="auto"><li style="list-style-type:circle">We set up one equation per state in S?:<ul id="2e2a48b7-c22e-8131-b8b1-db87562c853a" class="bulleted-list" dir="auto"><li style="list-style-type:square">x(s) = ∑ P(s, s&#x27;) × x(s&#x27;)<ul id="2e2a48b7-c22e-8137-91e7-e9b2980b9292" class="bulleted-list" dir="auto"><li style="list-style-type:disc">(sum over all states s&#x27; such that s → s&#x27; is a valid transition, and s is in S_?)</li></ul></li></ul><ul id="2e2a48b7-c22e-81f9-9545-f3d6829ef83b" class="bulleted-list" dir="auto"><li style="list-style-type:square">For Syes states: x(s) = 1</li></ul><ul id="2e2a48b7-c22e-81a3-be22-cfbcfa3d7cec" class="bulleted-list" dir="auto"><li style="list-style-type:square">For Sno states: x(s) = 0</li></ul><ul id="2e2a48b7-c22e-81de-9b21-e7441e785e5c" class="bulleted-list" dir="auto"><li style="list-style-type:square">For S? states: x(s) is unknown, and we solve these equations</li></ul></li></ul></li></ul><blockquote id="2e2a48b7-c22e-81df-8286-c85cee330017" class="" dir="auto">This forms a linear system of equations.</blockquote><ul id="2e2a48b7-c22e-81ca-b681-e8c367dc20c0" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Solve the system. This can be done using:<ul id="2e2a48b7-c22e-818f-9400-fd5133cf6197" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Matrix methods (e.g. solving Ax = b)</li></ul><ul id="2e2a48b7-c22e-81e6-a577-faaa31075427" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Iterative methods like Gauss-Seidel</li></ul><ul id="2e2a48b7-c22e-8110-8040-fd3532ff37f6" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Value iteration (especially for large models)</li></ul></li></ul><h3 id="2e2a48b7-c22e-819d-b6ce-eaf0ec1ee09e" class="" dir="auto">6.5 The Poisson Distribution</h3><ul id="2e2a48b7-c22e-8121-8baa-fe7f1c858565" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The Poisson probability mass function, denoted as f (k, α), is given by</li></ul><figure id="2e2a48b7-c22e-806c-9371-f2c28a643a34" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%2013.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%2013.png"><img style="width:591.9318237304688px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%2013.png"/></a></figure><ul id="2e2a48b7-c22e-817f-9f34-dc60017d3fe2" class="bulleted-list" dir="auto"><li style="list-style-type:disc">𝑋: A random variable that follows the Poisson distribution.</li></ul><blockquote id="2e2a48b7-c22e-8157-967d-c6385bd0aff2" class="" dir="auto">𝑘: A non-negative integer representing a specific number of events (e.g., 0, 1, 2, ...).<p id="2e2a48b7-c22e-81d7-9601-eb8fa66deaef" class="" dir="auto">𝛼 (sometimes also written as 𝜆): The mean (and variance) of the distribution — it tells you the expected number of events in a fixed interval (time, space, etc.).</p><p id="2e2a48b7-c22e-81ce-ab7c-d12a9fd4b19d" class="" dir="auto">𝑒: Euler’s number, approximately 2.71828 — a mathematical constant.</p></blockquote><ul id="2e2a48b7-c22e-8194-8993-e83f3443d515" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Notice that this defines a genuine probability mass function since</li></ul><figure id="2e2a48b7-c22e-8045-bbfd-c8f7afacb648" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%2014.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%2014.png"><img style="width:390.9375px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%2014.png"/></a></figure><ul id="2e2a48b7-c22e-81ad-81c9-d8bfc7dc764c" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Means the total probability over all possible values of 𝑘 sums to 1, as required for any probability distribution.</li></ul><ul id="2e2a48b7-c22e-81f8-bee2-f288e330ecb6" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The cumulative distribution function is given by</li></ul><figure id="2e2a48b7-c22e-8043-b518-d85d40bb03d8" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%2015.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%2015.png"><img style="width:363.93463134765625px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%2015.png"/></a></figure><ul id="2e2a48b7-c22e-8131-809d-d7d3b7852f8a" class="bulleted-list" dir="auto"><li style="list-style-type:disc">𝐹(𝑘): The cumulative probability that the random variable</li></ul><ul id="2e2a48b7-c22e-8176-bb8a-f74bfb9b0f00" class="bulleted-list" dir="auto"><li style="list-style-type:disc">𝑋: takes on a value less than or equal to 𝑘.</li></ul><ul id="2e2a48b7-c22e-8153-92fb-eb9bda314ae9" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The summation ∑𝑗=0𝑘 adds up the probabilities from 𝑗=0 to 𝑗=𝑘.</li></ul><ul id="2e2a48b7-c22e-8182-a650-dc793c47f815" class="bulleted-list" dir="auto"><li style="list-style-type:disc">A Poisson process, extensively used in queueing theory and discussed in that context in a later chapter, is a counting process in which the number of events that occur within a given time period has a Poisson distribution. If λ is the rate at which these events occur, and t is the time period over which we observe these events, then the parameter of interest is λt which, to all intents and purposes, is the number of events that occurred in time t. In this case we set α = λt.</li></ul><h3 id="2e2a48b7-c22e-81e6-9480-f3e112eee2ae" class="" dir="auto">7.1 The Uniform Distribution </h3><ul id="2e2a48b7-c22e-8198-b5bb-dec2b1bf735e" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The uniform distribution describes a situation where all outcomes in a given range are equally likely.</li></ul><figure id="2e2a48b7-c22e-8061-9d5c-f236a9e73071" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%2016.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%2016.png"><img style="width:634.9857788085938px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%2016.png"/></a></figure><h3 id="2e2a48b7-c22e-8147-9bc9-c02093605aa5" class="" dir="auto">7.2 The Exponential Distribution </h3><ul id="2e2a48b7-c22e-8108-936f-f4bd97a51fc4" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The exponential distribution models the time between events in a Poisson process — where events happen randomly and independently at a constant average rate.</li></ul><ul id="2e2a48b7-c22e-810a-8377-c1704844771f" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The exponential distribution has the memoryless property.</li></ul><p id="2e2a48b7-c22e-8153-8802-f28835db0a7e" class="" dir="auto"><div class="indented"><figure id="2e2a48b7-c22e-81d2-a11d-f5fe4153d896" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image44.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image44.png"><img style="width:488.991455078125px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image44.png"/></a></figure></div></p><ul id="2e2a48b7-c22e-81d9-924d-dd7a6d77acc9" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The exponential distribution is the only continuous distribution which is memoryless.</li></ul><ul id="2e2a48b7-c22e-81c0-ae9b-ed230a57551c" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The minimum of two independent exponential distributions is an exponential distribution (parameter is sum).</li></ul><ul id="2e2a48b7-c22e-81ee-be31-c5062f399b5d" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Generalizes to minimum of n distributions.</li></ul><h3 id="2e2a48b7-c22e-81d9-9cd7-da86f82cb289" class="" dir="auto">9.10 Continuous-Time Markov Chains </h3><table id="2e2a48b7-c22e-8167-991a-ea783d1884c6" class="simple-table" dir="ltr"><thead class="simple-table-header"><tr id="2e2a48b7-c22e-81fb-9d5f-cf17c3c7e842" dir="ltr"><th id="&gt;gq|" class="simple-table-header-color simple-table-header"><strong>Feature</strong></th><th id="aknX" class="simple-table-header-color simple-table-header">Discrete-Time Markov Chain (DMC)</th><th id="vTm~" class="simple-table-header-color simple-table-header">Continuous-Time Markov Chain (CTMC)</th></tr></thead><tbody><tr id="2e2a48b7-c22e-81ad-a7e4-c322402cc489" dir="ltr"><th id="&gt;gq|" class="simple-table-header-color simple-table-header"><strong>Time</strong></th><td id="aknX" class="">Proceeds in fixed steps (e.g., 1 unit per step)</td><td id="vTm~" class="">Time is continuous — changes can happen at any moment</td></tr><tr id="2e2a48b7-c22e-8175-8153-f28d553e3d03" dir="ltr"><th id="&gt;gq|" class="simple-table-header-color simple-table-header"><strong>Transitions</strong></th><td id="aknX" class="">At each step, the chain moves to a new state based on a transition probability</td><td id="vTm~" class="">The process waits a random (exponential) time in a state, then jumps to another</td></tr><tr id="2e2a48b7-c22e-8178-81e6-dc379c45ea3a" dir="ltr"><th id="&gt;gq|" class="simple-table-header-color simple-table-header"><strong>Transition Representation</strong></th><td id="aknX" class="">Probability matrix P=[pij], where Pij = Pr(Xn+1 = j | Xn = i)</td><td id="vTm~" class="">Rate matrix Q=[qij], where qij is the rate of transitioning from state i to j</td></tr><tr id="2e2a48b7-c22e-81fe-b477-f46a32c67c85" dir="ltr"><th id="&gt;gq|" class="simple-table-header-color simple-table-header"><strong>Sojourn Time (time in a state)</strong></th><td id="aknX" class="">Constant time per step (usually 1 unit)</td><td id="vTm~" class="">Random and exponentially distributed</td></tr><tr id="2e2a48b7-c22e-8143-a3b7-ff46c134eb79" dir="ltr"><th id="&gt;gq|" class="simple-table-header-color simple-table-header"><strong>Example</strong></th><td id="aknX" class="">Board games, Markov models in language (steps = discrete words)</td><td id="vTm~" class="">Queuing systems, population processes, failure models</td></tr></tbody></table><figure id="2e2a48b7-c22e-80e6-ad7b-f0da09408258" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%2017.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%2017.png"><img style="width:685.96875px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%2017.png"/></a></figure><p id="2e2a48b7-c22e-81c0-ad1c-dec1a1adb589" class="" dir="auto">Generator Matrix</p><ul id="2e2a48b7-c22e-81f7-ad49-ddd56fc7e192" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Each row corresponds to a starting state. Here&#x27;s how to interpret it:</li></ul><ul id="2e2a48b7-c22e-81d8-9361-f79da51c394a" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Off-diagonal entries (qij,i≠j):<ul id="2e2a48b7-c22e-814a-ae27-d00b5b23550a" class="bulleted-list" dir="auto"><li style="list-style-type:circle">These are non-negative numbers.</li></ul><ul id="2e2a48b7-c22e-813b-94f1-ea7e5a7ea16e" class="bulleted-list" dir="auto"><li style="list-style-type:circle">They represent the rate at which the process moves from state iii to state jjj.</li></ul></li></ul><ul id="2e2a48b7-c22e-81ab-84eb-c2ce5bf2db36" class="bulleted-list" dir="auto"><li style="list-style-type:disc">For example:<ul id="2e2a48b7-c22e-815d-bb6f-c6a193ee5ec7" class="bulleted-list" dir="auto"><li style="list-style-type:circle">q01=3: if you&#x27;re in state 0, you move to state 1 at rate 3.</li></ul></li></ul><blockquote id="2e2a48b7-c22e-8178-a42f-e7efce8aef28" class="" dir="auto">Embedded Chains</blockquote><ul id="2e2a48b7-c22e-813b-8202-d45b0768d65f" class="bulleted-list" dir="auto"><li style="list-style-type:disc">A CTMC describes both which states the system visits and when it jumps between them.</li></ul><ul id="2e2a48b7-c22e-8121-bb3a-c17dcec587a0" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The embedded chain is the discrete-time Markov chain you get by looking only at the sequence of states visited, ignoring how much time is spent in each state.</li></ul><ul id="2e2a48b7-c22e-8179-8c39-c98d521e28cb" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The embedded chain captures the transition structure (which states can follow which), <em>without timing</em>.</li></ul><ul id="2e2a48b7-c22e-81d0-afb1-c5f418d66f5e" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The transition probabilities pij of the embedded chain are calculated from the rates qij of the CTMC by:</li></ul><figure id="2e2a48b7-c22e-8129-b2eb-f809cc5964cd" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image46.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image46.png"><img style="width:233.99147033691406px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image46.png"/></a></figure><blockquote id="2e2a48b7-c22e-8184-bfa6-c6a21cbd0986" class="" dir="auto"><figure id="2e2a48b7-c22e-81c6-a028-dde388cf29ca" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image47.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image47.png"><img style="width:700px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image47.png"/></a></figure></blockquote><ul id="2e2a48b7-c22e-81b7-a5bf-f43622f511f6" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Transient analysis<ul id="2e2a48b7-c22e-81e8-ad50-c145f62ea627" class="bulleted-list" dir="auto"><li style="list-style-type:circle">For checking time-bounded reachability</li></ul><ul id="2e2a48b7-c22e-81d6-9486-f92a1f4ac03b" class="bulleted-list" dir="auto"><li style="list-style-type:circle">The transient probability πCs,t(s′) is defined as the probability, having started in state s, of being in state s′ at time instant t</li></ul></li></ul><ul id="2e2a48b7-c22e-81e3-b679-ca763a1f2293" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Steady-state analysis<ul id="2e2a48b7-c22e-8129-896b-d2b200c66923" class="bulleted-list" dir="auto"><li style="list-style-type:circle">For checking long-run probabilities</li></ul><ul id="2e2a48b7-c22e-8145-ad2d-d7bd8e47d418" class="bulleted-list" dir="auto"><li style="list-style-type:circle">The steady-state probability πCs (s′), i.e. the probability of, having started in state s, being in state s′ in the long-run,</li></ul></li></ul><h3 id="2e2a48b7-c22e-81eb-9928-dae61eac79c3" class="" dir="auto">10.2.2 Gaussian Elimination and LU Factorizations</h3><ul id="2e2a48b7-c22e-816e-996f-c95b3ecd0739" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Gaussian Elimination</strong><ul id="2e2a48b7-c22e-81f6-9311-f2edfe032ac8" class="bulleted-list" dir="auto"><li style="list-style-type:circle">First represent system with an augmented matrix.</li></ul><ul id="2e2a48b7-c22e-810d-b7cd-dae281d190f7" class="bulleted-list" dir="auto"><li style="list-style-type:circle">A matrix is a rectangle array of numbers.</li></ul><ul id="2e2a48b7-c22e-8109-aff3-cbb37ea7f07a" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Size represented by m x n, where m = rows, n = col.</li></ul><ul id="2e2a48b7-c22e-815a-903e-c84453c229ea" class="bulleted-list" dir="auto"><li style="list-style-type:circle">To create augmented matrix, create a coefficient matrix and a constant matrix.</li></ul><ul id="2e2a48b7-c22e-8135-ba7c-deb6033b736a" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Coefficients from 1 equation create 1 row of the augmented matrix.</li></ul></li></ul><ul id="2e2a48b7-c22e-8134-a5fd-f0f7ecd0ba71" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Elementary Row Operations</strong><ul id="2e2a48b7-c22e-81ea-8206-f164ee9f1de4" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Switch 2 rows.<ul id="2e2a48b7-c22e-8167-b5e0-d60f72d02ada" class="bulleted-list" dir="auto"><li style="list-style-type:square">A -&gt; B</li></ul><ul id="2e2a48b7-c22e-81c0-90b1-f7075a6bac6d" class="bulleted-list" dir="auto"><li style="list-style-type:square">ri&lt;-&gt;rj</li></ul></li></ul><ul id="2e2a48b7-c22e-8126-ac2a-d498675549cf" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Multiply a row by a nonzero number, k.<ul id="2e2a48b7-c22e-811f-93b3-c3e96bc7ee25" class="bulleted-list" dir="auto"><li style="list-style-type:square">A -&gt; B</li></ul><ul id="2e2a48b7-c22e-8122-99ab-dfe44fcb3d20" class="bulleted-list" dir="auto"><li style="list-style-type:square">kri</li></ul></li></ul><ul id="2e2a48b7-c22e-8178-8eac-f676f315b884" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Add a multiple of one row to another row.<ul id="2e2a48b7-c22e-8102-8b22-d4f264226b61" class="bulleted-list" dir="auto"><li style="list-style-type:square">A -&gt; B</li></ul><ul id="2e2a48b7-c22e-81b5-9e2c-db7a5d3ce689" class="bulleted-list" dir="auto"><li style="list-style-type:square">kri + rj</li></ul></li></ul></li></ul><ul id="2e2a48b7-c22e-8179-b7f1-c10a86b67b2b" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Augmented Matrix is row Form if:</strong><ul id="2e2a48b7-c22e-81c5-894e-ca504f68d813" class="bulleted-list" dir="auto"><li style="list-style-type:circle">All nonzero rows are above zero rows.</li></ul><ul id="2e2a48b7-c22e-81e1-9026-d1511fab2ef5" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Each leading entry of a row is in a column to the right of the leading entries of any row above m.</li></ul><ul id="2e2a48b7-c22e-812c-b342-e30e060084da" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Each leading entry of a row is equal to 1.</li></ul></li></ul><ul id="2e2a48b7-c22e-8140-b6ec-c1647b57c03a" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>In reduced row form if:</strong><ul id="2e2a48b7-c22e-8102-bc1c-eec15e9bf37b" class="bulleted-list" dir="auto"><li style="list-style-type:circle">All entries in a column above and below a leading entry are zero.</li></ul><ul id="2e2a48b7-c22e-80ed-a179-e738ca0ea8f0" class="bulleted-list" dir="auto"><li style="list-style-type:circle"></li></ul></li></ul><ul id="2e2a48b7-c22e-8182-9e64-c8358d4460e7" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Leading entry is first nonzero entry.</li></ul><ul id="2e2a48b7-c22e-81ae-8e33-c4b8099b74a2" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Gaussian Elimination - row echelon form</li></ul><ul id="2e2a48b7-c22e-81dc-9edf-c08eff142ccc" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Gauss-Jordan Elimination - reduced row echelon form.</li></ul><p id="2e2a48b7-c22e-815e-aed2-dab78ae85f77" class="" dir="auto">Row Reducing a Matrix</p><figure id="2e2a48b7-c22e-8134-80e8-f3c1cb2d878a" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image48.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image48.png"><img style="width:617.98291015625px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image48.png"/></a></figure><blockquote id="2e2a48b7-c22e-8105-8387-c2db8627f89d" class="" dir="auto">Triangle Matrices</blockquote><ul id="2e2a48b7-c22e-8166-9c88-c7e1240b3486" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Upper triangle matrix if every entry below the main diagonal is 0.</li></ul><ul id="2e2a48b7-c22e-813e-b962-ddfade800b11" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Lower triangle matrix if every entry above the main diagonal is 0.</li></ul><ul id="2e2a48b7-c22e-81af-abee-d0d911f76be7" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Triangle matrix if it is either upper or lower.</li></ul><blockquote id="2e2a48b7-c22e-8182-81e3-c0e82979c25a" class="" dir="auto">LU Factorization</blockquote><ul id="2e2a48b7-c22e-810c-826f-f0226c98561b" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Factor A as a product of lower triangle matrix and upper triangle matrix, where L has ones along the diagonal.</li></ul><blockquote id="2e2a48b7-c22e-81e9-ab04-efc734342897" class="" dir="auto">Direct Computation</blockquote><ul id="2e2a48b7-c22e-81f1-87bf-d58d0f33e350" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Matrices that can be put into RREF without switching rows, can be LU factored.</li></ul><ul id="2e2a48b7-c22e-81f0-82ed-fcb16419c8a6" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><figure id="2e2a48b7-c22e-8156-9935-d11373550b27" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image49.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image49.png"><img style="width:664.9857788085938px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image49.png"/></a></figure></li></ul><blockquote id="2e2a48b7-c22e-816b-b586-dc4defae5b72" class="" dir="auto">LU Factorization via the Multiplier Method</blockquote><ul id="2e2a48b7-c22e-81d3-8b7f-c2391973b458" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Use elementary operations to create upper triangle, not the multipliers and corresponding multipliers to obtain zero is the equal value in lower triangle.</li></ul><h3 id="2e2a48b7-c22e-81c1-a7a7-e5257289fd73" class="" dir="auto">10.3.1 The Power Method</h3><blockquote id="2e2a48b7-c22e-81a2-8100-d0c9b007af83" class="" dir="auto">π(k)=π(k−1)⋅P<p id="2e2a48b7-c22e-8141-96d7-f4d6447decba" class="" dir="auto">Each π(k) tells you the probability distribution after k steps.</p></blockquote><h3 id="2e2a48b7-c22e-81b9-94a4-ea706b14426e" class="" dir="auto">10.7.2 The Uniformization Method for Large State Spaces</h3><blockquote id="2e2a48b7-c22e-81b2-8f3f-f130bb41b0bd" class="" dir="auto">Uniformization is a trick that lets us &quot;fake&quot; the CTMC behavior inside a DTMC by adjusting both:</blockquote><ul id="2e2a48b7-c22e-8158-8e21-ce3dfc9a8119" class="bulleted-list" dir="auto"><li style="list-style-type:disc">how often transitions happen (with a Poisson clock),</li></ul><ul id="2e2a48b7-c22e-81d1-97c8-f2b6a3842b01" class="bulleted-list" dir="auto"><li style="list-style-type:disc">what the transition probabilities are (with a new matrix P).</li></ul><ul id="2e2a48b7-c22e-81c3-93e8-f470f53f189e" class="bulleted-list" dir="auto"><li style="list-style-type:disc">CTMC -&gt; DTMC</li></ul><p id="2e2a48b7-c22e-819a-af24-ceb983258a84" class="" dir="auto">We build the uniformized DTMC unif(C) of CTMC C</p><ul id="2e2a48b7-c22e-81ba-8c50-f108f0a0e5f1" class="bulleted-list" dir="auto"><li style="list-style-type:disc">If C = (S, Sinit, R, L) then unif(C) = (S, Sinit, Punif(C), L)<ul id="2e2a48b7-c22e-816c-b69f-dfe5ef8313de" class="bulleted-list" dir="auto"><li style="list-style-type:circle">If we take the CTMC C and apply uniformization, we get a discrete-time Markov chain with the same states, same initial states, same labels, but now with a discrete transition probability matrix Punif(C) instead of a rate matrix.</li></ul></li></ul><ul id="2e2a48b7-c22e-818a-8cce-f8c543855aac" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Punif(C) = I + Q/q<ul id="2e2a48b7-c22e-817f-af62-f146041baf49" class="bulleted-list" dir="auto"><li style="list-style-type:circle">q: the uniformization rate</li></ul><ul id="2e2a48b7-c22e-8191-b965-dd267f9a21aa" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Q/q: scale all rates down by dividing by the max rate, so they become probabilities.</li></ul><ul id="2e2a48b7-c22e-8105-8cfd-edb137d9af20" class="bulleted-list" dir="auto"><li style="list-style-type:circle">gives you the discrete-time transition probability matrix, where:<ul id="2e2a48b7-c22e-812c-a5dd-d5f3926f023f" class="bulleted-list" dir="auto"><li style="list-style-type:square">The off-diagonal entries are probabilities of jumping to other states.</li></ul><ul id="2e2a48b7-c22e-8150-bae6-d851a774ede3" class="bulleted-list" dir="auto"><li style="list-style-type:square">The diagonal entries are probabilities of staying in the same state (self-loops).</li></ul></li></ul></li></ul><ul id="2e2a48b7-c22e-81fd-b0db-e0d19cf4588c" class="bulleted-list" dir="auto"><li style="list-style-type:disc">I is the |S| x |S| identity matrix.</li></ul><ul id="2e2a48b7-c22e-81cb-a3d1-f4842abe3d04" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Q &gt;= max {E(S) | s E S} is the uniformization rate.<ul id="2e2a48b7-c22e-8110-afcb-fa197adb92a4" class="bulleted-list" dir="auto"><li style="list-style-type:circle">The maximum rate of leaving any state</li></ul></li></ul><figure id="2e2a48b7-c22e-8063-bec3-f54d1e6f085b" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%2018.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%2018.png"><img style="width:630.9801025390625px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image%2018.png"/></a></figure><ul id="2e2a48b7-c22e-81fa-8023-d715ac33ead8" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The initial state vector, usually denoted π0, is a row vector that tells you which state the system starts in at time t=0.<ul id="2e2a48b7-c22e-811b-8249-f5e85b2023e1" class="bulleted-list" dir="auto"><li style="list-style-type:circle">A 1 in the position of the starting state</li></ul><ul id="2e2a48b7-c22e-8126-89fb-de7a26a45ed8" class="bulleted-list" dir="auto"><li style="list-style-type:circle">0 everywhere else</li></ul></li></ul><h2 id="2e2a48b7-c22e-81dd-902a-c47d860a8e03" class="" dir="auto">Chapter 4 </h2><blockquote id="2e2a48b7-c22e-817e-a34f-f35893d0eb95" class="" dir="auto">Classification of Verification Methods</blockquote><ul id="2e2a48b7-c22e-8104-8acd-cb5143bcba10" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Proof-based vs model-based:<ul id="2e2a48b7-c22e-81d4-8568-dc205630f548" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Proof: prove a formula is true in all models</li></ul><ul id="2e2a48b7-c22e-8112-b839-d0ebef9b0292" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Model-based: check satisfiability in one model.</li></ul></li></ul><ul id="2e2a48b7-c22e-8180-b9f1-d5bca121dea3" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Degree of automation: fully automated, partially automated or manual.</li></ul><ul id="2e2a48b7-c22e-81cc-983d-c3fa72266788" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Full- vs property-verification: single properties vs. full behaviour.</li></ul><ul id="2e2a48b7-c22e-81bc-b811-d7c17cbd58b5" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Domain of application: hardware or software; sequential or concurrent; reactive or terminating; etc.</li></ul><ul id="2e2a48b7-c22e-81ec-b6a1-fc5ac5893e54" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Pre- vs post-development.</li></ul><ul id="2e2a48b7-c22e-815e-a4ce-e9170a989467" class="bulleted-list" dir="auto"><li style="list-style-type:disc">In Hoare logic, a <em>Hoare triple</em> looks like:<ul id="2e2a48b7-c22e-812c-ba41-f097dc722dc1" class="bulleted-list" dir="auto"><li style="list-style-type:circle">{P} x:=E {Q}</li></ul><ul id="2e2a48b7-c22e-8164-8a50-eecd915e4f70" class="bulleted-list" dir="auto"><li style="list-style-type:circle">If <strong>P</strong> is true before the statement x := E runs, then <strong>Q</strong> will be true after it runs.</li></ul></li></ul><ul id="2e2a48b7-c22e-811f-90ab-e420178e6848" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Partial correctness: We do not require the program to terminate.<ul id="2e2a48b7-c22e-817a-ac55-caccfc12129b" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Proving total correctness usually benefits from proving partial correctness first and then proving termination.</li></ul><ul id="2e2a48b7-c22e-81ee-879c-dd8b26af42cc" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Although our primary interest is in proving total correctness, it often happens that we have to or may wish to split this into separate proofs of partial correctness and of termination.</li></ul></li></ul><ul id="2e2a48b7-c22e-8163-9bf8-fd2890faea73" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Total correctness: We do require the program to terminate.</li></ul><figure id="2e2a48b7-c22e-81d4-977a-f2055a6e7ac2" class="image" data-notion-image="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image51.png" dir="ltr"><a href="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image51.png"><img style="width:594.9857788085938px" src="CMPT%20263%20%E2%80%94%20Computational%20Logic%20and%20Program%20Reasoni/image51.png"/></a></figure><h2 id="2e2a48b7-c22e-8162-b407-cc26e082ca5a" class="" dir="auto">Topics that were on the final </h2><blockquote id="2e2a48b7-c22e-815b-88a0-fdea7ad4bfa6" class="" dir="auto">Short answer final, I had to write down these stuff </blockquote><p id="2e4a48b7-c22e-80e4-934d-f35030f26933" class="" dir="auto">Partial vs total correctness.</p><p id="2e2a48b7-c22e-819f-9f1c-d591e3e7a28e" class="" dir="auto">Uniformized dc</p><p id="2e2a48b7-c22e-818e-97c2-d79947de1163" class="" dir="auto">Probability of S=s2</p><p id="2e2a48b7-c22e-8125-ad96-e4096ea8999f" class="" dir="auto">Latin terms</p><p id="2e2a48b7-c22e-8109-b90f-f66e078b6c34" class="" dir="auto">Sequent of program</p><p id="2e2a48b7-c22e-8110-bc7e-cd9c29e5c153" class="" dir="auto">What is a model and how does it relate to predicate logic</p><p id="2e2a48b7-c22e-8163-ac99-c929c630b379" class="" dir="auto">Algorithm 14</p><p id="2e2a48b7-c22e-81a5-bd29-dee4164c90dc" class="" dir="auto">CNF</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

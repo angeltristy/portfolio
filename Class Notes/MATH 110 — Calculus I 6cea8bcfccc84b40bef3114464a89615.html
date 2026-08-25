@@ -1,0 +1,794 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>MATH 110 — Calculus I</title><meta name="data-notion-page-icon" content="🦋"/><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%A6%8B%3C%2Ftext%3E%3C%2Fsvg%3E"/><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+/*
+ * Toggles and callouts hold arbitrary content, so they can easily be taller
+ * than a page. They must stay breakable: avoiding breaks inside them makes
+ * Chromium push the whole block onto the next page, which leaves the previous
+ * page mostly empty before every long toggle.
+ */
+details,
+aside {
+	margin: 1.25em 0;
+}
+
+/* Keep a toggle's title on the same page as the start of its content. */
+summary {
+	page-break-after: avoid;
+	break-after: avoid;
+}
+
+/*
+ * Toggle headings render as <h1/h2/h3 style="display:inline-block"> inside
+ * <summary>. Without this reset, the heading's margin-top pushes it below the
+ * ::marker (▼), so the triangle and the title appear on separate lines.
+ */
+summary h1,
+summary h2,
+summary h3,
+summary h4 {
+	margin-top: 0;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="6cea8bcf-ccc8-4b40-bef3-114464a89615" class="page mono" data-notion-page-icon="🦋"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1531366936337-7c912a4589a7?ixlib=rb-4.1.0&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon" data-emoji="🦋"></span></div><h1 class="page-title" dir="auto">MATH 110 — Calculus I</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><nav id="3c7a48b7-c22e-8069-8926-e704a8e4548a" class="block-color-blue table_of_contents" data-notion-highlight="blue" data-notion-toc="" dir="ltr"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e3a48b7-c22e-813c-be0e-dcdb02200d42">Functions and Graphs</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e3a48b7-c22e-81fe-bf52-fe6baf612e6a">Section 1.1: Review of Functions</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-819c-8397-de6be0f240df">Function composition</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-8169-bb26-f653dad8f58b">Symmetry of Functions</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-8121-8e0c-da682919c984">Absolute Value</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e3a48b7-c22e-81fa-83b0-daf4ac7cdf34">Section 1.2: Basic Classes of Functions</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-81e8-bd69-c0a25449c7ac">Linear Functions:</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-813c-8942-e795eb3427ba">Quadratic Functions:</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-8122-ba33-fae9f6a6f6ec">Polynomial</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-8150-9864-faa3110afe09">Algebraic Functions</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-8164-9c42-c84b72698143">Rational Functions</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-8124-9169-f47f2faf9c7e">Root Functions</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-81de-8f30-fe0c6d8c1413">Piecewise-defined Functions</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-8124-85f5-f47d8b5f69e6">Transformation of Functions</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e3a48b7-c22e-818c-b447-d19039c559d2">Section 1.3: Trigonometric Functions</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-8153-bd1e-d03eb50895b6">Trig Functions</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-81d8-88e7-e6d4826b7b38">The 6 Basic Trig Functions</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-813e-be7e-c867063aa370">Unit Circle</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-8177-91d4-c23a55a74c71">Trigonometric Identities</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e3a48b7-c22e-811f-8a1c-eab7ea1b41b6">Section 1.4: Inverse Functions</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-8138-9d36-dbbe8eb857bd">Strategy for Finding an Inverse Function</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-81e2-87e7-c61467266620">Inverse Trigonometric Functions</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e3a48b7-c22e-814f-8de1-d0a3e2cbee6a">Section 1.5: Exponential and Logarithmic Functions</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-8128-a164-ef5982bb68ea">Exponential Functions</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-8170-b791-c433559c03cc">Graphing Exponential Functions</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-811b-9b3e-eeb77f62ff4a">The Number E</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-8120-b25d-e91da035cf5c">Logarithmic Functions</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-8179-92d1-f77e0b7f6664">Properties of Logarithms</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e3a48b7-c22e-8121-8d70-fb7e1e5c12c0">Section 2.1: A Preview of Calculus</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-81f4-84af-c2d1ce3d63e7">The Tangent Problem and Differential Calculus</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-811e-8263-ec61c108066e">Further</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-81a2-ad5b-fbb53d68e98f">Calculating Tangent Lines</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-81d0-b268-cf52d752672f">Average Rate of Change to Instant Rate of Change</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e3a48b7-c22e-817e-bf83-c05c7da86c99">Section 2.2: The Limit of a Function</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-8137-8be8-ceefd767aadb">Limits</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-819c-a4bf-cc3b302039c9">Infinite Limits</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-81a9-b073-ea93ce57176d">Infinite limits describe behaviour at the function, not saying it exists.</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e3a48b7-c22e-8124-9c32-f936073c82da">Section 2.3: Limit Laws</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-8100-b76e-e59d06186f2d">Basic Limit Results</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-8182-9300-d43ca383142c">Limit Laws</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e3a48b7-c22e-81cc-ba2f-dd74b182f42c">Section 2.4: Continuity</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-810b-aaea-c1ef6162ff9f">Continuity</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-811a-9d3b-ed164036c37a">Discontinuity</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-8127-8a69-fb554a87a4a8">Formal Definitions</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-810b-b2ca-dc4bd5328607">Continuity over an Interval</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-81fb-aa8d-ceef02dda777">Intermediate Value Theorem</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e3a48b7-c22e-81f4-84a7-cb2bca8d2bd8">Section 3.1: Defining the Derivative</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-817e-a4ba-f5d1d98d685a">Tangent and Secant Lines</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-812c-88ad-c22da1c86c8c">Derivative of a Function at a Point</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-81b1-b667-dd6874d4d9e3">Velocities and Rates of Change</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e3a48b7-c22e-81bd-8241-ca3545d5e737">Section 3.2: The Derivative as a Function</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-81ce-8ac8-cae75782075e">Derivative Functions</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-8112-a3a4-ed85448616ed">Graphing a Derivative</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-8190-af01-cbf758349659">Derivations and Continuity</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-81bb-ba00-e5305ea530df">Higher-order Derivatives</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e3a48b7-c22e-8159-80d1-c2e8eed1e87f">Section 3.4: Derivatives as Rates of Change</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-811c-bbf9-f0020a456282">Motion Along a Line</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-81fb-9adb-da04c286c5fa">Population Change</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#2e3a48b7-c22e-816d-aa05-ccadcb202d0b">Changes in Cost and Revenue</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e3a48b7-c22e-8126-9709-cd810b20e625">Section 3.6: The Chain Rule</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e3a48b7-c22e-81bb-befc-c87497eaf364">Section 3.7: Derivatives of Inverse Functions</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2e3a48b7-c22e-81c2-b968-e86f06583878">Section 3.8 Implicit Differentiation</a></div></nav><figure id="2e3a48b7-c22e-81ec-93ef-dfef96b81255" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image1.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image1.png"><img style="width:700px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image1.png"/></a></figure><figure id="2e3a48b7-c22e-8190-98ae-d014f55ab478" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image2.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image2.png"><img style="width:700px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image2.png"/></a></figure><figure id="2e3a48b7-c22e-812b-82ee-dca1366477f3" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image3.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image3.png"><img style="width:700px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image3.png"/></a></figure><figure id="2e3a48b7-c22e-81df-a312-e712d18074f1" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image4.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image4.png"><img style="width:700px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image4.png"/></a></figure><figure id="2e3a48b7-c22e-8141-a451-c326e197354d" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image5.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image5.png"><img style="width:700px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image5.png"/></a></figure><figure id="2e3a48b7-c22e-81ed-9080-e683213b3e84" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image6.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image6.png"><img style="width:700px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image6.png"/></a></figure><figure id="2e3a48b7-c22e-8181-ac6c-c99b9ff81406" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image7.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image7.png"><img style="width:700px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image7.png"/></a></figure><figure id="2e3a48b7-c22e-8141-88f8-dd7f1c4ec092" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image8.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image8.png"><img style="width:700px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image8.png"/></a></figure><figure id="2e3a48b7-c22e-8177-a61b-f6126f7aa537" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image9.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image9.png"><img style="width:700px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image9.png"/></a></figure><figure id="2e3a48b7-c22e-817e-b76a-c5fb7680c8a1" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image10.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image10.png"><img style="width:700px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image10.png"/></a></figure><figure id="2e3a48b7-c22e-8182-9d29-f7b99b559c0b" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image11.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image11.png"><img style="width:700px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image11.png"/></a></figure><h1 id="2e3a48b7-c22e-813c-be0e-dcdb02200d42" class="" dir="auto">Functions and Graphs</h1><h2 id="2e3a48b7-c22e-81fe-bf52-fe6baf612e6a" class="" dir="auto">Section 1.1: Review of Functions</h2><ul id="2e3a48b7-c22e-8132-98d2-dde19c7223ff" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Functions: A rule that assigns each input value to exactly one output value</li></ul><ul id="2e3a48b7-c22e-81ec-bd1d-ccc154851741" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Domain: the set of input values</li></ul><ul id="2e3a48b7-c22e-817b-92c5-c275dea121db" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Range: the set of output values</li></ul><ul id="2e3a48b7-c22e-81e2-80fa-e1d41bb11e97" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Independent variable: x: in which we substitute input values from the domain</li></ul><ul id="2e3a48b7-c22e-816e-89f1-d53b40362f08" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Dependent variable: y: which gives us the corresponding output values from the range</li></ul><ul id="2e3a48b7-c22e-81ca-b128-f176260cd3ca" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Function notation: we write y = f(x)</li></ul><ul id="2e3a48b7-c22e-8156-8686-cf47f8d13865" class="bulleted-list" dir="auto"><li style="list-style-type:disc">A function can be represented as a formula, a table of values, and a graph.</li></ul><ul id="2e3a48b7-c22e-8111-a49b-cd8592a4e656" class="bulleted-list" dir="auto"><li style="list-style-type:disc">A graph represents a function only if it passes a rule called the vertical line test. Every vertical line that may be drawn on a graph should intersect one line. If any vertical line intersects a graph more than once, it is not a function.</li></ul><ul id="2e3a48b7-c22e-8109-8b11-f3d003bbc2cd" class="bulleted-list" dir="auto"><li style="list-style-type:disc">You can find the zeros and y intercept of a function by setting the opposite value to zero and solving for the variable.</li></ul><h3 id="2e3a48b7-c22e-819c-8397-de6be0f240df" class="" dir="auto">Function composition</h3><ul id="2e3a48b7-c22e-8111-823d-e6ea605c6b4b" class="bulleted-list" dir="auto"><li style="list-style-type:disc">By combining functions f and g using operations, we can make new functions. We can also create new functions using an operation called function composition.</li></ul><h3 id="2e3a48b7-c22e-8169-bb26-f653dad8f58b" class="" dir="auto">Symmetry of Functions</h3><ul id="2e3a48b7-c22e-81d5-9f41-eee3f8e739e8" class="bulleted-list" dir="auto"><li style="list-style-type:disc">If f(x) = f(-x) for all x in the domain, the function is called even.<ul id="2e3a48b7-c22e-818c-9cef-cff95ab978f9" class="bulleted-list" dir="auto"><li style="list-style-type:circle">An even function symmetric about the y-axis.</li></ul></li></ul><ul id="2e3a48b7-c22e-815f-8b0b-cb0697b68467" class="bulleted-list" dir="auto"><li style="list-style-type:disc">If f(-x) - f(x) for all x in the domain, the function is called odd.<ul id="2e3a48b7-c22e-81ee-ae21-fd4770edd713" class="bulleted-list" dir="auto"><li style="list-style-type:circle">An odd function is symmetric about the origin.</li></ul></li></ul><h3 id="2e3a48b7-c22e-8121-8e0c-da682919c984" class="" dir="auto">Absolute Value</h3><ul id="2e3a48b7-c22e-8103-9b44-f179bd90658c" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Absolute value is an even symmetric function.</li></ul><h2 id="2e3a48b7-c22e-81fa-83b0-daf4ac7cdf34" class="" dir="auto">Section 1.2: Basic Classes of Functions</h2><h3 id="2e3a48b7-c22e-81e8-bd69-c0a25449c7ac" class="" dir="auto">Linear Functions:</h3><ul id="2e3a48b7-c22e-81c5-8917-d236feb31042" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Linear functions have the form f(x) = mx + b, where m and b are constants.</li></ul><ul id="2e3a48b7-c22e-81dc-87de-e34a77ac51ee" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The graph of a linear function is a line.</li></ul><ul id="2e3a48b7-c22e-8142-9ec3-e6955885c808" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The 2 distinguishing features of any non-vertical line are the slope (represented by m) and the y-intercept (represented by the point 0, b).</li></ul><ul id="2e3a48b7-c22e-8112-9032-e3cfea4014cb" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Therefore, we call this the slope intercept form.<ul id="2e3a48b7-c22e-81f4-92db-efcb8568f96f" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Slope Formula:</li></ul><ul id="2e3a48b7-c22e-81a4-98ba-d27c18b27fde" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Point Slope Form:</li></ul></li></ul><h3 id="2e3a48b7-c22e-813c-8942-e795eb3427ba" class="" dir="auto">Quadratic Functions:</h3><ul id="2e3a48b7-c22e-8138-9073-e9070d90491f" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Quadratic functions have the form f(x) = ax2 + bx + c, where a, b, and c are constants but a /= 0.</li></ul><ul id="2e3a48b7-c22e-8177-913b-c24f12f99dbd" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The graph of a quadratic is a parabola.</li></ul><ul id="2e3a48b7-c22e-812a-86c0-eb1be6828d65" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The simplest format of a quadratic function is f(x) = ax2, where the value of a controls the shape of the graph.<ul id="2e3a48b7-c22e-8198-89f3-f207780534cb" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Quadratic Formula:</li></ul></li></ul><h3 id="2e3a48b7-c22e-8122-ba33-fae9f6a6f6ec" class="" dir="auto">Polynomial</h3><ul id="2e3a48b7-c22e-8151-b1eb-e30761fbeda8" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Linear and quadratic functions are examples of a class of functions known as polynomials. In general, a polynomial function has the form:<ul id="2e3a48b7-c22e-811a-bdf2-eb6bc015b111" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Degree 0 polynomials are called constant functions.</li></ul><ul id="2e3a48b7-c22e-8159-90d9-d5ad91b2ef5c" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Degree 1 polynomials are called linear functions.</li></ul><ul id="2e3a48b7-c22e-81e0-ba6a-c677e429f8a4" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Degree 2 polynomials are called quadratic functions.</li></ul></li></ul><ul id="2e3a48b7-c22e-81d8-be34-d982e03b484f" class="bulleted-list" dir="auto"><li style="list-style-type:disc">An important feature of polynomial functions is the end-behaviour of their graphs (also called behaviour at infinity.)</li></ul><ul id="2e3a48b7-c22e-8179-b5e4-faf65477a8d5" class="bulleted-list" dir="auto"><li style="list-style-type:disc">If we have polynomials with more than one term, we only need to look at the leading term to determine end haviour.</li></ul><h3 id="2e3a48b7-c22e-8150-9864-faa3110afe09" class="" dir="auto">Algebraic Functions</h3><ul id="2e3a48b7-c22e-8167-aed4-cf16bfcfd1dd" class="bulleted-list" dir="auto"><li style="list-style-type:disc">By allowing for division and fractional exponents in polynomial functions, we create a larger class of functions.</li></ul><ul id="2e3a48b7-c22e-81b4-8d98-cebb2df3fe81" class="bulleted-list" dir="auto"><li style="list-style-type:disc">An algebraic function is a function that involves operations (addition, subtraction, multiplication, and division), rational exponents and roots. 2 types of algebra functions we will consider next are rational functions and root functions.</li></ul><h3 id="2e3a48b7-c22e-8164-9c42-c84b72698143" class="" dir="auto">Rational Functions</h3><ul id="2e3a48b7-c22e-819f-8acb-dbfe1e154e3d" class="bulleted-list" dir="auto"><li style="list-style-type:disc">By dividing 2 polynomials, we can create rational functions. A ration function has the form:</li></ul><ul id="2e3a48b7-c22e-81bd-a91b-da37b2112901" class="bulleted-list" dir="auto"><li style="list-style-type:disc">f(x) = p(x)/q(x)</li></ul><ul id="2e3a48b7-c22e-8194-b98b-e8b79b598272" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The domain of a polynomial is always (-∞, ∞)</li></ul><ul id="2e3a48b7-c22e-817a-9cbb-ecc6a1c4f4c5" class="bulleted-list" dir="auto"><li style="list-style-type:disc">However this is not true for rational functions because we have to make sure the denominator doesn&#x27;t equal zero.<p id="2e3a48b7-c22e-819a-85aa-f5462fb87bf0" class="" dir="auto">Find the domain and range for the function:</p></li></ul><h3 id="2e3a48b7-c22e-8124-9169-f47f2faf9c7e" class="" dir="auto">Root Functions</h3><ul id="2e3a48b7-c22e-81e7-a84a-d34c70fd2d78" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Root functions have the form:</li></ul><ul id="2e3a48b7-c22e-81c1-abcd-d2538b5e9614" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Where n can be any integer bigger than 1.</li></ul><ul id="2e3a48b7-c22e-819a-ae76-ff4ce126c294" class="bulleted-list" dir="auto"><li style="list-style-type:disc">When n is even, the domain is [0, ∞)</li></ul><ul id="2e3a48b7-c22e-8108-b5f4-e1069509fccb" class="bulleted-list" dir="auto"><li style="list-style-type:disc">When n is odd, the domain is (-∞, ∞)</li></ul><ul id="2e3a48b7-c22e-8104-82e8-efe8eaff43f4" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Find range by making sure the radicand /= 0.</li></ul><h3 id="2e3a48b7-c22e-81de-8f30-fe0c6d8c1413" class="" dir="auto">Piecewise-defined Functions</h3><ul id="2e3a48b7-c22e-81ca-af62-cd72fbc79e5b" class="bulleted-list" dir="auto"><li style="list-style-type:disc">We can create functions that take on different formulas on its domain. These are called piece-wise functions.</li></ul><h3 id="2e3a48b7-c22e-8124-85f5-f47d8b5f69e6" class="" dir="auto">Transformation of Functions</h3><h2 id="2e3a48b7-c22e-818c-b447-d19039c559d2" class="" dir="auto">Section 1.3: Trigonometric Functions</h2><h3 id="2e3a48b7-c22e-8153-bd1e-d03eb50895b6" class="" dir="auto">Trig Functions</h3><ul id="2e3a48b7-c22e-815d-9973-dcdfe0052d87" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Trig functions are used to model things that have repetitive or cyclical motion, such as sound waves, vibrations and alternating electrical currents.</li></ul><ul id="2e3a48b7-c22e-810a-b92f-f82091d6ebed" class="bulleted-list" dir="auto"><li style="list-style-type:disc">It&#x27;s often more convenient to use radians when we work with trig functions because they are related to the unit circle, a circle with radius 1.</li></ul><ul id="2e3a48b7-c22e-81c2-a8a8-e4b0ec34b13e" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Convert degrees and radians using ratio of pi = 180degrees.</li></ul><figure id="2e3a48b7-c22e-815f-8473-f15d709b05a5" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image13.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image13.png"><img style="width:615px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image13.png"/></a></figure><h3 id="2e3a48b7-c22e-81d8-88e7-e6d4826b7b38" class="" dir="auto">The 6 Basic Trig Functions</h3><ul id="2e3a48b7-c22e-8163-9bf1-cebb13102e60" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Trig functions are used to relate angles to their corresponding points on a circle. Trig functions are also used to defined the relationship between the sides and angles of a triangle.</li></ul><ul id="2e3a48b7-c22e-816c-b553-d133deedf92d" class="bulleted-list" dir="auto"><li style="list-style-type:disc">To define any trig action, first look at the unit circle centered at the origin. Consider the point p = (x, y) on the unit circle, and let theta be an angle with an initial side on the positive x-axis and with a terminal side that is the line segment connecting the origin O to P.</li></ul><ul id="2e3a48b7-c22e-81ff-b7fb-efa29f8e2e0a" class="bulleted-list" dir="auto"><li style="list-style-type:disc">An angle in this position is said to 5 in standard position.</li></ul><h3 id="2e3a48b7-c22e-813e-be7e-c867063aa370" class="" dir="auto">Unit Circle</h3><ul id="2e3a48b7-c22e-8144-8f52-d9408e5fb071" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Positive angles move counterclockwise from the positive x-axis, negative angles move clockwise.</li></ul><ul id="2e3a48b7-c22e-81eb-a638-d29cdc2f517a" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Sin is y coordinate</li></ul><ul id="2e3a48b7-c22e-81f5-bd79-d4fb1684449c" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Cos is x coordinate</li></ul><ul id="2e3a48b7-c22e-8197-9a40-ca32a82fc9cf" class="bulleted-list" dir="auto"><li style="list-style-type:disc">On the unit circle, the tangent represents the slope of the ray that is theta radians counterclockwise of the positive x-axis.</li></ul><ul id="2e3a48b7-c22e-81df-a64c-d45c70d4668b" class="bulleted-list" dir="auto"><li style="list-style-type:disc">An opposite slope means that the slope is equally steep, but has the opposite sign.</li></ul><ul id="2e3a48b7-c22e-8172-8ac8-e9f1cd8f1ffe" class="bulleted-list" dir="auto"><li style="list-style-type:disc">On the unit circle, the cosine represents the x-coordinate where the ray that is theta radians counterclockwise of the positive x-axis intersects the unit circle.</li></ul><figure id="2e3a48b7-c22e-816f-a090-d456f9ee0b17" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image14.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image14.png"><img style="width:317px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image14.png"/></a></figure><figure id="2e3a48b7-c22e-819a-9740-c434a129966a" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image15.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image15.png"><img style="width:700px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image15.png"/></a></figure><p id="2e3a48b7-c22e-8148-83ee-c415bf5d03a9" class="" dir="auto">SOH CAH TOA</p><p id="2e3a48b7-c22e-81e9-a663-de39e17f7d2a" class="" dir="auto">Sine = opposite / hypotenuse</p><p id="2e3a48b7-c22e-81bb-9252-e99486ae8421" class="" dir="auto">Cosine = adjacent / hypotenuse</p><p id="2e3a48b7-c22e-8178-8334-c75ff61f3e68" class="" dir="auto">Tan = opposite / adjacent</p><ul id="2e3a48b7-c22e-81f3-8f11-c2cdd02b17d4" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Tan is undefined where cos = 0</li></ul><figure id="2e3a48b7-c22e-81ff-b1bc-c9043c72a30f" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image16.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image16.png"><img style="width:482px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image16.png"/></a></figure><h3 id="2e3a48b7-c22e-8177-91d4-c23a55a74c71" class="" dir="auto">Trigonometric Identities</h3><ul id="2e3a48b7-c22e-81fb-8e81-da2f0d962121" class="bulleted-list" dir="auto"><li style="list-style-type:disc">A trig identity is an equation involving trig functions that is true for all angles for which the functions are defined. Identities are useful for simplifying complicated equations.</li></ul><ul id="2e3a48b7-c22e-8160-ba1d-d50ef20c691a" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><figure id="2e3a48b7-c22e-814c-a896-c43c58f03b24" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image17.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image17.png"><img style="width:700px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image17.png"/></a></figure></li></ul><figure id="2e3a48b7-c22e-815a-83c9-d67f0a8cfc5c" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image18.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image18.png"><img style="width:519px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image18.png"/></a></figure><h2 id="2e3a48b7-c22e-811f-8a1c-eab7ea1b41b6" class="" dir="auto">Section 1.4: Inverse Functions</h2><ul id="2e3a48b7-c22e-8196-a184-c139b55286fc" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The inverse function f(-1) reverses what the function did, so that the output value (from the range) gets sent back to the corresponding input value (from the domain).</li></ul><ul id="2e3a48b7-c22e-811c-91a4-f0614ee3b849" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><figure id="2e3a48b7-c22e-81c2-8497-e7863fe1a6d5" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image19.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image19.png"><img style="width:259px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image19.png"/></a></figure></li></ul><p id="2e3a48b7-c22e-811c-beeb-c574248f4885" class="" dir="auto">f(x) = y then f-1(y) = x</p><ul id="2e3a48b7-c22e-810c-b57f-eb158aa69f78" class="bulleted-list" dir="auto"><li style="list-style-type:disc">For a function to have an inverse, it must be a one-to-one function.</li></ul><h3 id="2e3a48b7-c22e-8138-9d36-dbbe8eb857bd" class="" dir="auto">Strategy for Finding an Inverse Function</h3><ol type="1" id="2e3a48b7-c22e-8133-8995-deeed0fd60e6" class="numbered-list" start="1" dir="auto"><li>Solve the equation y = f(x) for x.</li></ol><ol type="1" id="2e3a48b7-c22e-81ca-886b-d83e32a7e671" class="numbered-list" start="2" dir="auto"><li>Interchange the variables x and y, then write y = f1(x).</li></ol><h3 id="2e3a48b7-c22e-81e2-87e7-c61467266620" class="" dir="auto">Inverse Trigonometric Functions</h3><ul id="2e3a48b7-c22e-81eb-93e5-daa4aacdca07" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The 6 basic trig functions (sine, cos, tan, csec, sec, cot) are periodic, therefore they are not one-to-one. Their graphs all fail the horizontal line test. However, if we restrict the domain of a trig function to an interval where it is one-to-one, we can define its inverse.</li></ul><ul id="2e3a48b7-c22e-8176-b279-fbff865749e5" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The convention is to restrict the domain of sine to [-pi//2, pi/2] and cosine to [0, pi]. For both, the range is [-1. 1] is maintained.</li></ul><ul id="2e3a48b7-c22e-8161-972b-c40223a1b211" class="bulleted-list" dir="auto"><li style="list-style-type:disc">For the tangent function, the convention is to restrict the domain to include all values between vertical asymptotes. (-pi/2, pi/2]</li></ul><ul id="2e3a48b7-c22e-81e6-bf22-fc21f78ebb42" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The principal value of an inverse trigonometric function is the main angle (or the default output) that the function gives. It’s the angle that lies within a restricted range so that the inverse function can be well-defined and single-valued (i.e., give only one answer).</li></ul><figure id="2e3a48b7-c22e-8193-889a-cd25180afa63" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image20.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image20.png"><img style="width:700px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image20.png"/></a></figure><figure id="2e3a48b7-c22e-8160-9d5d-e4908cc6831b" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image21.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image21.png"><img style="width:595px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image21.png"/></a></figure><figure id="2e3a48b7-c22e-81a7-b872-fd779703d0de" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image22.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image22.png"><img style="width:700px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image22.png"/></a></figure><h2 id="2e3a48b7-c22e-814f-8de1-d0a3e2cbee6a" class="" dir="auto">Section 1.5: Exponential and Logarithmic Functions</h2><h3 id="2e3a48b7-c22e-8128-a164-ef5982bb68ea" class="" dir="auto">Exponential Functions</h3><ul id="2e3a48b7-c22e-8191-91cd-e7d3e8072635" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Any function of the form f(x) = bx , where b is greater than 0 and cannot equal 1, is an exponential function with base b and exponent x.</li></ul><ul id="2e3a48b7-c22e-811d-a40f-c3fc3096576f" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Exponential functions have constant bases and variable exponents.</li></ul><h3 id="2e3a48b7-c22e-8170-b791-c433559c03cc" class="" dir="auto">Graphing Exponential Functions</h3><ul id="2e3a48b7-c22e-8110-b2e3-f17346f52332" class="bulleted-list" dir="auto"><li style="list-style-type:disc">For any base b &gt; 0, b /= 1, the exponential function f(x) = bx is defined for all real numbers x and bx &gt; 0. Domain (-infinity, infinity) and range (0, infinity).</li></ul><ul id="2e3a48b7-c22e-8167-83ed-e637cf11b659" class="bulleted-list" dir="auto"><li style="list-style-type:disc">f(x) = abx<ul id="2e3a48b7-c22e-81fe-9c48-c769da8f0ce3" class="bulleted-list" dir="auto"><li style="list-style-type:circle">a = initial value (vertical stretch or shrink</li></ul><ul id="2e3a48b7-c22e-8101-865d-fa21af4bdf38" class="bulleted-list" dir="auto"><li style="list-style-type:circle">b = base (b &gt; 1: exponential growth, 0 &lt; b &lt; 1: exponential decay</li></ul></li></ul><figure id="2e3a48b7-c22e-8139-9769-f995fd8a563c" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image23.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image23.png"><img style="width:235px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image23.png"/></a></figure><h3 id="2e3a48b7-c22e-811b-9b3e-eeb77f62ff4a" class="" dir="auto">The Number E</h3><ul id="2e3a48b7-c22e-8114-ad3c-e917adf9c979" class="bulleted-list" dir="auto"><li style="list-style-type:disc">The number 𝑒 is an irrational constant (like 𝜋), and it arises naturally in many real-world applications involving growth, decay, and continuous change.</li></ul><ul id="2e3a48b7-c22e-81d6-ba15-d3402b420f17" class="bulleted-list" dir="auto"><li style="list-style-type:disc">To six decimal places, 𝑒 ≈ 2.718282</li></ul><figure id="2e3a48b7-c22e-81dd-8140-d297868b7c2f" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image24.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image24.png"><img style="width:574px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image24.png"/></a></figure><figure id="2e3a48b7-c22e-81f6-8ce6-cc2d3f7c7dad" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image25.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image25.png"><img style="width:428px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image25.png"/></a></figure><h3 id="2e3a48b7-c22e-8120-b25d-e91da035cf5c" class="" dir="auto">Logarithmic Functions</h3><ul id="2e3a48b7-c22e-81f4-bce1-f6221d0081a2" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Logarithms are inverses of exponentials.</li></ul><h3 id="2e3a48b7-c22e-8179-92d1-f77e0b7f6664" class="" dir="auto">Properties of Logarithms</h3><figure id="2e3a48b7-c22e-81f4-91f8-e40fc7474096" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image26.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image26.png"><img style="width:700px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image26.png"/></a></figure><figure id="2e3a48b7-c22e-813f-a660-f1e1476a59e7" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image27.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image27.png"><img style="width:700px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image27.png"/></a></figure><figure id="2e3a48b7-c22e-81b0-9f09-c688908d8fce" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image28.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image28.png"><img style="width:700px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image28.png"/></a></figure><figure id="2e3a48b7-c22e-81ae-bdff-de84add681b8" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image29.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image29.png"><img style="width:700px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image29.png"/></a></figure><h2 id="2e3a48b7-c22e-8121-8d70-fb7e1e5c12c0" class="" dir="auto">Section 2.1: A Preview of Calculus</h2><h3 id="2e3a48b7-c22e-81f4-84af-c2d1ce3d63e7" class="" dir="auto">The Tangent Problem and Differential Calculus</h3><p id="2e3a48b7-c22e-81b9-a332-f5ca86bd9ddc" class="" dir="auto">We can approximate the rate of change of a function f(x) at a point (a, f(a)) on its graph by taking another point (x, f(x)) on the graph of f(x), drawing a line through the two points and calculating the slope of the resulting line. This is the secant line.</p><p id="2e3a48b7-c22e-815e-bad7-ed3a3e3f4f1d" class="" dir="auto">The secant to the function f(x) through the points (a, f(a)) and (x, f(x)) is the line passing through those points. Its slope is given by:</p><p id="2e3a48b7-c22e-81f5-9415-c3d001f98374" class="" dir="auto">msec = f(x) = f(a) / x-a</p><p id="2e3a48b7-c22e-8143-9d61-df51079a0908" class="" dir="auto">The accuracy of approximating the rate of change of the function with a secant line depends on how close x is to a.</p><p id="2e3a48b7-c22e-81b2-b1d9-c96631ce92eb" class="" dir="auto">In the figure below, you can see that as we choose points (x, f(x)) that get closer and closer to (a, f(a)), the secant lines approach a special line called the tangent line to the graph at the point (a, f(a)).</p><p id="2e3a48b7-c22e-81dc-b632-cd990ee2379e" class="" dir="auto">The slope of the tangent line to the graph of a function f(x) at a point (a, f(a)) measures the rate of change of the function at x = a. This value also represents the derivative (also called the rate of change) of the function at x = a, denoted by f&#x27;(a) (read as: &quot;f prime of a&quot;)</p><p id="2e3a48b7-c22e-811e-8328-e41144d59943" class="" dir="auto">Differential calculus is the field of calculus related to the study of derivatives and their applications to areas such as economics, engineering, and the natural sciences.</p><figure id="2e3a48b7-c22e-8166-9c17-e3dce72586d2" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image30.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image30.png"><img style="width:700px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image30.png"/></a></figure><figure id="2e3a48b7-c22e-8189-a364-e3187169437f" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image31.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image31.png"><img style="width:700px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image31.png"/></a></figure><h3 id="2e3a48b7-c22e-811e-8263-ec61c108066e" class="" dir="auto">Further</h3><p id="2e3a48b7-c22e-819f-9ac9-dda78c8c3e49" class="" dir="auto">Limits don&#x27;t depend on the actual value of the function at the limit. They describe how the function behaves as it approaches the limit.</p><p id="2e3a48b7-c22e-8175-9274-c9612fff95f9" class="" dir="auto">The limit of the function f of x as x approaches 3 is 2. lim f(x) - 2</p><blockquote id="2e3a48b7-c22e-8113-b4b9-db4890335983" class="" dir="auto">x -&gt; 3</blockquote><p id="2e3a48b7-c22e-8182-99c5-c56c2b1c52be" class="" dir="auto">A limit must be the same from both sides.</p><p id="2e3a48b7-c22e-816a-9085-f731be6b85fe" class="" dir="auto">A tangent line is a line that touches a curve at a point without crossing over it.</p><p id="2e3a48b7-c22e-81ad-b31c-dd10c4b8412d" class="" dir="auto">Tangent problem involves finding the slope of the curve at the specific point where the tangent line touches.</p><p id="2e3a48b7-c22e-816d-a7f9-fb054d068f0f" class="" dir="auto">This represents the instantaneous rate of change of that curve at that exact point.</p><p id="2e3a48b7-c22e-81d0-b3b0-d81210b9ecc1" class="" dir="auto">Secant line is a straight line that intersects a curve at 2 distinct points and represents the average rate of change between those 2 points.</p><p id="2e3a48b7-c22e-81b0-81d6-f71949071521" class="" dir="auto">Limit of secant lines as a tangent to the curve.</p><h3 id="2e3a48b7-c22e-81a2-ad5b-fbb53d68e98f" class="" dir="auto">Calculating Tangent Lines</h3><figure id="2e3a48b7-c22e-81ad-8a3c-e3a454e8e0c0" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image32.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image32.png"><img style="width:700px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image32.png"/></a></figure><h3 id="2e3a48b7-c22e-81d0-b268-cf52d752672f" class="" dir="auto">Average Rate of Change to Instant Rate of Change</h3><ul id="2e3a48b7-c22e-8132-9aa5-fd3914b2ac79" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Calculate average rate of change A.R.C, which is the slope of the secant line between two points on a function.</li></ul><ul id="2e3a48b7-c22e-81db-b04e-fb9c0828a6f0" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Estimate instantaneous rate of change (I.R.C). This is the slope of the tangent line at a single point. It is the limit of the A.R.C. as the interval becomes infinitely small.</li></ul><h2 id="2e3a48b7-c22e-817e-bf83-c05c7da86c99" class="" dir="auto">Section 2.2: The Limit of a Function</h2><h3 id="2e3a48b7-c22e-8137-8be8-ceefd767aadb" class="" dir="auto">Limits</h3><p id="2e3a48b7-c22e-813e-a628-fbd30b2ea0a7" class="" dir="auto">The limit of a function is a concept that allows us to describe the behaviour of a function close to a particular x-value.</p><p id="2e3a48b7-c22e-81d3-92a9-de5c988a8d3e" class="" dir="auto"><span style="border-bottom:0.05em solid">Example</span>:</p><blockquote id="2e3a48b7-c22e-81b6-84dd-c42a36f526dc" class="" dir="auto">We can represent this using one sided limits. As x approaches the asymptote x = 2,<p id="2e3a48b7-c22e-81f5-8b40-fd2006c32df8" class="" dir="auto">from the left.</p><p id="2e3a48b7-c22e-8122-9a8e-ec04a8d1e7a0" class="" dir="auto">lim h(x) = + infinity</p><p id="2e3a48b7-c22e-8122-8918-dd3b89549121" class="" dir="auto">x -&gt; 2-</p><p id="2e3a48b7-c22e-8132-82bc-f985bd6d1290" class="" dir="auto">From the right</p><p id="2e3a48b7-c22e-8144-a59b-dccd6df51db2" class="" dir="auto">lim h(x) = + infinity</p><p id="2e3a48b7-c22e-8191-bbcf-e1aaf410d595" class="" dir="auto">x -&gt; 2+</p></blockquote><p id="2e3a48b7-c22e-8131-961d-d1c77e66e686" class="" dir="auto">Since the one-sided limits both go to positive infinity, we can conclude that lim h(x) = positive infinity as x approaches 2.</p><p id="2e3a48b7-c22e-8158-9ca5-ebe4f6c4a790" class="" dir="auto">Limits</p><ul id="2e3a48b7-c22e-81af-bebb-df24fcf1b805" class="bulleted-list" dir="auto"><li style="list-style-type:disc">As x gets closer to a, f(x) gets closer and stays close to L.</li></ul><p id="2e3a48b7-c22e-81c1-868e-dc446d1b2252" class="" dir="auto">One-sided Limits</p><ul id="2e3a48b7-c22e-81ec-8b6b-e62789347192" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Limit from the left represented with minus sign.</li></ul><ul id="2e3a48b7-c22e-810f-9137-c66eac1a89f3" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Limits from the right represented with plus sign.</li></ul><h3 id="2e3a48b7-c22e-819c-a4bf-cc3b302039c9" class="" dir="auto">Infinite Limits</h3><table id="2e3a48b7-c22e-81df-9c9a-e31dafdc1acc" class="simple-table" dir="ltr"><thead class="simple-table-header"><tr id="2e3a48b7-c22e-8158-907c-f5a93ffa9f47" dir="ltr"><th id="Fmu;" class="simple-table-header-color simple-table-header"></th><th id="gzst" class="simple-table-header-color simple-table-header"><strong>Infinite limit from the left that increases<br/></strong></th></tr></thead><tbody><tr id="2e3a48b7-c22e-8124-b560-e3e58000c9ab" dir="ltr"><th id="Fmu;" class="simple-table-header-color simple-table-header"></th><td id="gzst" class=""><strong>Infinite limit from the left that decreases<br/></strong></td></tr><tr id="2e3a48b7-c22e-81a7-becb-ca1c63791a8a" dir="ltr"><th id="Fmu;" class="simple-table-header-color simple-table-header"></th><td id="gzst" class=""><strong>Infinite limit from the right that increases<br/></strong></td></tr><tr id="2e3a48b7-c22e-8148-8ac1-e1f766388653" dir="ltr"><th id="Fmu;" class="simple-table-header-color simple-table-header"></th><td id="gzst" class=""><strong>Infinite limit from the right that decreases<br/></strong></td></tr><tr id="2e3a48b7-c22e-8118-a8dc-ef8a82f83833" dir="ltr"><th id="Fmu;" class="simple-table-header-color simple-table-header"></th><td id="gzst" class=""><strong>Two sided infinite limit that increases</strong></td></tr><tr id="2e3a48b7-c22e-81bb-92d4-c0184fe487d9" dir="ltr"><th id="Fmu;" class="simple-table-header-color simple-table-header"></th><td id="gzst" class=""><strong>Two sided infinite limit that decreases</strong></td></tr></tbody></table><h3 id="2e3a48b7-c22e-81a9-b073-ea93ce57176d" class="" dir="auto">Infinite limits describe behaviour at the function, not saying it exists.</h3><p id="2e3a48b7-c22e-81e9-9fcf-d484cf10779f" class="" dir="auto">Vertical asymptote</p><p id="2e3a48b7-c22e-81a9-b9f3-c439444f55f9" class="" dir="auto">Conditions:</p><figure id="2e3a48b7-c22e-8126-a985-ea9f8d48f243" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image35.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image35.png"><img style="width:514px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image35.png"/></a></figure><h2 id="2e3a48b7-c22e-8124-9c32-f936073c82da" class="" dir="auto">Section 2.3: Limit Laws</h2><h3 id="2e3a48b7-c22e-8100-b76e-e59d06186f2d" class="" dir="auto">Basic Limit Results</h3><p id="2e3a48b7-c22e-81c5-b749-fa078d136869" class="" dir="auto">For any real number a and any constant c.</p><h3 id="2e3a48b7-c22e-8182-9300-d43ca383142c" class="" dir="auto">Limit Laws</h3><figure id="2e3a48b7-c22e-81ae-b918-e06c7bb0902e" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image36.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image36.png"><img style="width:584px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image36.png"/></a></figure><h2 id="2e3a48b7-c22e-81cc-ba2f-dd74b182f42c" class="" dir="auto">Section 2.4: Continuity</h2><h3 id="2e3a48b7-c22e-810b-aaea-c1ef6162ff9f" class="" dir="auto">Continuity</h3><p id="2e3a48b7-c22e-81ef-889a-fb26bc58f0c0" class="" dir="auto">A function is continuous at a point if:</p><ul id="2e3a48b7-c22e-815f-8dcc-f3b2a6686b03" class="bulleted-list" dir="auto"><li style="list-style-type:disc">f(a) is defined - plug a into the function</li></ul><ul id="2e3a48b7-c22e-8163-88b9-e1287bf7bd42" class="bulleted-list" dir="auto"><li style="list-style-type:disc">lim f(x) exists - use one-sided limit</li></ul><blockquote id="2e3a48b7-c22e-8131-9bff-eb993f73b18e" class="" dir="auto">x -&gt; a</blockquote><ul id="2e3a48b7-c22e-81c5-b7d5-f37e6c2221d0" class="bulleted-list" dir="auto"><li style="list-style-type:disc">lim f(x) = f(a) - top 2 answers should match</li></ul><blockquote id="2e3a48b7-c22e-817e-a30c-d59f67aac535" class="" dir="auto">x -&gt; a</blockquote><p id="2e3a48b7-c22e-8161-95e4-e339c2eb7f2b" class="" dir="auto">A function is discontinuous at a point if it doesn&#x27;t meet these conditions.</p><h3 id="2e3a48b7-c22e-811a-9d3b-ed164036c37a" class="" dir="auto">Discontinuity</h3><p id="2e3a48b7-c22e-81df-8714-c353dba5e8ef" class="" dir="auto">There are 3 common categories of discontinuities.</p><ul id="2e3a48b7-c22e-81a5-b782-e8000b6fd4ce" class="bulleted-list" dir="auto"><li style="list-style-type:disc">a removable discontinuity - a hole in the graph</li></ul><ul id="2e3a48b7-c22e-81f5-a32c-cd05c4fd610b" class="bulleted-list" dir="auto"><li style="list-style-type:disc">a jump discontinuity - sides of function do not line up</li></ul><ul id="2e3a48b7-c22e-8172-ae1a-c8073e8666c6" class="bulleted-list" dir="auto"><li style="list-style-type:disc">an infinite discontinuity - vertical asymptote</li></ul><figure id="2e3a48b7-c22e-81ab-a9d8-c96c9bafdb8a" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image37.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image37.png"><img style="width:681px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image37.png"/></a></figure><h3 id="2e3a48b7-c22e-8127-8a69-fb554a87a4a8" class="" dir="auto">Formal Definitions</h3><figure id="2e3a48b7-c22e-812f-a8f9-e5e5ee9f85c7" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image38.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image38.png"><img style="width:700px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image38.png"/></a></figure><h3 id="2e3a48b7-c22e-810b-b2ca-dc4bd5328607" class="" dir="auto">Continuity over an Interval</h3><p id="2e3a48b7-c22e-81ce-b828-f98b9e597f1e" class="" dir="auto">We can also define continuity over intervals such as the domain of a function.</p><p id="2e3a48b7-c22e-8148-b8fc-c4b72b158015" class="" dir="auto">Polynomials and rational functions are continuous at every point in their domains.</p><figure id="2e3a48b7-c22e-81b5-9e24-ed4fc9e245c0" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image39.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image39.png"><img style="width:654px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image39.png"/></a></figure><h3 id="2e3a48b7-c22e-81fb-aa8d-ceef02dda777" class="" dir="auto">Intermediate Value Theorem</h3><figure id="2e3a48b7-c22e-8137-9fb0-d7b5d4923257" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image40.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image40.png"><img style="width:700px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image40.png"/></a></figure><h2 id="2e3a48b7-c22e-81f4-84a7-cb2bca8d2bd8" class="" dir="auto">Section 3.1: Defining the Derivative</h2><p id="2e3a48b7-c22e-8140-b729-c92d8dba0828" class="" dir="auto">Limits:</p><blockquote id="2e3a48b7-c22e-818b-94f5-e3b96ffab5d2" class="" dir="auto">A limit, in the context of calculus, is the value that a function approaches as the input (usually denoted by &#x27;x&#x27;) approaches a certain point (usually denoted by &#x27;a&#x27;). It&#x27;s about what a function &quot;gets close to&quot; rather than necessarily what it equals at that specific point. For example, the limit of the function f(x) = 2x as x approaches 2 is 4.</blockquote><p id="2e3a48b7-c22e-81e9-8968-ef143aa93375" class="" dir="auto">Derivatives:</p><blockquote id="2e3a48b7-c22e-8163-9a3a-eceaa30e65db" class="" dir="auto">The derivative of a function, denoted as f&#x27;(x) or dy/dx, measures the instantaneous rate of change of the function at a particular point. It can also be interpreted as the slope of the tangent line to the curve of the function at that point. The derivative is found by calculating a specific type of limit, specifically the limit of a difference quotient.</blockquote><h3 id="2e3a48b7-c22e-817e-a4ba-f5d1d98d685a" class="" dir="auto">Tangent and Secant Lines</h3><p id="2e3a48b7-c22e-8143-9027-d0ac5bd09c8d" class="" dir="auto">Tangent line - The tangent line is the line that touches the curve at a point.</p><p id="2e3a48b7-c22e-81f9-b709-ef2f4241ab60" class="" dir="auto">Secant line - Recall that we used the slope of a secant line to a function at a point (a, f(a)) to estimate the rate of change, or the rate at which on variable changes in relation to another variable.</p><figure id="2e3a48b7-c22e-81fd-a21d-f797f48cb18b" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image41.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image41.png"><img style="width:650px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image41.png"/></a></figure><figure id="2e3a48b7-c22e-810c-8726-f036198ac5a2" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image42.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image42.png"><img style="width:571px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image42.png"/></a></figure><figure id="2e3a48b7-c22e-8145-8683-f4757e875cf2" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image43.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image43.png"><img style="width:542px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image43.png"/></a></figure><p id="2e3a48b7-c22e-81f5-bedc-d921ea9de5ff" class="" dir="auto">Example: Find tangent line slope to the graph of f(x) = sqrt(x) at x = 4.</p><h3 id="2e3a48b7-c22e-812c-88ad-c22da1c86c8c" class="" dir="auto">Derivative of a Function at a Point</h3><p id="2e3a48b7-c22e-8194-bcf7-f942d502a354" class="" dir="auto">The type of limit we compute in order to find the slope of the tangent line to a function at a point occurs in many applications, The limit occurs so frequently we give this value a special name: the derivative. The process of finding a derivative is called differentiation.</p><figure id="2e3a48b7-c22e-81c6-a147-dbcb0a62b7f5" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image44.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image44.png"><img style="width:630px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image44.png"/></a></figure><p id="2e3a48b7-c22e-810c-9d2c-e265807d402c" class="" dir="auto">Example - For f(x) = x^2 + 3x + 2, find f&#x27;(1).</p><h3 id="2e3a48b7-c22e-81b1-b667-dd6874d4d9e3" class="" dir="auto">Velocities and Rates of Change</h3><p id="2e3a48b7-c22e-8164-9150-d675fc5178a0" class="" dir="auto">Recall that if s(t) is the position of an object moving along a coordinate axis, the average velocity of the object over a time interval [a, t] if t &gt; a, or [t, a] if t &lt; a is given by the difference quotient</p><p id="2e3a48b7-c22e-81e8-8044-c99941305d04" class="" dir="auto">As the values of t approach a, the values of Vave approach the value we call the instantaneous velocity. That is, the instantaneous velocity at a, denoted v(a) is given by:</p><figure id="2e3a48b7-c22e-8129-9d97-dada7809b842" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image45.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image45.png"><img style="width:428px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image45.png"/></a></figure><p id="2e3a48b7-c22e-816f-97d6-e90d105cf815" class="" dir="auto">Tangent = instantaneous velocity at any point</p><p id="2e3a48b7-c22e-81b1-a61c-fa2d1f0be3e2" class="" dir="auto">Secant = average velocity of object over time interval [a, t]</p><p id="2e3a48b7-c22e-813c-9521-c1e04f1b1a37" class="" dir="auto">Example - A rock is dropped from a height of 64 feet. Find its instantaneous velocity 1 second after the rock is dropped.</p><h2 id="2e3a48b7-c22e-81bd-8241-ca3545d5e737" class="" dir="auto">Section 3.2: The Derivative as a Function</h2><h3 id="2e3a48b7-c22e-81ce-8ac8-cae75782075e" class="" dir="auto">Derivative Functions</h3><p id="2e3a48b7-c22e-81c9-9a56-d98545e2bc72" class="" dir="auto">The derivative function gives the derivative of a function at each point in the domain of the original function for which the derivative is defined.</p><figure id="2e3a48b7-c22e-81ab-8c11-f7afb20c60bf" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image46.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image46.png"><img style="width:566px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image46.png"/></a></figure><p id="2e3a48b7-c22e-815b-aae1-de2e6ce7a89b" class="" dir="auto">A function f(x) is said to be differentiable at a point if f&#x27;(a) exists. More generally, a function is said to be differentiable on S if it is differentiable at every point in an open set S, and a differentiable function is one in which f&#x27;(x) exists on its domain.</p><p id="2e3a48b7-c22e-817f-9975-ed5c93e390d5" class="" dir="auto">In general, for the function y = f(x), we have the following notations to represent its derivative.</p><p id="2e3a48b7-c22e-81d1-a1c8-f13e0e2336ae" class="" dir="auto">f&#x27;(x), y&#x27;, dy/dx, d/dx(f(x)</p><p id="2e3a48b7-c22e-819a-9b5c-d37bc728bc0a" class="" dir="auto">If we want to evaluate the derivative function at some value x = a, then we can write it as:</p><p id="2e3a48b7-c22e-8122-a6ab-d70e1ddc9e67" class="" dir="auto">f&#x27;(a) or dy/dx | x=a</p><p id="2e3a48b7-c22e-814c-9d52-d1c153f04385" class="" dir="auto">To understand the Leibniz notation better, recall that the derivative of a function at a point is the limit of the slopes of secant lines as the secant lines approach the tangent line.</p><p id="2e3a48b7-c22e-8146-afa1-d8225bf3332f" class="" dir="auto">Slope of secant lines are often expressed as:</p><p id="2e3a48b7-c22e-819d-94ea-e3630b271d54" class="" dir="auto">Derivative is expressed as:</p><h3 id="2e3a48b7-c22e-8112-a3a4-ed85448616ed" class="" dir="auto">Graphing a Derivative</h3><p id="2e3a48b7-c22e-8134-9180-f20d2ecab19c" class="" dir="auto">Given a function f(x) and its derivative f&#x27;(x), we can graph them both to see a particular correspondence.</p><p id="2e3a48b7-c22e-8141-b723-f6cb68ea4bf1" class="" dir="auto">f&#x27;&#x27;(x) gives the rate of change fo a function for slope of the tangent line to f(x)</p><h3 id="2e3a48b7-c22e-8190-af01-cbf758349659" class="" dir="auto">Derivations and Continuity</h3><figure id="2e3a48b7-c22e-810f-9846-f37350167cdc" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image47.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image47.png"><img style="width:583px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image47.png"/></a></figure><figure id="2e3a48b7-c22e-810d-bf34-ed37b8fbfb2e" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image48.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image48.png"><img style="width:490px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image48.png"/></a></figure><p id="2e3a48b7-c22e-8100-b166-f2c4c0f24c54" class="" dir="auto">A function is not differentiable:</p><ul id="2e3a48b7-c22e-81f8-86b9-d76f6b478ff0" class="bulleted-list" dir="auto"><li style="list-style-type:disc">at sharp corners</li></ul><ul id="2e3a48b7-c22e-81c0-9efb-cdcb368e4cf5" class="bulleted-list" dir="auto"><li style="list-style-type:disc">at vertical tangents</li></ul><ul id="2e3a48b7-c22e-81e2-bc4e-c47f6f9e6ad4" class="bulleted-list" dir="auto"><li style="list-style-type:disc">when the slopes of the secant lines continuously change direction as it approaches zero</li></ul><ul id="2e3a48b7-c22e-8159-be75-ed3e01b9262c" class="bulleted-list" dir="auto"><li style="list-style-type:disc">at cusps</li></ul><figure id="2e3a48b7-c22e-8119-97a8-d05d3872cf31" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image49.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image49.png"><img style="width:700px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image49.png"/></a></figure><h3 id="2e3a48b7-c22e-81bb-ba00-e5305ea530df" class="" dir="auto">Higher-order Derivatives</h3><p id="2e3a48b7-c22e-8102-84df-d9d6bef11c7a" class="" dir="auto">Derivatives of derivatives are referred to as higher-order derivatives. They can be expressed as:</p><h2 id="2e3a48b7-c22e-8159-80d1-c2e8eed1e87f" class="" dir="auto">Section 3.4: Derivatives as Rates of Change</h2><h3 id="2e3a48b7-c22e-811c-bbf9-f0020a456282" class="" dir="auto">Motion Along a Line</h3><figure id="2e3a48b7-c22e-81ed-83df-fd8435abde9c" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image50.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image50.png"><img style="width:390px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image50.png"/></a></figure><h3 id="2e3a48b7-c22e-81fb-9adb-da04c286c5fa" class="" dir="auto">Population Change</h3><figure id="2e3a48b7-c22e-81a6-add7-e14e26c87d83" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image51.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image51.png"><img style="width:453px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image51.png"/></a></figure><h3 id="2e3a48b7-c22e-816d-aa05-ccadcb202d0b" class="" dir="auto">Changes in Cost and Revenue</h3><figure id="2e3a48b7-c22e-81b5-b9ae-e67365317e60" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image52.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image52.png"><img style="width:475px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image52.png"/></a></figure><h2 id="2e3a48b7-c22e-8126-9709-cd810b20e625" class="" dir="auto">Section 3.6: The Chain Rule</h2><figure id="2e3a48b7-c22e-8163-b133-e4279d77fe10" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image53.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image53.png"><img style="width:496px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image53.png"/></a></figure><figure id="2e3a48b7-c22e-8131-8bf3-e743d07c5586" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image54.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image54.png"><img style="width:435px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image54.png"/></a></figure><h2 id="2e3a48b7-c22e-81bb-befc-c87497eaf364" class="" dir="auto">Section 3.7: Derivatives of Inverse Functions</h2><figure id="2e3a48b7-c22e-816e-b863-e3cbd831b0d3" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image55.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image55.png"><img style="width:464px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image55.png"/></a></figure><figure id="2e3a48b7-c22e-81c0-9f4d-d3a392490add" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image56.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image56.png"><img style="width:408px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image56.png"/></a></figure><h2 id="2e3a48b7-c22e-81c2-b968-e86f06583878" class="" dir="auto">Section 3.8 Implicit Differentiation</h2><figure id="2e3a48b7-c22e-81dd-b756-f1bba6a1916f" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image57.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image57.png"><img style="width:518px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image57.png"/></a></figure><figure id="2e3a48b7-c22e-817e-80a4-ead345b50ea0" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image58.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image58.png"><img style="width:341px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image58.png"/></a></figure><figure id="2e3a48b7-c22e-81d5-bf6a-e7db2bc70e84" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image59.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image59.png"><img style="width:437px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image59.png"/></a></figure><figure id="2e3a48b7-c22e-8180-b4a0-f2aa08f193c8" class="image" data-notion-image="MATH%20110%20%E2%80%94%20Calculus%20I/image60.png" dir="ltr"><a href="MATH%20110%20%E2%80%94%20Calculus%20I/image60.png"><img style="width:592px" src="MATH%20110%20%E2%80%94%20Calculus%20I/image60.png"/></a></figure></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

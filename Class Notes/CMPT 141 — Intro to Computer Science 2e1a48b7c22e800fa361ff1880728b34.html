@@ -1,0 +1,794 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>CMPT 141 — Intro to Computer Science</title><meta name="data-notion-page-icon" content="🌱"/><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%8C%B1%3C%2Ftext%3E%3C%2Fsvg%3E"/><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+/*
+ * Toggles and callouts hold arbitrary content, so they can easily be taller
+ * than a page. They must stay breakable: avoiding breaks inside them makes
+ * Chromium push the whole block onto the next page, which leaves the previous
+ * page mostly empty before every long toggle.
+ */
+details,
+aside {
+	margin: 1.25em 0;
+}
+
+/* Keep a toggle's title on the same page as the start of its content. */
+summary {
+	page-break-after: avoid;
+	break-after: avoid;
+}
+
+/*
+ * Toggle headings render as <h1/h2/h3 style="display:inline-block"> inside
+ * <summary>. Without this reset, the heading's margin-top pushes it below the
+ * ::marker (▼), so the triangle and the title appear on separate lines.
+ */
+summary h1,
+summary h2,
+summary h3,
+summary h4 {
+	margin-top: 0;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="2e1a48b7-c22e-800f-a361-ff1880728b34" class="page mono" data-notion-page-icon="🌱"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1488415032361-b7e238421f1b?ixlib=rb-4.1.0&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon" data-emoji="🌱"></span></div><h1 class="page-title" dir="auto">CMPT 141 — Intro to Computer Science</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><nav id="2e1a48b7-c22e-80dd-b03c-f29b5ae98658" class="block-color-teal table_of_contents" data-notion-highlight="teal" data-notion-toc="" dir="ltr"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e1a48b7-c22e-8094-b1f8-f16b62bcca45">Definitions</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e1a48b7-c22e-8006-8021-dd5cf70674e8">1 – Algorithms and Computer Programs </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e1a48b7-c22e-8037-a780-dba1b6b5bb2d">2 – Data, Expressions, Variables, and I/O </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e1a48b7-c22e-8017-8a8b-dad4d8f5604d">3 – Functions </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e1a48b7-c22e-8071-8c86-ddc00dc9987d">4 – Creating Functions </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e1a48b7-c22e-80ec-9296-e3cf6c9fa903">5 – Objects </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e1a48b7-c22e-80a7-b268-f4134a653ea8">6 – Modules </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e1a48b7-c22e-80e0-ac38-f174d5fa766b">7 – Indexing and Slicing of Sequences </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e1a48b7-c22e-80d2-9b8c-ee013b2e2809">8 – Control Flow </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e1a48b7-c22e-8067-bede-d79b25a178cc">9 – Control Flow - Repetition </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e1a48b7-c22e-80e4-a024-c9ad5660eb77">10 – List and Tuples </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e1a48b7-c22e-8048-822e-fff1556fe268">11 – Dictionaries </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e1a48b7-c22e-8022-8ad4-d9bb08bc0758">12 – File I/O </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e1a48b7-c22e-807b-bddd-e78b56e68736">13 – Testing and Debugging </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e1a48b7-c22e-80d6-ab4b-c9a6b35271c9">14 – Arrays </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e1a48b7-c22e-804f-928a-c0eb1670a523">15 – Recursion </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e1a48b7-c22e-803b-924d-d2a3b2fdce59">16 – Search Algorithms </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e1a48b7-c22e-80d5-9616-c4caae0c133c">17 – Sorting Algorithms </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e1a48b7-c22e-80da-8c05-ccabaede548a">18 – Binary Number Systems and Logic </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e1a48b7-c22e-80cb-9ce8-da2dc6a21a4d">19 – Computer Architecture </a></div></nav><h2 id="2e1a48b7-c22e-8094-b1f8-f16b62bcca45" class="" dir="auto">Definitions</h2><p id="2e1a48b7-c22e-8010-ba64-cb9e0af7a372" class="" dir="auto">Definitions:<br/>String: strings are sequences of characters (e.g. Letters of the alphabet) and are usually used to store text.<br/>Sequences: A sequence is a compound data type consisting of one or more pieces of data in a specific linear ordering.</p><p id="2e1a48b7-c22e-809e-8e79-dd28fbd8effb" class="" dir="auto">Lists:<br/>Mutable: Content can be changed after creation.<br/>Syntax: Created using square brackets in Python ([]).<br/>Use Case: Ideal for a collection with a specific order that requires flexibility in modification.</p><p id="2e1a48b7-c22e-80cb-9bfd-f3a727e2668b" class="" dir="auto">Modifying elements</p><p id="2e1a48b7-c22e-80f8-adb1-de97d455bd13" class="" dir="auto">my_list.append(6)<br/>my_list[2] = 10</p><p id="2e1a48b7-c22e-8055-84dd-cc23e27422f4" class="" dir="auto">Tuples:<br/>Immutable: Content cannot be changed after creation.<br/>Syntax: Created using parentheses in Python ().<br/>Use Case: Suitable for collections where elements should remain unaltered after creation.</p><p id="2e1a48b7-c22e-80e1-95e6-e1b46659d91f" class="" dir="auto">Dictionaries:<br/>Key-Value Pairs: Data stored in key-value pairs; accessed by keys rather than indices.<br/>Mutable: Content can be changed.<br/>Syntax: Created using curly braces in Python ({}); accessed using key-value pairs.<br/>Use Case: Efficient for data with associated keys and when value lookups based on keys are needed.</p><p id="2e1a48b7-c22e-809e-ab03-c12e6485dc8a" class="" dir="auto">Iterating through key-value pairs</p><p id="2e1a48b7-c22e-802c-b855-f21ee4339d93" class="" dir="auto">for key, value in my_dict.items():<br/>print(key, value)</p><p id="2e1a48b7-c22e-809d-aa0c-c4406542a645" class="" dir="auto">Arrays:<br/>Homogeneous Elements: Store elements of the same data type.<br/>Mutable: Can be mutable or immutable depending on the programming language.<br/>Syntax: In Python, implemented using the array module or libraries like NumPy.<br/>Use Case: Particularly useful for efficient numerical operations with homogeneous data, commonly employed in scientific computing with NumPy.</p><p id="2e1a48b7-c22e-80c5-89c8-d8b8ba689a65" class="" dir="auto">Creating a NumPy array</p><p id="2e1a48b7-c22e-8067-9081-faee93d277c7" class="" dir="auto">my_array = np.array([1, 2, 3, 4, 5])</p><p id="2e1a48b7-c22e-80bc-9d6e-fbee370fb600" class="" dir="auto">Accessing elements</p><p id="2e1a48b7-c22e-80d9-bfcb-d6292e8f4352" class="" dir="auto">print(my_array[0])  # Output: 1</p><p id="2e1a48b7-c22e-8085-9ab9-ce548821e04f" class="" dir="auto">Slicing:<br/>s[2:7:3] # Every third character between offsets 2 and 6.<br/>new_list = [expression for item in iterable if condition]</p><p id="2e1a48b7-c22e-80a5-920f-f65f245396bc" class="" dir="auto">Searching and Sorting:<br/>• Insertion Sort: Inserting elements one by one by if its bigger or smaller.</p><p id="2e1a48b7-c22e-80ce-9a95-e4418ac3c4fe" class="" dir="auto">Divide and Conquer Sorts<br/>• Merge Sort:  Divide S into S1 and S2 such that S1 contains the first N/2 items of S and S2 contains the N/2 (rounding up and down respectively.<br/>• Quick Sort: Sorted into: – L (for items less than p) – E (for items equal to p) – G (for items greater than p)</p><h2 id="2e1a48b7-c22e-8006-8021-dd5cf70674e8" class="" dir="auto">1 – Algorithms and Computer Programs </h2><ol type="1" id="2e1a48b7-c22e-8048-9091-ce6613bd42c1" class="numbered-list" start="1" dir="auto"><li>Describe what an algorithm is<ol type="a" id="2e1a48b7-c22e-80bc-9c95-e0d135782694" class="numbered-list" start="1" dir="auto"><li>An algorithm is the set of steps taken to solve a specific problem</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-808d-82bb-f32774b055ed" class="numbered-list" start="2" dir="auto"><li>Provide examples of algorithms<ol type="a" id="2e1a48b7-c22e-80aa-86f4-e21182ebe105" class="numbered-list" start="1" dir="auto"><li>LEGO instructions, recipes</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-802a-a3d5-c13fca5dd015" class="numbered-list" start="3" dir="auto"><li>Identify actions, blocks, conditionals, and repetition in algorithms<ol type="a" id="2e1a48b7-c22e-80d8-9e64-fc7fe8a60ca2" class="numbered-list" start="1" dir="auto"><li>Actions: Individual steps or operations performed by the algorithm</li></ol><ol type="a" id="2e1a48b7-c22e-801e-b6f1-cd5652a8dc79" class="numbered-list" start="2" dir="auto"><li>Blocks: Group of statements that are executed together.</li></ol><ol type="a" id="2e1a48b7-c22e-8063-b0e3-e9ddee86379d" class="numbered-list" start="3" dir="auto"><li>Conditionals: Statements that perform different actions based on whether a conditon is true or false.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-8044-94aa-d4a0740982f5" class="numbered-list" start="4" dir="auto"><li>Identify and distinguish between inputs and outputs of an algorithm<ol type="a" id="2e1a48b7-c22e-801d-b107-dd441db9f0ca" class="numbered-list" start="1" dir="auto"><li>An algorithm&#x27;s input specifies resources or information that need to exist in advance before the algorithm can be carried out.</li></ol><ol type="a" id="2e1a48b7-c22e-80b6-8a92-fcf575c08342" class="numbered-list" start="2" dir="auto"><li>An algorithm&#x27;s output specifies the results that must have occurred by the time the algorithm is finished.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-80d3-9ca9-de343a717f6b" class="numbered-list" start="5" dir="auto"><li>Distinguish between algorithms written for humans and algorithms written for computers<ol type="a" id="2e1a48b7-c22e-808f-92cf-fb782d6b2dac" class="numbered-list" start="1" dir="auto"><li>Words and pictures are normally how we write algorithms that are to be understood and/or carried out by humans. When we write algorithms for computers we have to use a language that a computer can understand. Computer programs are written in a programming language. A programming language provides instructions to the computer in a way that it can both understand them and carry them out unambiguously. For this reason, programming languages are more restrictive in the syntax and style we can use to write algorithms</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-80d8-b941-d8d7ef9e7f77" class="numbered-list" start="6" dir="auto"><li>Describe the process by which an algorithm becomes a computer program<ol type="a" id="2e1a48b7-c22e-8035-94fb-c0236aa8874f" class="numbered-list" start="1" dir="auto"><li>Pseudocode can be used to define the problem, design the solution, and provide a framework for writing the actual code.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-80f4-b188-f1595f39b18d" class="numbered-list" start="7" dir="auto"><li>Define the concepts of abstraction and refinement<ol type="a" id="2e1a48b7-c22e-80d5-8004-e36dbc73b3ad" class="numbered-list" start="1" dir="auto"><li>Abstraction: Writing code that hides the complex details and provides a simplified interface. For example, using a function without knowing the internal implementation details.</li></ol><ol type="a" id="2e1a48b7-c22e-80b7-8d14-c164e933219b" class="numbered-list" start="2" dir="auto"><li>Refinement: Adding more details or features to your code to make it more specific or to improve its functionality. For example, adding new functions or optimizing existing ones.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-8062-a079-d28e0b5d7712" class="numbered-list" start="8" dir="auto"><li>Distinguish between problems and algorithms<ol type="a" id="2e1a48b7-c22e-808a-9632-cc070916ed85" class="numbered-list" start="1" dir="auto"><li>A problem is a task to be carried out. An algorithm is a specific set of steps for how to carry out a task. A problem may have more than one algorithm for solving it. A given algorithm, however, solves only one problem.</li></ol></li></ol><h2 id="2e1a48b7-c22e-8037-a780-dba1b6b5bb2d" class="" dir="auto">2 – Data, Expressions, Variables, and I/O </h2><ol type="1" id="2e1a48b7-c22e-8094-a632-f9bac63cc69c" class="numbered-list" start="1" dir="auto"><li>Distinguish between atomic data and compound data<ol type="a" id="2e1a48b7-c22e-8023-83af-f9d478a37e8c" class="numbered-list" start="1" dir="auto"><li>Atomic data is the smallest unit of data that a computer can define. Atomic data is usually A single number in decimal (base 10). In computer science, atomic is often used to refer to something that is indivisible.</li></ol><ol type="a" id="2e1a48b7-c22e-80e7-b62f-cc2d60b754fa" class="numbered-list" start="2" dir="auto"><li>Compound data is data that can be subdivided into smaller pieces of data which are organized in a particular way. The data items that comprise a piece of compound data may themselves be either compound or atomic.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-80d5-b80a-da2eed44f019" class="numbered-list" start="2" dir="auto"><li>Describe what a data type is<ol type="a" id="2e1a48b7-c22e-808e-8b54-e3d55fcffd9f" class="numbered-list" start="1" dir="auto"><li>For one last moment, let us recall that every piece of data in a computer is, at a very low level of abstraction that we don’t usually worry about, made up of binary 0’s and 1’s (these are referred to as bits). The data type of a piece of data tells the computer how to interpret those bits. For example, whether to interpret them as a number or a character; an integer or a fraction.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-8020-b88e-dcdb3adc0d26" class="numbered-list" start="3" dir="auto"><li>Describe what a literal value is in Python<ol type="a" id="2e1a48b7-c22e-8098-87ea-ea1cb41d25ea" class="numbered-list" start="1" dir="auto"><li>A literal is a number or string written right into the program, that is, literally typed right into the program’s code, such as 42</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-8022-a0c0-e3bedd99e95e" class="numbered-list" start="4" dir="auto"><li>Give examples of literal values corresponding to integer, floating-point, and string data<ol type="a" id="2e1a48b7-c22e-800c-b208-ddb0a66b21c1" class="numbered-list" start="1" dir="auto"><li>1, 1.2, &quot;one&quot;</li></ol><ol type="a" id="2e1a48b7-c22e-808a-a67f-fb9e420c1b65" class="numbered-list" start="2" dir="auto"><li>Integer: integer data are positive or negative while numbers, or zero. Python, there is no limit to the size of on integer number.</li></ol><ol type="a" id="2e1a48b7-c22e-8044-a4d4-c7f95c266091" class="numbered-list" start="3" dir="auto"><li>Floating point data are real numbers, that is, numbers that are not necessarily whole numbers, such as 42.5. They have a limited range, and limited precision. This means that numbers with infinite representations cannot be represented exactly in Python, floating - point numbers can range between 10^-308 to 10^308 (positive or negative) with at most 16117 digits of precision.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-80d8-b9b5-d8f3c39d4633" class="numbered-list" start="5" dir="auto"><li>List the basic arithmetic operators in Python</li></ol><ol type="1" id="2e1a48b7-c22e-801c-baac-d715813d63d4" class="numbered-list" start="6" dir="auto"><li>Describe what an expression is in Python<ol type="a" id="2e1a48b7-c22e-8005-a559-d43f5f41e6c3" class="numbered-list" start="1" dir="auto"><li>Expressions in a programming language are combinations of data and special symbols called operators, which have specific meaning in the programming language. Operators perform computations on one or more pieces of data to produce a new piece of data. When all of the computations associated with operators in an expression have been carried out, the result is a new piece of data whose value is the result of the expression. In Python, every valid expression describes some computation that results in a value which we call the value of the expression.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-8083-a23d-d31a1e709f73" class="numbered-list" start="7" dir="auto"><li>Compose valid arithmetic expressions in Python using operators and literals<ol type="a" id="2e1a48b7-c22e-8088-a211-cc48102a4c7a" class="numbered-list" start="1" dir="auto"><li>32 + 12</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-8061-970f-d4957b9941a5" class="numbered-list" start="8" dir="auto"><li>Describe what a variable is<ol type="a" id="2e1a48b7-c22e-80ef-aa16-dac1f1f25d6c" class="numbered-list" start="1" dir="auto"><li>Assigning data to a name, it is a container that can hold different values as the program is run</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-8094-b26f-fc25bf64bc74" class="numbered-list" start="9" dir="auto"><li>Explain the naming rules for variables<ol type="a" id="2e1a48b7-c22e-80b9-ae7b-e7cafa2ef6a5" class="numbered-list" start="1" dir="auto"><li>May contain letters or digits, but cannot start with a digit</li></ol><ol type="a" id="2e1a48b7-c22e-80f3-81fa-f087a642f730" class="numbered-list" start="2" dir="auto"><li>May contain underscore characters and may start with an underscore</li></ol><ol type="a" id="2e1a48b7-c22e-8069-bfcc-dfd83721f745" class="numbered-list" start="3" dir="auto"><li>May not contain spaces or other special characters</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-809f-9d78-d05d07036828" class="numbered-list numbered-list-digits-2" start="10" dir="auto"><li>Use the print syntax to display literal values and the values of variables on the console<ol type="a" id="2e1a48b7-c22e-8018-9c91-dc6082ad0d28" class="numbered-list" start="1" dir="auto"><li>word = &quot;statement&quot;</li></ol><ol type="a" id="2e1a48b7-c22e-80a7-8840-fd3cc167c9ee" class="numbered-list" start="2" dir="auto"><li>print(&quot;print&quot; + word)</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-800a-9b00-c967a6658128" class="numbered-list numbered-list-digits-2" start="11" dir="auto"><li>Use the input syntax to read values from the console and store the value read in a variable<ul id="2e1a48b7-c22e-8058-bac1-c6ff7fd3abe4" class="bulleted-list" dir="auto"><li style="list-style-type:disc">variable1 = input(&quot;What variable do u want? &quot;)</li></ul></li></ol><h2 id="2e1a48b7-c22e-8017-8a8b-dad4d8f5604d" class="" dir="auto">3 – Functions </h2><ol type="1" id="2e1a48b7-c22e-8020-bc67-edb20098823b" class="numbered-list" start="1" dir="auto"><li>Describe what a function is<ol type="a" id="2e1a48b7-c22e-809b-8a47-dfa7ec74faa8" class="numbered-list" start="1" dir="auto"><li>A function refers to a block of code by its name without having to retype all of the code. print() is a function</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-80f3-877c-e228dfbeaecd" class="numbered-list" start="2" dir="auto"><li>Describe the role of a function&#x27;s return value<ol type="a" id="2e1a48b7-c22e-8014-b6c7-e5c48f7977ac" class="numbered-list" start="1" dir="auto"><li>The value of a function call is known as the return value.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-8083-ae38-ccf1f074d94c" class="numbered-list" start="3" dir="auto"><li>Describe how to call a function<ol type="a" id="2e1a48b7-c22e-802d-aa63-dd186fed76b5" class="numbered-list" start="1" dir="auto"><li>function()</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-800c-9887-fb48619176b8" class="numbered-list" start="4" dir="auto"><li>Explain what the arguments of a function are<ol type="a" id="2e1a48b7-c22e-80c3-aa00-d5788eb2f242" class="numbered-list" start="1" dir="auto"><li>Input to functions are called arguments. print(&quot;argument&quot;)</li></ol></li></ol><h2 id="2e1a48b7-c22e-8071-8c86-ddc00dc9987d" class="" dir="auto">4 – Creating Functions </h2><ol type="1" id="2e1a48b7-c22e-802b-843e-e35099d90359" class="numbered-list" start="1" dir="auto"><li>Compose functions in Python that perform a subtask and return the result (procedure)<ol type="a" id="2e1a48b7-c22e-805c-975d-f40f12dfde04" class="numbered-list" start="1" dir="auto"><li>def introduction():<ol type="i" id="2e1a48b7-c22e-80c0-a4df-d8d1b38e4f38" class="numbered-list" start="1" dir="auto"><li>name = input(&quot;What&#x27;s your name? &quot;)</li></ol><ol type="i" id="2e1a48b7-c22e-806f-a5a4-fe9a31ad1a73" class="numbered-list" start="2" dir="auto"><li>print(&quot;Hello &quot; + name)</li></ol></li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-8076-8de0-ede6a9d8dd03" class="numbered-list" start="2" dir="auto"><li>Compose functions in Python that accept arguments as input<ol type="a" id="2e1a48b7-c22e-80fd-bac3-cddb3a4911b4" class="numbered-list" start="1" dir="auto"><li>def introduction(greeting):<ol type="i" id="2e1a48b7-c22e-80f9-af0c-f69b0883cec6" class="numbered-list" start="1" dir="auto"><li>print(greeting)</li></ol><ol type="i" id="2e1a48b7-c22e-801d-8f7a-ee20eee07693" class="numbered-list" start="2" dir="auto"><li>name = input(&quot;What is your name? &quot;)</li></ol><ol type="i" id="2e1a48b7-c22e-8049-a226-c6d72b79b808" class="numbered-list" start="3" dir="auto"><li>print(&quot;Hello &quot; + name)</li></ol></li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-8057-87f5-fa9b4b4d7d37" class="numbered-list" start="3" dir="auto"><li>Describe the role of a function&#x27;s parameters<ol type="a" id="2e1a48b7-c22e-80c5-978b-c806912843af" class="numbered-list" start="1" dir="auto"><li>Parameters are the variables that the function uses to refer to the arguments it is given in a call to that function.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-8064-a9ec-cc7acff62692" class="numbered-list" start="4" dir="auto"><li>Distinguish between arguments and parameters<ol type="a" id="2e1a48b7-c22e-80f0-bf34-e48befa32368" class="numbered-list" start="1" dir="auto"><li>A function can have any number of parameters. Each parameter you add corresponds to an argument that must be provided when the function is called. Parameters are assigned to refer to arguments in the same order they are given.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-801c-9a8f-cb79e8ed1f4a" class="numbered-list" start="5" dir="auto"><li>Explain the role and behaviour of the return statement<ol type="a" id="2e1a48b7-c22e-807b-bcec-c9fee76efc05" class="numbered-list" start="1" dir="auto"><li>Write the keyword word return, followed by an expression. The value of the expression becomes the return value for the function, and the value of the call that invoked the function.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-804f-b185-c446018e47dd" class="numbered-list" start="6" dir="auto"><li>Differentiate between fucntion input/output and console input/output<ol type="a" id="2e1a48b7-c22e-8015-bae1-dfa244f1907b" class="numbered-list" start="1" dir="auto"><li>Console I/O vs Function I/O: Function inputs are the arguments of a function call assigned to function parameters; function outputs are returned from data created within a function. Console inputs are read from the keyboard; console outputs are printed to the screen rather than being sent to another part of a program.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-8014-be9e-e85a038bd812" class="numbered-list" start="7" dir="auto"><li>Author appropriately descriptive comments to document a function<ol type="a" id="2e1a48b7-c22e-8078-b6ef-e653ba88b153" class="numbered-list" start="1" dir="auto"><li>def functionkeyword():<ol type="i" id="2e1a48b7-c22e-8019-8fff-dba59ac25fb2" class="numbered-list" start="1" dir="auto"><li>###</li></ol><ol type="i" id="2e1a48b7-c22e-80cc-a822-ebb2a1c27830" class="numbered-list" start="2" dir="auto"><li>Describe what the function does</li></ol><ol type="i" id="2e1a48b7-c22e-8030-82a9-fd726a27da93" class="numbered-list" start="3" dir="auto"><li>variable1: What variable one is</li></ol><ol type="i" id="2e1a48b7-c22e-80e2-a44e-cc56480e9ed9" class="numbered-list" start="4" dir="auto"><li>Returns: What the functoin return value should be</li></ol><ol type="i" id="2e1a48b7-c22e-8021-9927-e0b894824d88" class="numbered-list" start="5" dir="auto"><li>###</li></ol></li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-80a9-ad93-e30c467fb725" class="numbered-list" start="8" dir="auto"><li>Define the concept of generalization<ol type="a" id="2e1a48b7-c22e-8093-9d93-f211c2e9c206" class="numbered-list" start="1" dir="auto"><li>Generalization: Generalization of functions (or algorithms) is the process of modifying a function/algorithm that solves a specific problem so that it can solve a wider range of problems, or a larger number of instances of the same problem.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-807a-9dcc-fb046b6b51e2" class="numbered-list" start="9" dir="auto"><li>Define the concept of cohesion and explain why it is desirable for functions to have high cohesion<ol type="a" id="2e1a48b7-c22e-8014-b25b-c675e17f4db7" class="numbered-list" start="1" dir="auto"><li>Cohesion: the term cohesion refers to the idea that code that is grouped together should have something in common. In terms of writing functions, functions that perform one task and one task only are said to have high cohesion.</li></ol><ol type="a" id="2e1a48b7-c22e-8066-b272-f4664a9e77e8" class="numbered-list" start="2" dir="auto"><li>Functions with high cohesion are preferred because they increase the reusability and maintainability of software components.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-8088-bb88-eac27d88b8f5" class="numbered-list numbered-list-digits-2" start="10" dir="auto"><li>Show by example how functions with parameters can be used to achieve generalizations<ol type="a" id="2e1a48b7-c22e-80ff-ba8b-c3ccdceceef8" class="numbered-list" start="1" dir="auto"><li>Instead of using a procedure to compute fixed values, you can use parameters to insert different variables into the function, and use operators on the variables.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-80e5-98cc-c32a3e60a563" class="numbered-list numbered-list-digits-2" start="11" dir="auto"><li>Variable scope<ol type="a" id="2e1a48b7-c22e-80af-bd6f-fb3e241866a0" class="numbered-list" start="1" dir="auto"><li>Variables defined within a function only exist within that function. Variables defined outside any function do not exist within any functions.</li></ol><ol type="a" id="2e1a48b7-c22e-8071-a7e0-c47c70ab71b8" class="numbered-list" start="2" dir="auto"><li>Global scope variables are accessible from within all functions but they cannot be modified.</li></ol></li></ol><h2 id="2e1a48b7-c22e-80ec-9296-e3cf6c9fa903" class="" dir="auto">5 – Objects </h2><ol type="1" id="2e1a48b7-c22e-8029-9726-fd80960e6dff" class="numbered-list" start="1" dir="auto"><li>Describe what an object is<ol type="a" id="2e1a48b7-c22e-80ce-9b3d-c5656dd0d15f" class="numbered-list" start="1" dir="auto"><li>Objects: An object is like a package that holds both information (data) and actions (functions/methods). The information is kept private, so you can&#x27;t mess with it directly. This is called encapsulation or information hiding.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-80a8-9eb0-c5629dddb4e1" class="numbered-list" start="2" dir="auto"><li>Explain the role that functions play in the encapsulation of the data stored in an object<ol type="a" id="2e1a48b7-c22e-8004-a043-fbec21ef5379" class="numbered-list" start="1" dir="auto"><li>You interact with the object by using its functions or methods. This keeps things safe and prevents you from doing anything unexpected with the data inside the object. In Python, we call these functions inside objects &quot;methods.&quot;</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-8094-8993-d217363158b0" class="numbered-list" start="3" dir="auto"><li>Author Python code that can call a function known to be defined by an object<ol type="a" id="2e1a48b7-c22e-80d0-969d-c879fd616555" class="numbered-list" start="1" dir="auto"><li>number = &quot;21&quot;</li></ol><ol type="a" id="2e1a48b7-c22e-80aa-a449-f878741e88b2" class="numbered-list" start="2" dir="auto"><li>number.isdigit()</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-8086-96c3-f975b8372045" class="numbered-list" start="4" dir="auto"><li>Define mutable vs immutable objects<ol type="a" id="2e1a48b7-c22e-801f-bffb-e969241a6f42" class="numbered-list" start="1" dir="auto"><li>Mutable vs Immutable: An immutable object has no methods that allow a program to change the data stored inside the object. Immutable object methods can return new values only. In contrast, if an object has methods that allow a program to change the data inside the object, we call the object mutable.</li></ol></li></ol><h2 id="2e1a48b7-c22e-80a7-b268-f4134a653ea8" class="" dir="auto">6 – Modules </h2><ol type="1" id="2e1a48b7-c22e-80e2-8bf0-de173e6817bb" class="numbered-list" start="1" dir="auto"><li>Describe what a module is and why one would want to use one<ol type="a" id="2e1a48b7-c22e-809a-a59a-c717aefce410" class="numbered-list" start="1" dir="auto"><li>Modules: Modules are files that contain function and object definitions that add additional, and much more powerful features to Python.<ol type="i" id="2e1a48b7-c22e-802b-bae6-c30263a1798b" class="numbered-list" start="1" dir="auto"><li>Abstractions of algorithms that we ca use in our own programs without having to understand how they work</li></ol></li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-8003-930c-c2454a0deb49" class="numbered-list" start="2" dir="auto"><li>Identify and author Python code to make the functions in a module available to a program<ol type="a" id="2e1a48b7-c22e-80af-a405-e1f69329a3a4" class="numbered-list" start="1" dir="auto"><li>import math as m</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-8088-9dd1-ee4013703d7d" class="numbered-list" start="3" dir="auto"><li>Design and author programst that make use of functions from modules<ol type="a" id="2e1a48b7-c22e-8018-9168-e10702518b18" class="numbered-list" start="1" dir="auto"><li>import math as m</li></ol><ol type="a" id="2e1a48b7-c22e-801f-a336-f17e5dcbb58c" class="numbered-list" start="2" dir="auto"><li>m.log10(1000)</li></ol></li></ol><p id="2e1a48b7-c22e-8048-8c63-f760d0e67de3" class="" dir="auto"><em>1. output: 3.0</em></p><ul id="2e1a48b7-c22e-807f-bdcb-d12807ae3198" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><em>output</em>: 3.0</li></ul><ol type="1" id="2e1a48b7-c22e-80a3-89f9-c110a29027e0" class="numbered-list" start="1" dir="auto"><li>Be able to locate, and understand the documentation for the functions of a module<ol type="a" id="2e1a48b7-c22e-80df-8269-e8d8b4a5b52d" class="numbered-list" start="1" dir="auto"><li>Internet search for documentation</li></ol></li></ol><h2 id="2e1a48b7-c22e-80e0-ac38-f174d5fa766b" class="" dir="auto">7 – Indexing and Slicing of Sequences </h2><ol type="1" id="2e1a48b7-c22e-80e0-926b-dccc9ebe763a" class="numbered-list" start="1" dir="auto"><li>Define indexing<ol type="a" id="2e1a48b7-c22e-8073-b00b-ff9ef970805d" class="numbered-list" start="1" dir="auto"><li>Indexing: Indexing refers to the process of accessing individual elements within a data structure, typically a sequence like a list, array, or string. The index is a numerical value that represents the position of an element in the sequence.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-80bd-a60c-ffc5f11babd3" class="numbered-list" start="2" dir="auto"><li>Define slicing<ol type="a" id="2e1a48b7-c22e-80fa-b95a-c87736aaf52f" class="numbered-list" start="1" dir="auto"><li>Slicing: The act of selecting zero or more items of a sequence and forming them into a new sequence.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-8087-ab93-ca1acc482c38" class="numbered-list" start="3" dir="auto"><li>Be able to use indexing to obtain a desired character in a string</li></ol><ol type="1" id="2e1a48b7-c22e-80e7-bfaf-c565edc31507" class="numbered-list" start="4" dir="auto"><li>Be able to use slicing to obtain substrings of a string</li></ol><ol type="1" id="2e1a48b7-c22e-80f6-9fed-f899d71076ca" class="numbered-list" start="5" dir="auto"><li>Be able to use non-unit step size to select non-contiguous string characters at regular intervals<ol type="a" id="2e1a48b7-c22e-8034-a71d-f1416abfc749" class="numbered-list" start="1" dir="auto"><li>You can select every second, third, or nth item between the start and end indices by specifying a second colon and a third integer. The third integer is called the step size for the slicing operation.</li></ol></li></ol><h2 id="2e1a48b7-c22e-80d2-9b8c-ee013b2e2809" class="" dir="auto">8 – Control Flow </h2><ol type="1" id="2e1a48b7-c22e-808d-bf05-dc31fe24e47d" class="numbered-list" start="1" dir="auto"><li>Define control flow<ol type="a" id="2e1a48b7-c22e-804e-8f1d-d6bba82525a6" class="numbered-list" start="1" dir="auto"><li>Control flow: refers to the order in which the individual statements, instructions, or commands of a program are executed. It defines how the program progresses from one statement to the next based on conditions, loops, and function calls.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-805d-8f3e-c9eb6aa7cb24" class="numbered-list" start="2" dir="auto"><li>Identify and define the behaviour of relational operators, logical operators, and Boolean expressions in Python<ol type="a" id="2e1a48b7-c22e-807b-8462-c4c030baf1c0" class="numbered-list" start="1" dir="auto"><li>Boolean: Boolean can be either True or False, note that capitalization matters</li></ol><ol type="a" id="2e1a48b7-c22e-80de-a1b7-c8c5a065421c" class="numbered-list" start="2" dir="auto"><li>Relational operator: An operator that produces a result that is either True or False.<ol type="i" id="2e1a48b7-c22e-8044-8b44-f5c3b94d1da9" class="numbered-list" start="1" dir="auto"><li>2 &gt; 4</li></ol></li></ol><p id="2e1a48b7-c22e-80f5-b47a-ffbdc34fa71b" class="" dir="auto"><em>1. Output: False</em></p><ul id="2e1a48b7-c22e-80ea-a8fa-d73906759b1f" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><em>Output</em>: False</li></ul><ol type="1" id="2e1a48b7-c22e-803b-93a1-cc419d766e7a" class="numbered-list" start="1" dir="auto"><li>Logical operators: These operators evaluate one or more conditions and return a Boolean value</li></ol><p id="2e1a48b7-c22e-8036-8cad-eb6711323b54" class="" dir="auto"><em>1. Examples: and, or, not</em></p><ul id="2e1a48b7-c22e-80b7-9c72-ea0d680e2d8a" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><em>Examples</em>: and, or, not</li></ul></li></ol><ol type="1" id="2e1a48b7-c22e-80e7-9d30-e9b9546a1ac3" class="numbered-list" start="3" dir="auto"><li>Identify and author correct Python language syntax for branching statements: if, if-else, if-elif-else, and chained statements<ol type="a" id="2e1a48b7-c22e-8007-91aa-d5002b545e5e" class="numbered-list" start="1" dir="auto"><li>If Statement: Checks if a single condition is true.1</li></ol><ol type="a" id="2e1a48b7-c22e-80ae-9185-ec17f19e1ed1" class="numbered-list" start="2" dir="auto"><li>If-Else Statement: Provides an alternative action if the condition is false.</li></ol><ol type="a" id="2e1a48b7-c22e-8042-a350-eac64ebf89ba" class="numbered-list" start="3" dir="auto"><li>Nested If Statement: Allows for more granular checks within an existing if condition.</li></ol><ol type="a" id="2e1a48b7-c22e-80d0-b1a2-f04d35d74551" class="numbered-list" start="4" dir="auto"><li>Chained If (Elif) Statement: Enables checking multiple conditions in sequence.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-80b7-9337-d0b5f6d82c63" class="numbered-list" start="4" dir="auto"><li>Design and author Python programs that use if, if-else, tested if, and chained-if statements</li></ol><h2 id="2e1a48b7-c22e-8067-bede-d79b25a178cc" class="" dir="auto">9 – Control Flow - Repetition </h2><ol type="1" id="2e1a48b7-c22e-8077-8c13-dd5bd61e8645" class="numbered-list" start="1" dir="auto"><li>Identify and correctly author Python language syntax for reptition: while loops and for loops<ol type="a" id="2e1a48b7-c22e-80b1-8495-e8dab413d256" class="numbered-list" start="1" dir="auto"><li>While-loops work a lot like an if-statement in that they have very similar syntax — a condition followed by a block — but the block can be executed multiple times as long as the condition is True.</li></ol><ol type="a" id="2e1a48b7-c22e-80d0-be47-f208e96f5fcb" class="numbered-list" start="2" dir="auto"><li>In Python, for-loops allow repetition of a block of code for each data item in a sequence (recall sequences from Section 7.1). Right now we know about one kind of sequence: strings. So we can use a for-loop to do something for every character in a string.<ol type="i" id="2e1a48b7-c22e-80d1-9b56-d5b22c798557" class="numbered-list" start="1" dir="auto"><li>We can use for-loops to create counting loops just like we did with while-loops. To do so, we first need to learn about a new kind of sequence called a range.</li></ol><ol type="i" id="2e1a48b7-c22e-8079-8619-e09c3ece845d" class="numbered-list" start="2" dir="auto"><li>A range is a sequence of integers that begins at an integer a (the start), ends before an integer b (the stop), and in which the difference between each element in the sequence, called the step size, is equal. Ranges are created with Python’s built-in range function. The range function requires two arguments, start and stop, and can optionally accept a third argument or the step size which, if not given, defaults to 1. You may also provide just a single argument to range; range(x) is equivalent to range(0, x, 1), and is the sequence 0,1,2,..., x−1.</li></ol></li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-805b-8337-fc9830184560" class="numbered-list" start="2" dir="auto"><li>Trace by hand the flow of program execution for programs that use while-loops and for-loops</li></ol><ol type="1" id="2e1a48b7-c22e-809e-8f10-dff21335a17a" class="numbered-list" start="3" dir="auto"><li>Design and author Python programs that use one or more loops</li></ol><ol type="1" id="2e1a48b7-c22e-80d2-a4a2-c3e7d7681d49" class="numbered-list" start="4" dir="auto"><li>Describe what is an infinite loop<ol type="a" id="2e1a48b7-c22e-80a0-b3e9-ef40fa6f8337" class="numbered-list" start="1" dir="auto"><li>Infinite loops are loops that repeat forever. A while-loop whose loop condition can never become False is an infinite loop.</li></ol></li></ol><h2 id="2e1a48b7-c22e-80e4-a024-c9ad5660eb77" class="" dir="auto">10 – List and Tuples </h2><ol type="1" id="2e1a48b7-c22e-80e6-a234-fe09b0ac1506" class="numbered-list" start="1" dir="auto"><li>Describe what a list is<ol type="a" id="2e1a48b7-c22e-80b8-85ac-d8d7c5f505cc" class="numbered-list" start="1" dir="auto"><li>A list is a compound data type consisting of a set of data items arranged in a specific linear ordering.<ol type="i" id="2e1a48b7-c22e-80a3-ada7-df929ce9d0d1" class="numbered-list" start="1" dir="auto"><li>Lists are sequences, and therefore support indexing and slicing (like strings)</li></ol><ol type="i" id="2e1a48b7-c22e-809f-b0d1-edd5d327246b" class="numbered-list" start="2" dir="auto"><li>Lists may contain items of different data types</li></ol><ol type="i" id="2e1a48b7-c22e-80a4-8ed1-e5cddc60b088" class="numbered-list" start="3" dir="auto"><li>Lists are mutable sequences, meaning they can be altered after they are created</li></ol><ol type="i" id="2e1a48b7-c22e-8094-abd1-d58bc45bd9d9" class="numbered-list" start="4" dir="auto"><li>Lists are objects, and contain methods which you can call</li></ol></li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-801f-a5ff-d7494c323312" class="numbered-list" start="2" dir="auto"><li>Become familiar with the various ways in which we can access and manipulate the items in a Python list<ol type="a" id="2e1a48b7-c22e-805c-b3ac-cca92f77c415" class="numbered-list" start="1" dir="auto"><li>Creating a list:<ol type="i" id="2e1a48b7-c22e-80fd-9012-d3939ecd32d2" class="numbered-list" start="1" dir="auto"><li>x = [2 , 3 , 5 , 7 , 11]</li></ol></li></ol><ol type="a" id="2e1a48b7-c22e-80d5-b60d-fe73bfb7c0eb" class="numbered-list" start="2" dir="auto"><li>Accessing an item in the list by element:<ol type="i" id="2e1a48b7-c22e-8026-8df7-e0d9afbe7771" class="numbered-list" start="1" dir="auto"><li>listname[n]</li></ol></li></ol><ol type="a" id="2e1a48b7-c22e-80c8-8863-cdfa94d0ba52" class="numbered-list" start="3" dir="auto"><li>Modifying list items:<ol type="i" id="2e1a48b7-c22e-80b5-9264-e56ea6dae621" class="numbered-list" start="1" dir="auto"><li>y[0] = &#x27;New list item&#x27;</li></ol></li></ol><ol type="a" id="2e1a48b7-c22e-802c-9f91-ece2e8d843f2" class="numbered-list" start="4" dir="auto"><li>Determine if item is in list:<ol type="i" id="2e1a48b7-c22e-806a-9766-d454285c1239" class="numbered-list" start="1" dir="auto"><li>9 in list</li></ol><ol type="i" id="2e1a48b7-c22e-8002-928b-f62eadfb10c0" class="numbered-list" start="2" dir="auto"><li>Returns True or False</li></ol></li></ol><ol type="a" id="2e1a48b7-c22e-80ee-bd68-e07d66fe8a67" class="numbered-list" start="5" dir="auto"><li>Add items to a list:<ol type="i" id="2e1a48b7-c22e-8016-b086-c5bd133ac5b8" class="numbered-list" start="1" dir="auto"><li>list.append(element)</li></ol></li></ol><ol type="a" id="2e1a48b7-c22e-80a9-97ff-cad36890e664" class="numbered-list" start="6" dir="auto"><li>Remove an item from a list:<ol type="i" id="2e1a48b7-c22e-80e2-893b-c29de92bcfc4" class="numbered-list" start="1" dir="auto"><li>list.remove(element)</li></ol><ol type="i" id="2e1a48b7-c22e-80ac-9b70-d1392516c8ef" class="numbered-list" start="2" dir="auto"><li>del list[element]</li></ol></li></ol><ol type="a" id="2e1a48b7-c22e-8055-aa63-cec7a5a74309" class="numbered-list" start="7" dir="auto"><li>Concatenate lists:<ol type="i" id="2e1a48b7-c22e-8007-ac19-d570d32086d7" class="numbered-list" start="1" dir="auto"><li>list1 + list2</li></ol></li></ol><ol type="a" id="2e1a48b7-c22e-80f6-9e54-ccf919ccb1e8" class="numbered-list" start="8" dir="auto"><li>max(S) returns the largest item in the sequence;</li></ol><ol type="a" id="2e1a48b7-c22e-80d2-8ce4-cb18421ec3e5" class="numbered-list" start="9" dir="auto"><li>min(S) returns the smallest item in the sequence;</li></ol><ol type="a" id="2e1a48b7-c22e-808e-81a0-e126557fbc0e" class="numbered-list" start="10" dir="auto"><li>sum(S) returns the sum of the items in the sequence (if the sequence items are numeric); and</li></ol><ol type="a" id="2e1a48b7-c22e-8053-8cc7-e133d800cfaf" class="numbered-list" start="11" dir="auto"><li>len(S) returns the number of items in the sequence</li></ol><ol type="a" id="2e1a48b7-c22e-80f8-b95d-dacddfa037e0" class="numbered-list" start="12" dir="auto"><li>If the items in a list are all comparable with one another, the list can be sorted using the sort method. The sort method rearranges the items in the existing list and does not create a new list. Numbers are sorted in numeric order. Strings are sorted in lexicographic (dictionary) order.</li></ol><ol type="a" id="2e1a48b7-c22e-80b3-a543-dd82680ac44b" class="numbered-list" start="13" dir="auto"><li>We often want to perform some kind of computation for every item in a list (or other sequence). This is called iterating over the list.</li></ol><ol type="a" id="2e1a48b7-c22e-80e7-aa41-f6d619a7d08b" class="numbered-list" start="14" dir="auto"><li>Nested lists:<ol type="i" id="2e1a48b7-c22e-8099-9e68-fa4c8628d119" class="numbered-list" start="1" dir="auto"><li>list1 = [1, c, [1, 2, 3]]</li></ol><ol type="i" id="2e1a48b7-c22e-8047-8faa-e53aca6ac685" class="numbered-list" start="2" dir="auto"><li>list1[2] = [1, 2, 3]</li></ol></li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-80a3-9f6b-c6f56d659a2e" class="numbered-list" start="3" dir="auto"><li>Describe two uses for list comprehensions<ol type="a" id="2e1a48b7-c22e-80ec-a96d-cc5f467637d8" class="numbered-list" start="1" dir="auto"><li>One way we can use list comprehensions is to select some items of a list to put in a new list.</li></ol><ol type="a" id="2e1a48b7-c22e-80de-9d25-ffcc9cb3f682" class="numbered-list" start="2" dir="auto"><li>Another use of list comprehensions is to apply some kind of computation to each item in a sequence and store the results in a new list.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-8047-b1a5-c5ac5fa370ed" class="numbered-list" start="4" dir="auto"><li>Identify and author simple list comprehensions in Python</li></ol><ol type="1" id="2e1a48b7-c22e-80a0-87da-c7673ff4689e" class="numbered-list" start="5" dir="auto"><li>Describe what a tuple is<ol type="a" id="2e1a48b7-c22e-8041-b189-cd7c625c5ad1" class="numbered-list" start="1" dir="auto"><li>Tuples are identical to lists, with the following exceptions:<ol type="i" id="2e1a48b7-c22e-800a-8aed-cac80659ffa3" class="numbered-list" start="1" dir="auto"><li>Tuples are immutable.</li></ol><ol type="i" id="2e1a48b7-c22e-80fb-b766-cff2c5f77574" class="numbered-list" start="2" dir="auto"><li>Tuples are written with parentheses instead of square brackets.</li></ol></li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-80a7-9ba7-c1ac745a91fc" class="numbered-list" start="6" dir="auto"><li>Describe the similarities and differences between tuples and lists<ol type="a" id="2e1a48b7-c22e-80ae-a441-eb687e42104b" class="numbered-list" start="1" dir="auto"><li>Other than that, they are more or less the same as lists. They can contain items of different types, they can be indexed, sliced, concatenated, and can be used with the in and not in membership operators. However, because tuples are immutable, tuple items cannot be changed, tuples cannot be used with del, and do not have extend, append, copy or sort methods.</li></ol></li></ol><h2 id="2e1a48b7-c22e-8048-822e-fff1556fe268" class="" dir="auto">11 – Dictionaries </h2><ol type="1" id="2e1a48b7-c22e-800a-b7ce-e8cdcdfa7eef" class="numbered-list" start="1" dir="auto"><li>Describe what a dictionary is<ol type="a" id="2e1a48b7-c22e-8013-afc5-f6b99bae4093" class="numbered-list" start="1" dir="auto"><li>A dictionary associates pairs of data items with one another. The first item in such a pair is called a key and the second item is called the value. A dictionary stores a collection of these key-value pairs. Dictionaries allow you to look values up by their key.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-8099-b5a5-eb205372df16" class="numbered-list" start="2" dir="auto"><li>Distinguish between dictionaries and lists/tuples<ol type="a" id="2e1a48b7-c22e-80a4-b583-f915139a96ce" class="numbered-list" start="1" dir="auto"><li>Dictionaries are similar to lists in the following ways:<ol type="i" id="2e1a48b7-c22e-80e2-815d-c6ac8a4893d9" class="numbered-list" start="1" dir="auto"><li>Both are containers that hold a collection of data items</li></ol><ol type="i" id="2e1a48b7-c22e-801d-bd56-e7b713371b0e" class="numbered-list" start="2" dir="auto"><li>Both allow storage of data items of different types</li></ol><ol type="i" id="2e1a48b7-c22e-808c-9771-c12fd7f45660" class="numbered-list" start="3" dir="auto"><li>Both allow you to look up individual data items</li></ol></li></ol><ol type="a" id="2e1a48b7-c22e-805e-85a4-f7b75c572a89" class="numbered-list" start="2" dir="auto"><li>Dictionaries are diferent from lists in the following ways:<ol type="i" id="2e1a48b7-c22e-8047-a439-e771dbf3ddad" class="numbered-list" start="1" dir="auto"><li>There is no ordering of the key-value pairs stored in a dictionary, whereas items in a list are in a specific order</li></ol><ol type="i" id="2e1a48b7-c22e-80e6-b1b8-f73248362f61" class="numbered-list" start="2" dir="auto"><li>Values in a dictionary are looked up by their key, whereas items in a list are looked up by their integer index (position in the ordering)</li></ol></li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-803d-91a0-e9d8173ca6f6" class="numbered-list" start="3" dir="auto"><li>Become familiar with the various ways in which we can access and manipulate data stored in dictionaries<ol type="a" id="2e1a48b7-c22e-80e6-a3ca-e79f7a945b74" class="numbered-list" start="1" dir="auto"><li>Creating a dictionary:<ol type="i" id="2e1a48b7-c22e-8085-8c97-dc80abde3e01" class="numbered-list" start="1" dir="auto"><li>birth_plan = { &quot;Baby name&quot; ; &quot;Azalea&quot;}</li></ol></li></ol><ol type="a" id="2e1a48b7-c22e-804e-a200-d50be8cc4a9d" class="numbered-list" start="2" dir="auto"><li>Look up values by keys:<ol type="i" id="2e1a48b7-c22e-8071-97e4-ee269fd3ff3c" class="numbered-list" start="1" dir="auto"><li>birth_plan[&quot;Baby name&quot;]<ol type="1" id="2e1a48b7-c22e-80f6-b097-d72aae2eb9d9" class="numbered-list" start="1" dir="auto"><li>Returns: &quot;Azalea&quot;</li></ol></li></ol></li></ol><ol type="a" id="2e1a48b7-c22e-8016-8f66-f12252c49a4e" class="numbered-list" start="3" dir="auto"><li>Adding and modifying key-value pairs<ol type="i" id="2e1a48b7-c22e-8083-a798-d1453bb99890" class="numbered-list" start="1" dir="auto"><li>birth_plan[&quot;Hospital&quot;] = &quot;Royal University Hospital&quot;</li></ol><ol type="i" id="2e1a48b7-c22e-8022-a083-ce5d7d0b5ddb" class="numbered-list" start="2" dir="auto"><li>birth_plan = {&quot;Baby name&quot; ; &quot;Azalea,<ol type="1" id="2e1a48b7-c22e-8060-b15a-c2c2b075b4eb" class="numbered-list" start="1" dir="auto"><li>&quot;Hospital&quot; ; &quot;Royal University Hospital&quot;}</li></ol></li></ol></li></ol><ol type="a" id="2e1a48b7-c22e-80af-97b1-c47c3efa9780" class="numbered-list" start="4" dir="auto"><li>Removing key-value pairs:<ol type="i" id="2e1a48b7-c22e-80a3-85c8-cbf3cb1ac668" class="numbered-list" start="1" dir="auto"><li>del birth_plan[&quot;Baby name&quot;]</li></ol></li></ol><ol type="a" id="2e1a48b7-c22e-80c4-803c-da2c59eb4650" class="numbered-list" start="5" dir="auto"><li>Remove all keys<ol type="i" id="2e1a48b7-c22e-8028-a476-cbc0619c945a" class="numbered-list" start="1" dir="auto"><li>birth_plan.clear()</li></ol></li></ol><ol type="a" id="2e1a48b7-c22e-804f-a3c6-fdc68ebaf037" class="numbered-list" start="6" dir="auto"><li>Check if a dictionary has a key:<ol type="i" id="2e1a48b7-c22e-8022-8d4c-d885a5101dcc" class="numbered-list" start="1" dir="auto"><li>if &quot;Azalea&quot; in birth_plan:<ol type="1" id="2e1a48b7-c22e-80fc-96eb-de837bdf9e5d" class="numbered-list" start="1" dir="auto"><li>print(&quot;Yes&quot;)</li></ol></li></ol><ol type="i" id="2e1a48b7-c22e-8038-8864-f0b9b99b8618" class="numbered-list" start="2" dir="auto"><li>else:<ol type="1" id="2e1a48b7-c22e-8047-9190-da7329569398" class="numbered-list" start="1" dir="auto"><li>print(&quot;No&quot;)</li></ol></li></ol></li></ol><ol type="a" id="2e1a48b7-c22e-80ff-b921-f48a62c96570" class="numbered-list" start="7" dir="auto"><li>Iterating over a dictionary&#x27;s keys:<ol type="i" id="2e1a48b7-c22e-80d0-9f11-db2d77d0f963" class="numbered-list" start="1" dir="auto"><li>plan = []</li></ol><ol type="i" id="2e1a48b7-c22e-8045-96d7-c9ba775eeaf5" class="numbered-list" start="2" dir="auto"><li>for k in birth_plan:<ol type="1" id="2e1a48b7-c22e-803f-b8a9-d3fcc6f6a597" class="numbered-list" start="1" dir="auto"><li>plan.append(birth_plan[k])</li></ol></li></ol></li></ol><ol type="a" id="2e1a48b7-c22e-8016-8526-c396a99453b9" class="numbered-list" start="8" dir="auto"><li>Obtaining keys or values:<ol type="i" id="2e1a48b7-c22e-8039-b7d9-f3a4125ce36e" class="numbered-list" start="1" dir="auto"><li>birth_plan.values()</li></ol><ol type="i" id="2e1a48b7-c22e-805c-82cb-dd0534d94fb4" class="numbered-list" start="2" dir="auto"><li>birth_plan.keys()</li></ol></li></ol></li></ol><h2 id="2e1a48b7-c22e-8022-8ad4-d9bb08bc0758" class="" dir="auto">12 – File I/O </h2><ol type="1" id="2e1a48b7-c22e-8064-a1b7-cf11774d6445" class="numbered-list" start="1" dir="auto"><li>Describe some common ways in which data may be organized in a text file<ol type="a" id="2e1a48b7-c22e-80aa-8112-fa6b6df8c3da" class="numbered-list" start="1" dir="auto"><li>Life files:<ol type="i" id="2e1a48b7-c22e-807e-b6ec-d35d250fdef3" class="numbered-list" start="1" dir="auto"><li>One data item per line</li></ol></li></ol><ol type="a" id="2e1a48b7-c22e-8091-8bde-dc2254c7f240" class="numbered-list" start="2" dir="auto"><li>Tabular files:<ol type="i" id="2e1a48b7-c22e-8037-bfa3-f831cae74194" class="numbered-list" start="1" dir="auto"><li>One group of related data items per line</li></ol></li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-80d8-aac5-c8320596164e" class="numbered-list" start="2" dir="auto"><li>Author Python code to open and close files</li></ol><ol type="1" id="2e1a48b7-c22e-8059-bbc6-daca2c058023" class="numbered-list" start="3" dir="auto"><li>Author Python code to read a text file one line at a time</li></ol><ol type="1" id="2e1a48b7-c22e-80e6-a415-ecd3a48d063f" class="numbered-list" start="4" dir="auto"><li>Author Python code to write data to a text file<ol type="a" id="2e1a48b7-c22e-8033-a751-d16f94d99bc6" class="numbered-list" start="1" dir="auto"><li>writing_file = open(filename.txt, &#x27;w&#x27;)</li></ol><ol type="a" id="2e1a48b7-c22e-8077-bc8f-c6c2a9a06e28" class="numbered-list" start="2" dir="auto"><li>with open(filename2.txt, &#x27;r&#x27;) as reading_file:<ol type="i" id="2e1a48b7-c22e-80ae-b54a-de61db3f1fe6" class="numbered-list" start="1" dir="auto"><li>for line in reading_file:<ol type="1" id="2e1a48b7-c22e-8062-a3c6-c2e1b35b9409" class="numbered-list" start="1" dir="auto"><li>writing_file.write(line)</li></ol></li></ol></li></ol><ol type="a" id="2e1a48b7-c22e-801c-8520-d2cc9c8e1cb5" class="numbered-list" start="3" dir="auto"><li>writing_file.close()</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-80ce-8db3-c7113388c5c1" class="numbered-list" start="5" dir="auto"><li>Apply basic string processing to read numeric data from a text file containing numbers</li></ol><ol type="1" id="2e1a48b7-c22e-8054-a712-d66c38748ef3" class="numbered-list" start="6" dir="auto"><li>Author code to read a line containing multiple data from files using split</li></ol><h2 id="2e1a48b7-c22e-807b-bddd-e78b56e68736" class="" dir="auto">13 – Testing and Debugging </h2><ol type="1" id="2e1a48b7-c22e-808d-80fc-d96c182561a1" class="numbered-list" start="1" dir="auto"><li>Explain the difference between testing and debugging<ol type="a" id="2e1a48b7-c22e-8062-bc83-f6b6fa656e5d" class="numbered-list" start="1" dir="auto"><li>Testing is a proactive process where on specifically chooses inputs or desgins usage scenarios meant to determine if the program behaves correctly under those conditions.</li></ol><ol type="a" id="2e1a48b7-c22e-804f-874f-c9266600381c" class="numbered-list" start="2" dir="auto"><li>Debugging is a reactive progress where, having detected a fault, we attempt to determine the reason fro the fault and repair the fault.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-8089-8d38-ede3ebcb50f2" class="numbered-list" start="2" dir="auto"><li>Explain what a fault is<ol type="a" id="2e1a48b7-c22e-80c7-a967-c02561433fdd" class="numbered-list" start="1" dir="auto"><li>If a program does not behave as expected, this is called a fault (also called an error or bug)</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-80e7-8afd-dffc68fef31d" class="numbered-list" start="3" dir="auto"><li>Explain what a test case is and list its components<ol type="a" id="2e1a48b7-c22e-80c1-91e2-ceaf16e1f1d3" class="numbered-list" start="1" dir="auto"><li>A test case consisters of a specific input to the code, or a usage scenario performed under specific conditions. A test case is determined by the following items:<ol type="i" id="2e1a48b7-c22e-8087-b7c9-e831c51ee83c" class="numbered-list" start="1" dir="auto"><li>the input(s) for the test case</li></ol><ol type="i" id="2e1a48b7-c22e-805b-b675-e998db517be9" class="numbered-list" start="2" dir="auto"><li>the expected output(s) for the given input(s)</li></ol><ol type="i" id="2e1a48b7-c22e-800d-8c26-fa020cad0851" class="numbered-list" start="3" dir="auto"><li>the reason for the test case</li></ol></li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-8043-9b63-c39e1be9451c" class="numbered-list" start="4" dir="auto"><li>Generate test cases using the black-box method<ol type="a" id="2e1a48b7-c22e-8070-9eeb-d1476f0360f1" class="numbered-list" start="1" dir="auto"><li>If we generate test cases for an algorithm/program/function using knowledge of only the expected behaviour of the program or function, and without knowledge of the actual code, this is known as black-box testing.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-80dc-9424-d6db290a9030" class="numbered-list" start="5" dir="auto"><li>Generate test cases using the white-box method<ol type="a" id="2e1a48b7-c22e-80d6-a92c-c7807d456dff" class="numbered-list" start="1" dir="auto"><li>When we generate test cases for the code we are testing, we call this white-box testing.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-8099-8e9e-db031a2ff0c1" class="numbered-list" start="6" dir="auto"><li>Write test drivers that implement test cases and report faults</li></ol><ol type="1" id="2e1a48b7-c22e-8046-a17f-d973ea7d416e" class="numbered-list" start="7" dir="auto"><li>Identify three methods for debugging<ol type="a" id="2e1a48b7-c22e-80ee-b17f-d7160d3ad8a7" class="numbered-list" start="1" dir="auto"><li>Debugging by inspection<ol type="i" id="2e1a48b7-c22e-807c-bd0c-ca8d3996ccfc" class="numbered-list" start="1" dir="auto"><li>Inspect the code and make the necessary adjustments to repair the fault</li></ol></li></ol><ol type="a" id="2e1a48b7-c22e-8013-ae1e-e6bec60cdceb" class="numbered-list" start="2" dir="auto"><li>Debugging by hand-tracing code<ol type="i" id="2e1a48b7-c22e-8058-95ac-ec24d9ec85cf" class="numbered-list" start="1" dir="auto"><li>In hand-tracing we simulate the execution of a program or function paper. We manually step through the code one line at a time and record the value of each program variable after every line of code, essentially executing the program &quot;on paper.&quot;</li></ol></li></ol><ol type="a" id="2e1a48b7-c22e-807a-a31c-ee17b481a3b8" class="numbered-list" start="3" dir="auto"><li>Integrated debuggers<ol type="i" id="2e1a48b7-c22e-8090-bd0b-c783eef934a6" class="numbered-list" start="1" dir="auto"><li>An integrated debugger is a feature of a code editor which allows you to have the computer step through a program one line at a time.</li></ol></li></ol></li></ol><h2 id="2e1a48b7-c22e-80d6-ab4b-c9a6b35271c9" class="" dir="auto">14 – Arrays </h2><ol type="1" id="2e1a48b7-c22e-802d-92c7-f89e5e65700d" class="numbered-list" start="1" dir="auto"><li>Explain how data items are organized in one- and two-dimensional arrays<ol type="a" id="2e1a48b7-c22e-809b-8b77-d30e53afa5e4" class="numbered-list" start="1" dir="auto"><li>An array is a d-dimensional table of data items. The table of data items can be one-dimensional (like a list), two-dimensional (like a grid), or of higher dimension. Each dimension of the table is indexed by a non-negative integer.</li></ol><ol type="a" id="2e1a48b7-c22e-802d-b7e3-f0fcf24d0def" class="numbered-list" start="2" dir="auto"><li>A one-dimensional (1D) array is usually visualized as a table with just one row.</li></ol><ol type="a" id="2e1a48b7-c22e-80a3-8d55-ea12d08b121f" class="numbered-list" start="3" dir="auto"><li>Two-dimensional (2D) arrays allow us to organize data items in a grid. An item in a 2D array can be accessed by specifying its row index and its column index.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-80fd-b8a7-dd1b0333d564" class="numbered-list" start="2" dir="auto"><li>Describe the similarities and differences between arrays and lists both generally, and in Python<ol type="a" id="2e1a48b7-c22e-8094-84ee-f2646dea13c5" class="numbered-list" start="1" dir="auto"><li>Lists in Python can change in length and hold different types of data items, while arrays have a fixed length and contain data of only one type. Although a list of lists can function similarly to a 2D array, arrays are stored contiguously in memory, which provides a speed advantage for sequential data access. This makes arrays preferable when dealing with large datasets that require fast access and don&#x27;t change frequently. For example, images, which are large and accessed sequentially, are better stored in arrays.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-80b9-af56-ee9c108b5e64" class="numbered-list" start="3" dir="auto"><li>Create arrays in Python<ol type="a" id="2e1a48b7-c22e-80b9-9e4b-eff195808372" class="numbered-list" start="1" dir="auto"><li>Standard Python includes a module called array that provides one-dimensional arrays. However, almost nobody uses it because it is not very feature-rich, and it only allows one-dimensional arrays. For this reason, almost everyone uses the numpy module instead. The numpy module provides n-dimensional arrays. This means we can have one-, two-, three-, and, if we wish, higher-dimensional arrays. It is well-documented. You can find the complete numpy documentation at: <a href="http://docs.scipy.org/doc/numpy/">http://docs.scipy.org/doc/numpy/</a></li></ol><ol type="a" id="2e1a48b7-c22e-80ae-9beb-e636556cff43" class="numbered-list" start="2" dir="auto"><li>One-dimensional arrays can be created from lists or tuples by passing a list or tuple to numpy’s array function:</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-804a-84d1-dc1db6368d3c" class="numbered-list" start="4" dir="auto"><li>Two-dimensional arrays can be created in a similar way by passing a list of lists.</li></ol><ol type="1" id="2e1a48b7-c22e-80ea-b5b4-f1a265eb9075" class="numbered-list" start="5" dir="auto"><li>Access important array attributes (e.g. size, shape) in Python</li></ol><ol type="1" id="2e1a48b7-c22e-801b-abc1-faa95b819043" class="numbered-list" start="6" dir="auto"><li>Access desired items in arrays using indexing and slicing<ol type="a" id="2e1a48b7-c22e-8099-b0c4-c04856baeb21" class="numbered-list" start="1" dir="auto"><li>One-dimensional arrays can be indexed and sliced in the same way as any other Python sequence.</li></ol><ol type="a" id="2e1a48b7-c22e-8037-aa73-ce90a77f079f" class="numbered-list" start="2" dir="auto"><li>Two-dimensional arrays are indexed using one index per dimension, separated by a comma. If the ’:’ is used by itself as an index, it selects all indices for that dimension.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-80f0-badf-d99bac7ade3c" class="numbered-list" start="7" dir="auto"><li>Perform basic arithmetic and relational operations on each item of an array using arithmetic and relational operators<ol type="a" id="2e1a48b7-c22e-80c9-add6-fea65a16d38a" class="numbered-list" start="1" dir="auto"><li>Arithmetic Operations: These operations are performed element-wise on the array. For example, arr + 10 adds 10 to each element of the array.</li></ol><ol type="a" id="2e1a48b7-c22e-8070-827f-f3108606cff7" class="numbered-list" start="2" dir="auto"><li>Relational Operations: These operations return a Boolean array where each element indicates whether the corresponding condition is met.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-8049-94d5-e8a5c2d3e21e" class="numbered-list" start="8" dir="auto"><li>Iterate over each item in a one- or two-dimensional array using for-loops</li></ol><ol type="1" id="2e1a48b7-c22e-8052-9f00-d374e2b0221c" class="numbered-list" start="9" dir="auto"><li>Iteration over two-dimensional arrays can be done one row at a time. Then, you can iterate over each row as a one-dimensional array. In this example, we have a nested loop where the outer loop iterates over each row of an array, and the inner loop iterates over each item of a row.</li></ol><ol type="1" id="2e1a48b7-c22e-8041-ab56-fa152afcf59f" class="numbered-list numbered-list-digits-2" start="10" dir="auto"><li>Select items from a one- or two-dimensional array using local indexing<ol type="a" id="2e1a48b7-c22e-808b-a715-ed79a2b5b7d2" class="numbered-list" start="1" dir="auto"><li>Logical indexing is a way of selecting items that meet certain requirements out of an array. It works on arrays of any dimension. Suppose we have an array A of any data type, and an array B that is the same size as A and has data type bool. If we index an array A with B (i.e. A[B]), the result is that the items of A for which the corresponding items of B are True are extracted and stored in a new one-dimensional array (even if the original array A is of higher dimension). It is a very powerful feature that we cannot use with lists!</li></ol></li></ol><h2 id="2e1a48b7-c22e-804f-928a-c0eb1670a523" class="" dir="auto">15 – Recursion </h2><ol type="1" id="2e1a48b7-c22e-80dd-8a48-e09a0bfc9c58" class="numbered-list" start="1" dir="auto"><li>Explain the difference between a recursive and a non-recursive function<ol type="a" id="2e1a48b7-c22e-800d-9d5e-e3654ad2bf9e" class="numbered-list" start="1" dir="auto"><li>Self reference makes a function recursive. Functions that do not call themselves are non-recursive.</li></ol><ol type="a" id="2e1a48b7-c22e-8074-8a71-c36f32c5f07c" class="numbered-list" start="2" dir="auto"><li>A recursive function solves only one problem. A recursive call is just saying “To do this task, use a copy of the instructions you are reading now to solve a slightly smaller version of the problem.”</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-80ce-a3c1-caa622ace5f5" class="numbered-list" start="2" dir="auto"><li>Explain the purpose of the base and recursive cases of a recursive function<ol type="a" id="2e1a48b7-c22e-805f-836e-fe7593f36f58" class="numbered-list" start="1" dir="auto"><li>Base Case: Describes the scenario where the problem is small enough to be solved directly without further recursion. It&#x27;s the stopping condition.</li></ol><ol type="a" id="2e1a48b7-c22e-8095-b4b0-c190d872bc09" class="numbered-list" start="2" dir="auto"><li>Recursive Case: Describes how the problem can be divided into smaller instances of the same problem and how the function calls itself with modified input parameters to solve these smaller instances.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-8034-84ed-f3a4c19b4cc8" class="numbered-list" start="3" dir="auto"><li>Identify the base and recursive cases of a recursive function</li></ol><ol type="1" id="2e1a48b7-c22e-80cf-8264-d166f71cfa42" class="numbered-list" start="4" dir="auto"><li>Understand how recursive formulations for algorithms are derived<ol type="a" id="2e1a48b7-c22e-808b-a544-de31e20ae256" class="numbered-list" start="1" dir="auto"><li>Deriving recursive formulations for algorithms often involves identifying a problem that can be broken down into smaller, similar sub-problems. The process generally follows these steps:<ol type="i" id="2e1a48b7-c22e-8010-b9b9-e254a9fd3c37" class="numbered-list" start="1" dir="auto"><li>Identify the Base Case:<ol type="1" id="2e1a48b7-c22e-8045-bbdd-dd311296e84a" class="numbered-list" start="1" dir="auto"><li>Determine the smallest instance or simplest scenario of the problem that can be solved directly without further recursion. This is known as the base case.</li></ol><ol type="1" id="2e1a48b7-c22e-80af-af94-eff05a41b624" class="numbered-list" start="2" dir="auto"><li>The base case serves as the stopping condition for the recursion.</li></ol></li></ol><ol type="i" id="2e1a48b7-c22e-801a-b5a0-e50efcf7a854" class="numbered-list" start="2" dir="auto"><li>Define the Recursive Case:<ol type="1" id="2e1a48b7-c22e-8023-9ea5-c847f0868818" class="numbered-list" start="1" dir="auto"><li>Express the problem in terms of smaller instances of the same problem.</li></ol><ol type="1" id="2e1a48b7-c22e-801a-912e-efb5462d96cc" class="numbered-list" start="2" dir="auto"><li>Formulate the solution to the current problem in terms of solutions to smaller instances of the problem.</li></ol><ol type="1" id="2e1a48b7-c22e-80d0-a4ca-f548cb5e9a9f" class="numbered-list" start="3" dir="auto"><li>This is the recursive case.</li></ol></li></ol><ol type="i" id="2e1a48b7-c22e-803d-8dac-e3fc562c1559" class="numbered-list" start="3" dir="auto"><li>Combine Results:<ol type="1" id="2e1a48b7-c22e-8060-89fa-ef887c782793" class="numbered-list" start="1" dir="auto"><li>Define how the solutions to the smaller instances can be combined to solve the overall problem.</li></ol></li></ol><ol type="i" id="2e1a48b7-c22e-80f6-a736-c14433cd07b3" class="numbered-list" start="4" dir="auto"><li>Establish Recursion Termination:<ol type="1" id="2e1a48b7-c22e-80f6-acf4-c2903e34222a" class="numbered-list" start="1" dir="auto"><li>Ensure that the recursion eventually reaches the base case to avoid infinite recursion.</li></ol><ol type="1" id="2e1a48b7-c22e-8037-aa96-c5ec835573cb" class="numbered-list" start="2" dir="auto"><li>Each recursive call should move towards the base case.</li></ol></li></ol><ol type="i" id="2e1a48b7-c22e-802e-972c-f154bcd639e7" class="numbered-list" start="5" dir="auto"><li>Implement the Algorithm:<ol type="1" id="2e1a48b7-c22e-80b6-85a0-f7eaa78be34f" class="numbered-list" start="1" dir="auto"><li>Translate the recursive formulation into actual code</li></ol></li></ol></li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-8065-9d68-fb098a153ad2" class="numbered-list" start="5" dir="auto"><li>Explain recursion in terms of the delegation metaphor<ol type="a" id="2e1a48b7-c22e-805e-a8c2-df6bbffe23a2" class="numbered-list" start="1" dir="auto"><li>In the context of recursion, the delegation metaphor involves breaking down a complex problem into simpler, similar sub-problems and delegating the solution of each sub-problem to a recursive call. The metaphor is akin to asking a smaller version of yourself (the recursive call) to handle part of the task.</li></ol></li></ol><h2 id="2e1a48b7-c22e-803b-924d-d2a3b2fdce59" class="" dir="auto">16 – Search Algorithms </h2><ol type="1" id="2e1a48b7-c22e-80ff-bf8f-eb0a807d0e18" class="numbered-list" start="1" dir="auto"><li>List and describe the possible goals of a searching algorithm<ol type="a" id="2e1a48b7-c22e-80db-9f1d-d5b5d523a09b" class="numbered-list" start="1" dir="auto"><li>One of the most fundamental problems in computing is that of searching a collection of data items for a particular desired data item. This problem is solved by search algorithms<ol type="i" id="2e1a48b7-c22e-80b5-b504-feefb1d0740c" class="numbered-list" start="1" dir="auto"><li>Membership: Determine whether or not there is at least one data item in the collection whose search key matches the target key</li></ol><ol type="i" id="2e1a48b7-c22e-80e4-aa97-e5aa7e4ce80a" class="numbered-list" start="2" dir="auto"><li>Retrieval: Retrieve the actual data item(s) in the collection whose search keys matches the target key.</li></ol></li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-80e8-bae0-c946252ba0cb" class="numbered-list" start="2" dir="auto"><li>Describe in plain English the linear search algorithm<ol type="a" id="2e1a48b7-c22e-802f-8b3e-f9ce5848e8a6" class="numbered-list" start="1" dir="auto"><li>Linear Search: Searching element by element.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-80ae-91be-fd370c9a4904" class="numbered-list" start="3" dir="auto"><li>Demonstrate the linear search algorithm by hand, identifying which data items are inspected by the algorithm for a given search key</li></ol><ol type="1" id="2e1a48b7-c22e-8050-85de-c6eceb117f79" class="numbered-list" start="4" dir="auto"><li>Describe in plain English the binary search algorithm<ol type="a" id="2e1a48b7-c22e-80b1-8a64-ca5c23c3ed9f" class="numbered-list" start="1" dir="auto"><li>Binary search: Searching by halving, rounding down, if its bigger it halves again but of the front half, or vice versa.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-804a-9203-c070041926a0" class="numbered-list" start="5" dir="auto"><li>Demonstrate the binary search algorithm by hand, identifying which data items are inspected by the algorithm for a given search key</li></ol><h2 id="2e1a48b7-c22e-80d5-9616-c4caae0c133c" class="" dir="auto">17 – Sorting Algorithms </h2><ol type="1" id="2e1a48b7-c22e-8038-9aac-c99f287cceff" class="numbered-list" start="1" dir="auto"><li>Name 3 different sorting algorithms<ol type="a" id="2e1a48b7-c22e-8042-b1fd-de1d9522602f" class="numbered-list" start="1" dir="auto"><li>Insertion sort</li></ol><ol type="a" id="2e1a48b7-c22e-801a-bfb4-faff312bdea0" class="numbered-list" start="2" dir="auto"><li>Quick sort</li></ol><ol type="a" id="2e1a48b7-c22e-80c7-ba05-e04286455533" class="numbered-list" start="3" dir="auto"><li>Merge sort</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-808b-8533-ceb6c6db406e" class="numbered-list" start="2" dir="auto"><li>List, in plain English, the way that the insertion sort algorithm sorts a sequence<ol type="a" id="2e1a48b7-c22e-8095-a5d8-d05efda98e75" class="numbered-list" start="1" dir="auto"><li>The basic idea behind insertion sort is as follows: if you had a small sorted sequence, you can add a new data item to the sequence, and keep the sequence sorted, by searching through the sequence to find the right place to put the new data item</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-8009-b898-fc9871eff816" class="numbered-list" start="3" dir="auto"><li>Demonstrate the execution of the insertion sort algorithm by hand, identifying the order of the data items in a given sequence after each iteration of the algorithm</li></ol><ol type="1" id="2e1a48b7-c22e-804a-b094-e7eeeff55d7a" class="numbered-list" start="4" dir="auto"><li>Explain the divide and conquer approach to problem solving<ol type="a" id="2e1a48b7-c22e-8039-aba2-c1695ee2b18a" class="numbered-list" start="1" dir="auto"><li>The divide and conquer approach involves breaking a problem into smaller sub-problems, solving each sub-problem recursively, and then combining the solutions.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-80d6-93f1-efd51bc545a1" class="numbered-list" start="5" dir="auto"><li>Describe, in plain English, the algorithm for merging two sorted sequences into a single sorted sequence<ol type="a" id="2e1a48b7-c22e-803a-b82f-e0b7c309354e" class="numbered-list" start="1" dir="auto"><li>Initialize Pointers: Start pointers at the beginning of both sequences.</li></ol><ol type="a" id="2e1a48b7-c22e-804e-9ef5-de8963e634db" class="numbered-list" start="2" dir="auto"><li>Compare Elements: Compare the elements at the pointers. Append the smaller element to the merged sequence and move the pointer of the appended element forward.</li></ol><ol type="a" id="2e1a48b7-c22e-8068-82dd-f8b7c85446bc" class="numbered-list" start="3" dir="auto"><li>Handle Remaining Elements: If one sequence is exhausted before the other, append the remaining elements of the non-exhausted sequence to the merged sequence.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-80db-9cdd-d38afd4c8d2c" class="numbered-list" start="6" dir="auto"><li>Describe, in plain English, the merge sort algorithm, and identify the divide and conquer portions of the algorithm<ol type="a" id="2e1a48b7-c22e-80b5-9582-f088841773c5" class="numbered-list" start="1" dir="auto"><li>Divide: Split the list into two halves.</li></ol><ol type="a" id="2e1a48b7-c22e-80c6-871f-e8953a2cf435" class="numbered-list" start="2" dir="auto"><li>Conquer: Recursively sort each half.</li></ol><ol type="a" id="2e1a48b7-c22e-8016-8ff5-f0c989698610" class="numbered-list" start="3" dir="auto"><li>Combine: Merge the two sorted halves into a single sorted list.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-8039-b662-d66101c05fe4" class="numbered-list" start="7" dir="auto"><li>Describe, in plain English, the partition algorithm used by quick sort<ol type="a" id="2e1a48b7-c22e-80e7-9f98-e21593152cd3" class="numbered-list" start="1" dir="auto"><li>Pivot Selection: Choose a pivot element.</li></ol><ol type="a" id="2e1a48b7-c22e-80e7-a217-e4a6769cbd8a" class="numbered-list" start="2" dir="auto"><li>Partitioning: Rearrange elements so that all elements less than the pivot come before it and all elements greater than the pivot come after it.</li></ol><ol type="a" id="2e1a48b7-c22e-8049-88bc-cb1fcac33911" class="numbered-list" start="3" dir="auto"><li>Final Position: The pivot is now in its correct position.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-80e7-a8a6-eae11d077a52" class="numbered-list" start="8" dir="auto"><li>Describe, in plain English, the quick sort algorithm, and identify the divide and conquer portions of the algorithm<ol type="a" id="2e1a48b7-c22e-8007-9ceb-e023d7646e8f" class="numbered-list" start="1" dir="auto"><li>Divide: Choose a pivot and partition the array into two sub-arrays, one with elements less than the pivot and one with elements greater than the pivot.</li></ol><ol type="a" id="2e1a48b7-c22e-80ed-ac9a-f3b3c0bf4a56" class="numbered-list" start="2" dir="auto"><li>Conquer: Recursively apply quick sort to the sub-arrays.</li></ol><ol type="a" id="2e1a48b7-c22e-8014-8cf2-f94f40565713" class="numbered-list" start="3" dir="auto"><li>Combine: The array is already sorted after the recursive calls and partitioning.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-80ca-9111-ffa256112109" class="numbered-list" start="9" dir="auto"><li>Describe, in general terms, the relative strengths and weaknesses of insertion sort, merge sort, and quick sort<ol type="a" id="2e1a48b7-c22e-80b0-adc7-c51ce48182aa" class="numbered-list" start="1" dir="auto"><li>Insertion Sort:<ol type="i" id="2e1a48b7-c22e-8060-a6e1-d49921148938" class="numbered-list" start="1" dir="auto"><li>Strengths: Simple, efficient for small or nearly sorted data.</li></ol><ol type="i" id="2e1a48b7-c22e-807a-b8e6-d3982f55e417" class="numbered-list" start="2" dir="auto"><li>Weaknesses: Inefficient for large or random data sets (O(n2)).</li></ol></li></ol><ol type="a" id="2e1a48b7-c22e-802b-83a5-f24bf9ec2886" class="numbered-list" start="2" dir="auto"><li>Merge Sort:<ol type="i" id="2e1a48b7-c22e-80df-94b2-fc93be513ca9" class="numbered-list" start="1" dir="auto"><li>Strengths: Efficient (O(nlogn)), stable, good for large data sets.</li></ol><ol type="i" id="2e1a48b7-c22e-80ad-b53c-c34a277ddaef" class="numbered-list" start="2" dir="auto"><li>Weaknesses: Requires additional space for merging.</li></ol></li></ol><ol type="a" id="2e1a48b7-c22e-80aa-becd-c38c415360e2" class="numbered-list" start="3" dir="auto"><li>Quick Sort:<ol type="i" id="2e1a48b7-c22e-806e-91dc-eacb4750d53d" class="numbered-list" start="1" dir="auto"><li>Strengths: Very efficient on average (O(nlogn)), sorts in place.</li></ol><ol type="i" id="2e1a48b7-c22e-80a7-bd80-c529bb807115" class="numbered-list" start="2" dir="auto"><li>Weaknesses: Worst-case performance (O(n2)) if pivot selection is poor.</li></ol></li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-8016-8e9c-dc80e2e34a21" class="numbered-list numbered-list-digits-2" start="10" dir="auto"><li>Video resources:<ol type="a" id="2e1a48b7-c22e-8041-90b0-d326d2ab6d6a" class="numbered-list" start="1" dir="auto"><li>Youtube: <a href="https://www.youtube.com/watch?v=C_NNcSARZT8&amp;pp=ygUqcXVpY2sgc29ydCB2cyBtZXJnZSBzb3J0IHZzIGluc2VydGlvbiBzb3J0">Merge Sort vs Quick Sort</a></li></ol><ol type="a" id="2e1a48b7-c22e-80ec-b79f-f5b8442a82ed" class="numbered-list" start="2" dir="auto"><li>Youtube: <a href="https://www.youtube.com/watch?v=JU767SDMDvA">Insertion sort in 2 minutes</a></li></ol></li></ol><h2 id="2e1a48b7-c22e-80da-8c05-ccabaede548a" class="" dir="auto">18 – Binary Number Systems and Logic </h2><ol type="1" id="2e1a48b7-c22e-809a-845f-e7114084874d" class="numbered-list" start="1" dir="auto"><li>Describe what the binary number system is, using concepts of digits and bases<ol type="a" id="2e1a48b7-c22e-80e8-8c4d-d27663ade7df" class="numbered-list" start="1" dir="auto"><li>Binary Digits: The binary system uses only two digits: 0 and 1. Each digit in a binary number is called a bit, which stands for binary digit.</li></ol><ol type="a" id="2e1a48b7-c22e-80ef-b802-ea37e66e5df7" class="numbered-list" start="2" dir="auto"><li>Base-2: The binary system is a base-2 system, meaning that each position in a binary number represents a power of 2, just like how each position in the decimal (base-10) system represents a power of 10.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-80ec-a8f2-ca63fb161a77" class="numbered-list" start="2" dir="auto"><li>Perform addition and multiplication on binary numbers<ol type="a" id="2e1a48b7-c22e-80f2-b26b-e0167e66fdec" class="numbered-list" start="1" dir="auto"><li>Binary Addition: Use basic addition rules and carry over where necessary.<ol type="i" id="2e1a48b7-c22e-8005-ba7e-cb5edcb72be0" class="numbered-list" start="1" dir="auto"><li>0 + 0 = 0</li></ol><ol type="i" id="2e1a48b7-c22e-8050-acc5-ce3cdd2c515e" class="numbered-list" start="2" dir="auto"><li>0 + 1 = 1</li></ol><ol type="i" id="2e1a48b7-c22e-80ce-bda9-d4c0abee14f4" class="numbered-list" start="3" dir="auto"><li>1 + 0 = 1</li></ol><ol type="i" id="2e1a48b7-c22e-80c1-8e21-c51708bd70e5" class="numbered-list" start="4" dir="auto"><li>1 + 1 = 10 (which is 0 with a carry of 1)</li></ol></li></ol><ol type="a" id="2e1a48b7-c22e-8059-9434-e5ad22e4b4ed" class="numbered-list" start="2" dir="auto"><li>Binary Multiplication: Use basic multiplication rules, shift left for each bit, and then add the results.<ol type="i" id="2e1a48b7-c22e-80ef-a612-e98dbed4dea1" class="numbered-list" start="1" dir="auto"><li>0 * 0 = 0</li></ol><ol type="i" id="2e1a48b7-c22e-8004-b81a-cda411ddd5c4" class="numbered-list" start="2" dir="auto"><li>0 * 1 = 0</li></ol><ol type="i" id="2e1a48b7-c22e-8065-b5ad-f77f536b57e4" class="numbered-list" start="3" dir="auto"><li>1 * 0 = 0</li></ol><ol type="i" id="2e1a48b7-c22e-80e8-b47e-eed5225f5234" class="numbered-list" start="4" dir="auto"><li>1 * 1 = 1</li></ol></li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-80f4-b914-d2e064dbf8dc" class="numbered-list" start="3" dir="auto"><li>Convert binary numbers to decimal numbers, and vice versa<ol type="a" id="2e1a48b7-c22e-80c4-8837-e00dff8d5481" class="numbered-list" start="1" dir="auto"><li>To convert a binary number to a decimal number, you sum the products of each bit and its corresponding power of 2.<ol type="i" id="2e1a48b7-c22e-808b-bb4c-ef4b146ce2f2" class="numbered-list" start="1" dir="auto"><li>Binary number: 1011</li></ol><ol type="i" id="2e1a48b7-c22e-808a-b10c-e2a4349b6add" class="numbered-list" start="2" dir="auto"><li>Conversion to decimal:</li></ol><ol type="i" id="2e1a48b7-c22e-8079-a0b5-d3e5a9092926" class="numbered-list" start="3" dir="auto"><li>(1×23)+(0×22)+(1×21)+(1×20)=8+0+2+1=11</li></ol><ol type="i" id="2e1a48b7-c22e-805f-bfa3-d4f2861460cd" class="numbered-list" start="4" dir="auto"><li>Decimal equivalent: 11</li></ol></li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-804c-9b1d-e17eef467f18" class="numbered-list" start="4" dir="auto"><li>Understand the connection between binary numbers, circuits, and logic<ol type="a" id="2e1a48b7-c22e-80dc-a5fe-e56e4178a1c6" class="numbered-list" start="1" dir="auto"><li>Adding and multiplying single-numeral binary numbers look similar to Boolean AND and OR operations. This has some implications.</li></ol><ol type="a" id="2e1a48b7-c22e-8069-b349-ebe15d14da27" class="numbered-list" start="2" dir="auto"><li>For one, it means that computer hardware can be engineered to perform arithmetic using AND and OR operations, which are precisely the kinds of things that fundamental electronic components are good at! In the following tables, we illustrate the similarities between addition/OR and multiplication/AND, respectively</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-80b9-9ba2-dee1a8340901" class="numbered-list" start="5" dir="auto"><li>Recognize the importance of logic to computer science<ol type="a" id="2e1a48b7-c22e-808b-ab53-ff798420c142" class="numbered-list" start="1" dir="auto"><li>Boolean logic forms the basis of all digital circuits and computing devices. All computational tasks can be reduced to logical operations.</li></ol><ol type="a" id="2e1a48b7-c22e-80c6-82f8-cdb183fcfdb0" class="numbered-list" start="2" dir="auto"><li>Logic helps in developing algorithms and data structures. Logical thinking is essential for designing and debugging programs.</li></ol><ol type="a" id="2e1a48b7-c22e-805b-b66b-e201abbe7ba5" class="numbered-list" start="3" dir="auto"><li>Understanding logic allows for the optimization of code and hardware. Efficient logical operations can lead to faster and more energy-efficient computing.</li></ol></li></ol><h2 id="2e1a48b7-c22e-80cb-9ce8-da2dc6a21a4d" class="" dir="auto">19 – Computer Architecture </h2><ol type="1" id="2e1a48b7-c22e-804c-ad12-ebafd32c2eb7" class="numbered-list" start="1" dir="auto"><li>Describe the differences between a fixed function and a von Neumann architecture computer<ol type="a" id="2e1a48b7-c22e-800b-a4d9-f005feddf0c0" class="numbered-list" start="1" dir="auto"><li>Fixed Function: Specialized for specific tasks; limited functionality.</li></ol><ol type="a" id="2e1a48b7-c22e-80ef-babb-d1db2e5b4e77" class="numbered-list" start="2" dir="auto"><li>Von Neumann Architecture: General-purpose design; consists of CPU, memory, and I/O; allows for flexibility in programming.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-80ab-bb69-f76972184f3b" class="numbered-list" start="2" dir="auto"><li>Provide definitions for bit and byte<ol type="a" id="2e1a48b7-c22e-80f3-8f6c-de4f89dafb11" class="numbered-list" start="1" dir="auto"><li>Bit: Binary digit, 0 or 1.</li></ol><ol type="a" id="2e1a48b7-c22e-806a-a3f4-c9157443093d" class="numbered-list" start="2" dir="auto"><li>Byte: Group of 8 bits; represents a character or piece of data.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-804d-b1fa-eedfade50897" class="numbered-list" start="3" dir="auto"><li>Describe the organization of main memory in a computer<ol type="a" id="2e1a48b7-c22e-80d9-96c0-d41c29f81a1f" class="numbered-list" start="1" dir="auto"><li>RAM (Random Access Memory): Stores actively used data and instructions.</li></ol><ol type="a" id="2e1a48b7-c22e-8037-945c-de1996dcc569" class="numbered-list" start="2" dir="auto"><li>Addressable Units: Typically organized in bytes.</li></ol><ol type="a" id="2e1a48b7-c22e-80af-ba71-fafcb1e2ca2b" class="numbered-list" start="3" dir="auto"><li>Quick Access: Allows the CPU to rapidly retrieve and store data.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-8080-8e7a-c40ae6cdcd63" class="numbered-list" start="4" dir="auto"><li>Explain what a memory address is, and what it is used for<ol type="a" id="2e1a48b7-c22e-80d9-9926-eadc354dfe2f" class="numbered-list" start="1" dir="auto"><li>Unique Identifier: Specifies a location in the computer&#x27;s memory.</li></ol><ol type="a" id="2e1a48b7-c22e-8003-85ea-fe6504d019e7" class="numbered-list" start="2" dir="auto"><li>Access and Retrieval: Used by the CPU to fetch data from specific memory locations.</li></ol><ol type="a" id="2e1a48b7-c22e-803c-89dd-f3955299e591" class="numbered-list" start="3" dir="auto"><li>Each byte in the sequence has a numeric address that is used by the computer to access the data stored in the byte very quickly. This address is not actually stored in memory; it is implicit in the design of the memory circuitry. The address of the first byte in the sequence is 0, the second is 1, the third is 2, and so on; think of the address of a byte in memory as its offset from the start of the sequence (the first byte in the sequence is offset 0 from the start of the sequence). Viewed in this way, the main memory of a computer is a very large one-dimensional sequence of bytes.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-80fa-a036-ce3225b9ff51" class="numbered-list" start="5" dir="auto"><li>Describe the basic function of the central processing unit, arithmetic logic unit, and control unit of a computer<ol type="a" id="2e1a48b7-c22e-8046-a9fa-c8b9f9d87d46" class="numbered-list" start="1" dir="auto"><li>Central Processing Unit (CPU): Executes instructions; the core processing unit.</li></ol><ol type="a" id="2e1a48b7-c22e-8076-be64-fd055f35672c" class="numbered-list" start="2" dir="auto"><li>Arithmetic Logic Unit (ALU): Performs arithmetic and logical operations.</li></ol><ol type="a" id="2e1a48b7-c22e-8027-a4b5-ca9b5d1e5c1d" class="numbered-list" start="3" dir="auto"><li>Control Unit: Manages instruction execution and component coordination.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-8036-8cdd-ee7e57f000ca" class="numbered-list" start="6" dir="auto"><li>Explain the purpose of the instruction pointer register and instruction register<ol type="a" id="2e1a48b7-c22e-8056-80db-c87e0b304225" class="numbered-list" start="1" dir="auto"><li>Instruction Pointer Register: Holds the memory address of the next instruction.</li></ol><ol type="a" id="2e1a48b7-c22e-80f2-8b5f-ef3870da930f" class="numbered-list" start="2" dir="auto"><li>Instruction Register: Stores the current instruction being executed.</li></ol></li></ol><ol type="1" id="2e1a48b7-c22e-8043-ae7d-e1b39906ff67" class="numbered-list" start="7" dir="auto"><li>Describe the steps of the machine cycle algorithm<ol type="a" id="2e1a48b7-c22e-80ca-beed-c35b36689d18" class="numbered-list" start="1" dir="auto"><li>Fetch: Retrieve the next instruction from memory.</li></ol><ol type="a" id="2e1a48b7-c22e-802c-9453-d139ad9a03d1" class="numbered-list" start="2" dir="auto"><li>Decode: Interpret the instruction to determine the operation.</li></ol><ol type="a" id="2e1a48b7-c22e-8086-9c70-dab6b2e62980" class="numbered-list" start="3" dir="auto"><li>Execute: Carry out the operation specified by the instruction.</li></ol><ol type="a" id="2e1a48b7-c22e-80af-99d2-d5509fb6d1e5" class="numbered-list" start="4" dir="auto"><li>Store: Save the result in memory if needed.</li></ol></li></ol></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

@@ -1,0 +1,794 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>MATH 163 — Intro to Mathematical Reasoning</title><meta name="data-notion-page-icon" content="🦋"/><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%A6%8B%3C%2Ftext%3E%3C%2Fsvg%3E"/><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+/*
+ * Toggles and callouts hold arbitrary content, so they can easily be taller
+ * than a page. They must stay breakable: avoiding breaks inside them makes
+ * Chromium push the whole block onto the next page, which leaves the previous
+ * page mostly empty before every long toggle.
+ */
+details,
+aside {
+	margin: 1.25em 0;
+}
+
+/* Keep a toggle's title on the same page as the start of its content. */
+summary {
+	page-break-after: avoid;
+	break-after: avoid;
+}
+
+/*
+ * Toggle headings render as <h1/h2/h3 style="display:inline-block"> inside
+ * <summary>. Without this reset, the heading's margin-top pushes it below the
+ * ::marker (▼), so the triangle and the title appear on separate lines.
+ */
+summary h1,
+summary h2,
+summary h3,
+summary h4 {
+	margin-top: 0;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="6b2a2bf5-bf53-4779-9581-fbc3fe30ddb9" class="page mono" data-notion-page-icon="🦋"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1531366936337-7c912a4589a7?ixlib=rb-4.1.0&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon" data-emoji="🦋"></span></div><h1 class="page-title" dir="auto">MATH 163 — Intro to Mathematical Reasoning</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><nav id="3c7a48b7-c22e-801a-a11a-fcea0210eb8c" class="block-color-blue table_of_contents" data-notion-highlight="blue" data-notion-toc="" dir="ltr"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e3a48b7-c22e-81a3-befd-dc3c35ef8e52">Sets and Functions I</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e3a48b7-c22e-810e-ba12-e1e359e4f995">Sets and Functions II</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e3a48b7-c22e-810b-b377-e8ca5f44591a">Relations I</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e3a48b7-c22e-8172-989d-c65f78048e2e">Relations II</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e3a48b7-c22e-81a7-a269-d976fb81e2d2">Introduction to Formal Logic</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e3a48b7-c22e-8136-95bd-d139a7eac229">Mathematical Induction I</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e3a48b7-c22e-8130-aa27-ff2200c50477">Mathematical Induction II</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e3a48b7-c22e-813d-90d2-fd3af474c0ae">An Introduction to Graph Theory</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e3a48b7-c22e-81d2-b61c-ec0298de0ea9">Complex Numbers</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e3a48b7-c22e-8107-93d7-e9b87beadc36">Set Cardinality I</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2e3a48b7-c22e-811d-8ef1-f7c30c504c7e">Set Cardinality II</a></div></nav><h2 id="2e3a48b7-c22e-81a3-befd-dc3c35ef8e52" class="" dir="auto">Sets and Functions I</h2><ul id="2e3a48b7-c22e-818b-887e-efd70b04247d" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Element</strong>: A member of a set.</li></ul><ul id="2e3a48b7-c22e-8155-87d8-ffc805a63545" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Natural Numbers</strong> (N): The set of natural numbers is the set {0, 1, 2, 3…}</li></ul><ul id="2e3a48b7-c22e-815e-bb79-ffd70da63b5b" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Natural Numbers</strong> (N+): The set of natural numbers without zero is {1, 2, 3…}</li></ul><ul id="2e3a48b7-c22e-8183-a0c0-c4f82053ed11" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Rational numbers</strong> (R): Rational numbers are elements of this set:<ul id="2e3a48b7-c22e-81be-bce6-d6ce3dd31b23" class="bulleted-list" dir="auto"><li style="list-style-type:circle">R means the real numbers. R^2 means the set of pairs, (a, b), where a and b are in set R.</li></ul></li></ul><blockquote id="2e3a48b7-c22e-81a8-b7f1-df421d9d90d9" class="" dir="auto"><figure id="2e3a48b7-c22e-81d2-a69c-cd93363f6fcd" class="image" data-notion-image="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image1.png" dir="ltr"><a href="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image1.png"><img style="width:700px" src="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image1.png"/></a></figure></blockquote><ul id="2e3a48b7-c22e-8114-af19-e68998f8743c" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Set builder notation</strong>: See above</li></ul><ul id="2e3a48b7-c22e-8146-9392-d8a8192d8778" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Integers</strong> (Z): The integers are the elements of the set {..., -3, -2, -1, 0, 1, 2, 3…}</li></ul><ul id="2e3a48b7-c22e-8189-84cc-e3c419db7b9c" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Real Numbers</strong>: Numbers that appear on the number line.</li></ul><ul id="2e3a48b7-c22e-8165-a149-c886a0959eb0" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Element</strong>: When X is a set and x is a member of X, we say that x is an element of X.</li></ul><ul id="2e3a48b7-c22e-81c7-8746-fe0d270f148b" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Subset</strong> (⊆, ⊇): When every element of X is also an element of Y we say X is a subset of Y.</li></ul><ul id="2e3a48b7-c22e-810f-a391-dc34802902f2" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Superset</strong>: When every element of X is also an element of Y we say Y is a superset of X.</li></ul><ul id="2e3a48b7-c22e-8182-8c86-fa1517121364" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Proper subset</strong> (⊂, ⊃): When X is a subset of Y and X ̸= Y we say X is a proper subset of Y.</li></ul><ul id="2e3a48b7-c22e-8153-a70a-e71df1e9bbf5" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Union of A and B</strong> (∪): The set of elements that are in A or B.<ul id="2e3a48b7-c22e-81c8-beb5-d7a7271385cb" class="bulleted-list" dir="auto"><li style="list-style-type:circle">X ∪ Y = {x | x ∈ X or x ∈ Y }.</li></ul></li></ul><ul id="2e3a48b7-c22e-81c2-8a85-d5be7cee515a" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Intersection of A and B</strong> (∩): The set of elements that are in both A and B.<ul id="2e3a48b7-c22e-8195-b595-f18275706496" class="bulleted-list" dir="auto"><li style="list-style-type:circle">X ∩ Y = {x | x ∈ X and x ∈ Y }</li></ul></li></ul><ul id="2e3a48b7-c22e-81a1-94e3-d1c4139b731c" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Cartesian product of A and B</strong> (A X B): The set of all ordered pairs whose first element is from X and second element is from Y.<ul id="2e3a48b7-c22e-8118-810a-d98e5e7a5722" class="bulleted-list" dir="auto"><li style="list-style-type:circle">X × Y = {(x, y) | x ∈ X and y ∈ Y }</li></ul></li></ul><ul id="2e3a48b7-c22e-81ab-9693-ec3dcd82c7a5" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>X\Y</strong>: Given sets X and Y, we define X\Y to be the set that contains the elements in X that are not elements of Y.</li></ul><h2 id="2e3a48b7-c22e-810e-ba12-e1e359e4f995" class="" dir="auto">Sets and Functions II</h2><ul id="2e3a48b7-c22e-815f-86a1-dcc5ae339871" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Function</strong>: Let A,B and f be sets. We say f is a function from A to B when f is</li></ul><blockquote id="2e3a48b7-c22e-8110-b147-dde3ac797822" class="" dir="auto">a subset of A × B in which each element of A appears as the first entry of an ordered pair exactly once.</blockquote><ul id="2e3a48b7-c22e-812f-af55-ce4e14fece8f" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Domain / Codomain</strong>: When f is a function from A to B we write f : A → B. We say that A is the domain of f and that B is the codomain of f.</li></ul><ul id="2e3a48b7-c22e-8145-8467-eb303ecd5589" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>f : A -&gt; B</strong>: When f is a function from A to B we write f : A → B.</li></ul><ul id="2e3a48b7-c22e-81d2-bff4-e3e5ea38d7f0" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Image / Preimage</strong>: Let A and B be sets and let f be a function from A to B.</li></ul><blockquote id="2e3a48b7-c22e-811c-95ce-e2372891bebe" class="" dir="auto">For (a, b) ∈ f we say b is the image of a and a is a preimage of b. When b is the image of a we write f(a) = b.</blockquote><ul id="2e3a48b7-c22e-812f-98ce-d2c6a9393c84" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>f^-1(b)</strong>: Let A and B be sets, let f be a function from A to B and let b be an element of B. The preimage of b is the set {a ∈ A | f(a) = b}. We denote this set as f^-1(b).</li></ul><ul id="2e3a48b7-c22e-81e9-86fa-c16744dda48d" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Range</strong>: Let A and B be sets and let f be a function from A to B. The range of</li></ul><blockquote id="2e3a48b7-c22e-8129-b596-fd959718ba4a" class="" dir="auto">f, denoted range(f), is the set of elements of B that are the image of some element of A.</blockquote><ul id="2e3a48b7-c22e-8141-8740-f71ffbcdc3d1" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Injection</strong>: Let A and B be sets and let f be a function from A to B. We say f is an injection when each element of the domain has a unique image. When f is an injection we say that f is injective or a <em>one-to-one</em> function. Every x has at most one y.</li></ul><ul id="2e3a48b7-c22e-8177-9e1c-f3dfdfbc8b8b" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Surjection</strong>: Let A and B be sets and let f be a function from A to B. We say f is a surjection when range(f) = B. When f is a surjection we say that f is surjective or an <em>onto</em> function. Every y has at least one x.</li></ul><ul id="2e3a48b7-c22e-8152-81d6-d8ab98c473ec" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Bijection</strong>: Let A and B be sets and let f be a function from A to B. We say f is a bijection when f is both an injection and a surjection. When f is an bijection we say that f is bijective.<ul id="2e3a48b7-c22e-8116-97fe-cb4fafc74fe7" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Every bijective function must have an inverse.</li></ul></li></ul><blockquote id="2e3a48b7-c22e-8192-b446-e5b7dfeb2bf8" class="" dir="auto"><figure id="2e3a48b7-c22e-81c6-b586-fc9a69874f99" class="image" data-notion-image="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image2.png" dir="ltr"><a href="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image2.png"><img style="width:657px" src="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image2.png"/></a></figure></blockquote><ul id="2e3a48b7-c22e-81ef-9c0e-f6d86d0bbcf8" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Operation</strong>: Let A be a set. An operation on A is a function f : A × A → A.</li></ul><ul id="2e3a48b7-c22e-8122-8ef4-f78d3045d948" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Inverse</strong>: Let A and B be sets, let f be a bijective function from A to B and let g be a function from B to A. We say g is the inverse of f when (g ◦ f) (a) = a for every a ∈ A. When g is the inverse of f we may label g as f^(−1).</li></ul><h2 id="2e3a48b7-c22e-810b-b377-e8ca5f44591a" class="" dir="auto">Relations I</h2><ul id="2e3a48b7-c22e-81a2-9105-f4821b3c0c83" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Reflexive</strong>: Yes, each element of the form (x, x) appears.</li></ul><ul id="2e3a48b7-c22e-81f5-9ac1-db8fa9d3d85d" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Antireflexive</strong>: Yes, if an element of the form (x, x) doesn&#x27;t appear.</li></ul><ul id="2e3a48b7-c22e-8156-a2ce-ca8f7c2e4c63" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Symmetric</strong>: Yes, if (x, y) appears with x ̸= y, then (y, x) does appear.</li></ul><ul id="2e3a48b7-c22e-81f9-a100-f85018a4763d" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Antisymmetric</strong>: Yes, if (x, y) appears with x ̸= y, then (y, x) does not appear.</li></ul><ul id="2e3a48b7-c22e-8166-afd9-fb0533d02a48" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Transitive</strong>: Yes, if (x, y) and (y, z) appear, then (x, z) appears.</li></ul><ul id="2e3a48b7-c22e-8158-ac95-f8894623bb95" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Powerset</strong>: Let U be a set. The set of all subsets of U is called the power set of U. We denote the power set of U as 2^U.</li></ul><ul id="2e3a48b7-c22e-81b7-ade1-db0cbcf76f81" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Partial order</strong>: We say R is a partial order when R is reflexive, antisymmetric and transitive.</li></ul><ul id="2e3a48b7-c22e-819d-8c3f-c6d3f77ac92e" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Graph</strong>: Let V be a set and let E be a relation on V . We say E is a graph when E is symmetric and antireflexive.</li></ul><ul id="2e3a48b7-c22e-81f2-a80f-dce2e256cd71" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>X divides Y</strong>: Let x and y be integers. We say x divides y when there exists k ∈ Z so that xk = y. When x divides y we say that y is a multiple of x.</li></ul><h2 id="2e3a48b7-c22e-8172-989d-c65f78048e2e" class="" dir="auto">Relations II</h2><ul id="2e3a48b7-c22e-81a0-b9e6-c32f20038483" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Equivalence Relation</strong>: Let S be a set and let R be a relation on S. We say that R is an equivalence relation on S when it is reflexive, symmetric and transitive.</li></ul><ul id="2e3a48b7-c22e-81b1-b80b-dc5f9f289612" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Partition / Up∈pP</strong>:</li></ul><blockquote id="2e3a48b7-c22e-810f-9faa-ff0a784c80d5" class="" dir="auto"><figure id="2e3a48b7-c22e-818c-8d7d-f660b02645c2" class="image" data-notion-image="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image3.png" dir="ltr"><a href="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image3.png"><img style="width:700px" src="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image3.png"/></a></figure><figure id="2e3a48b7-c22e-8124-990e-ca369c6a8975" class="image" data-notion-image="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image4.png" dir="ltr"><a href="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image4.png"><img style="width:700px" src="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image4.png"/></a></figure></blockquote><ul id="2e3a48b7-c22e-8168-b156-f1cd68f3ba4d" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Equivalence class</strong> / <strong>[x]</strong>: Let S be a set and let R be an equivalence relation on S Given s ∈ S, we define [s] = {t | sRt}. That is, for an element s ∈ S, the set [s] is the set of all elements of S that s is related to with respect to the relation R. This set is called the equivalence class of s.</li></ul><ul id="2e3a48b7-c22e-81ba-a2d4-f2a8d6fb5a8a" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Set of equivalence classes / S/R</strong>: We also define the notation S/R = {[s] | s ∈ S}. That is, the set S/R is the set of equivalence classes of elements of S. If two sets are the same, only one counts.</li></ul><h2 id="2e3a48b7-c22e-81a7-a269-d976fb81e2d2" class="" dir="auto">Introduction to Formal Logic</h2><ul id="2e3a48b7-c22e-811d-aa12-fc0bf7c69d01" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Mathematical proof</strong>: A finite sequence of formal mathematical statements such that each statement either:<ul id="2e3a48b7-c22e-8127-988b-c26a472363a0" class="bulleted-list" dir="auto"><li style="list-style-type:circle">is an axiom or assumption, or</li></ul><ul id="2e3a48b7-c22e-81b1-a35d-f072e546e9de" class="bulleted-list" dir="auto"><li style="list-style-type:circle">follows by formal rules of logical deduction from previous statements in the sequence.</li></ul></li></ul><ul id="2e3a48b7-c22e-8183-a208-c7a4613f6cbe" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Mathematical statement</strong>: a sentence that is either true or false.</li></ul><ul id="2e3a48b7-c22e-81a2-a470-cbf4fcf35b2c" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Truth value, denoted T(P) = 0 or 1</strong>: If P is true, we say P has truth value 1, and we write T(P) = 1. If P is false, we say P has truth value 0 and we write T(P) = 0.</li></ul><ul id="2e3a48b7-c22e-8117-816d-c1467facae4a" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Truth table</strong>: Table with 1’s and 0’s to indicate truth or false based on the conditions for each column.</li></ul><ul id="2e3a48b7-c22e-816b-b37b-e62ef0ebfb93" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Logically equivalent</strong>: When the truth tables are the same for two different statements.</li></ul><ul id="2e3a48b7-c22e-81b6-b5f6-e166f6184408" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>not P, denoted -P</strong>: We have T(¬P) = 1 when T(P) = 0, and we have T(¬P) = 0 when T(P) = 1.</li></ul><ul id="2e3a48b7-c22e-81e0-bb71-c89cee4e3687" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>P and Q, denoted P ∧ Q</strong>: We have T(P ∧ Q) = 1 when T(P) = 1 and T(Q) = 1. We have T(P ∧ Q) = 0 otherwise.</li></ul><ul id="2e3a48b7-c22e-818c-a21d-cea71e724e89" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>P or Q</strong>, <strong>denoted P V Q</strong>: We have T(P ∨ Q) = 0 when T(P) = 0 and T(Q) = 0. We have T(P ∨ Q) = 1 otherwise.</li></ul><ul id="2e3a48b7-c22e-81a8-8fa2-d692c0530bd5" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>P implies Q, denoted P &gt; Q</strong>: When one truth implies another.</li></ul><ul id="2e3a48b7-c22e-810a-8125-c09b6a794fd7" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Hypothesis and Conclusion</strong>:: We call P the hypothesis of the implication and we call Q the conclusion of the implication.</li></ul><ul id="2e3a48b7-c22e-8136-9875-d64d7014f1cf" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Converse</strong>: Let P and Q be statements. The statement Q ⇒ P is called the converse of the implication P ⇒ Q. For ex., if n = prime, then n = 54 is the converse.</li></ul><ul id="2e3a48b7-c22e-8107-83d4-ee8c1fe9c690" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Contrapositive</strong>: Let P and Q be statements. The statements P ⇒ Q and ¬Q ⇒ ¬P are logically equivalent. The statement ¬Q ⇒ ¬P is called the contrapositive of P ⇒ Q. For ex., if n /= prime, then n /= 54.</li></ul><ul id="2e3a48b7-c22e-8173-a0dc-eebbd2026b25" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>P if and only if Q, denoted P &lt;&gt; Q</strong>:</li></ul><ul id="2e3a48b7-c22e-8176-8269-ee0921922157" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Mathematical formula</strong>: A mathematical formula over X is a statement that has a truth value for each choice of x ∈ X. We denote a mathematical formula with the notation P(x).</li></ul><ul id="2e3a48b7-c22e-81de-9cd7-d1969ac7ee7f" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Existential quantifier, denoted (∃x ∈ X) P (x)</strong>: We call the symbol ∃ the existential quantifier. There exists,</li></ul><ul id="2e3a48b7-c22e-8189-968f-ff1e2c5a5ae0" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Universal quantifier, denoted (∀x ∈ X) P(x)</strong>: We call the symbol ∀ the universal quantifier. For every,</li></ul><ul id="2e3a48b7-c22e-81a8-8c76-e6e2a6df67f6" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Total order</strong>: A partially ordered set with an additional quality. It is reflexive, antisymmetric, transitive, and for every element that is an element of the set where x /= y, exactly one of (x, y) and (y, x) is an element of the relation.</li></ul><h2 id="2e3a48b7-c22e-8136-95bd-d139a7eac229" class="" dir="auto">Mathematical Induction I</h2><ul id="2e3a48b7-c22e-8106-bdaf-ff3fe3dda102" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>The Principle of Mathematical Induction</strong>: Let P(n) be a formula over N. If<ul id="2e3a48b7-c22e-81ec-80e2-d49d593493dc" class="bulleted-list" dir="auto"><li style="list-style-type:circle">P(0) is true; and</li></ul><ul id="2e3a48b7-c22e-81d1-85ca-f4c2bfae01ac" class="bulleted-list" dir="auto"><li style="list-style-type:circle">for each k &gt;= 0, if P(k) is true, then P(k+1) is true,</li></ul><ul id="2e3a48b7-c22e-8111-a34a-e8adcc5e9240" class="bulleted-list" dir="auto"><li style="list-style-type:circle">then P(n) is true for each integer n &gt;= 0.</li></ul></li></ul><ul id="2e3a48b7-c22e-8186-8776-f49868b8631e" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Theorem 6.2:</strong> Let Q(n) be a formula and let a be an integer. If<ul id="2e3a48b7-c22e-8165-813d-f7e3b7b271f9" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Q(a) is true; and</li></ul><ul id="2e3a48b7-c22e-813d-8ff7-ecfa47d198bd" class="bulleted-list" dir="auto"><li style="list-style-type:circle">for each k &gt;= a, if Q(k) is true, then Q(k+1) is true,</li></ul><ul id="2e3a48b7-c22e-81e4-95dc-e4d62d15807d" class="bulleted-list" dir="auto"><li style="list-style-type:circle">then Q(n) is true for each integer n &gt;= a.</li></ul></li></ul><ul id="2e3a48b7-c22e-8126-8a01-d7b39abf9bc3" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Theorem 6.3</strong>: For all integers n &gt;= 3 we have 2^n &gt; 2n + 1</li></ul><ul id="2e3a48b7-c22e-814c-acb2-d17c203a3ff1" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Writing a proof:<ul id="2e3a48b7-c22e-8180-9b84-d32f23041b61" class="bulleted-list" dir="auto"><li style="list-style-type:circle">We proceed by induction on n. Let P(n) be the following formula over N:</li></ul><ul id="2e3a48b7-c22e-8188-9d93-c233c75bd7f1" class="bulleted-list" dir="auto"><li style="list-style-type:circle">We show that both (1) and (2) hold in the hypothesis of the Principle of Mathematical Induction for P(n)</li></ul><ul id="2e3a48b7-c22e-81dd-b07b-f9bc71515e9a" class="bulleted-list" dir="auto"><li style="list-style-type:circle">(1) P(0) is true.</li></ul><ul id="2e3a48b7-c22e-8142-b4e6-e21ea014144a" class="bulleted-list" dir="auto"><li style="list-style-type:circle">P(0) is the statement:</li></ul><ul id="2e3a48b7-c22e-8137-9a94-fa92e4ca6556" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Since , P(0) is true.</li></ul><ul id="2e3a48b7-c22e-8111-85b5-c779bb6632e0" class="bulleted-list" dir="auto"><li style="list-style-type:circle">(2) for each k &gt;= 0, if P(k) is true, then P(k+1) is true.</li></ul><ul id="2e3a48b7-c22e-8146-8cc0-d65e92836d1e" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Consider some integer k &gt;= 0, and assume that P(k) is true.</li></ul><ul id="2e3a48b7-c22e-81c9-ad7a-d8111b771307" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Since P(k) is true, we know<ul id="2e3a48b7-c22e-81cc-9b57-c4ba590effa9" class="bulleted-list" dir="auto"><li style="list-style-type:square">Induction hypothesis</li></ul></li></ul><ul id="2e3a48b7-c22e-813f-838c-e5f26cb2902c" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Consider the statement P(k+1):<ul id="2e3a48b7-c22e-81f2-8839-f87ae14f7592" class="bulleted-list" dir="auto"><li style="list-style-type:square">P(k+1)</li></ul></li></ul><ul id="2e3a48b7-c22e-8196-8635-c63be39a3153" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Notice<ul id="2e3a48b7-c22e-812a-9f2d-d75d54a4e843" class="bulleted-list" dir="auto"><li style="list-style-type:square">Sigma sum of P(k+1) = sigma sum of P(k) + k+1</li></ul></li></ul><ul id="2e3a48b7-c22e-81d4-9b9c-e6c168f00c11" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Since P(k) is true, we have</li></ul><ul id="2e3a48b7-c22e-81b5-b85d-ff7f1ddf30ff" class="bulleted-list" dir="auto"><li style="list-style-type:circle">And so it follows that P(k+1) is true.</li></ul><ul id="2e3a48b7-c22e-81d3-84f4-c9103d6a7a81" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Since both of the hypotheses in the Principle of Mathematical Induction hold, necessarily the conclusion holds.</li></ul><ul id="2e3a48b7-c22e-8106-9da2-f834cb9fb0d7" class="bulleted-list" dir="auto"><li style="list-style-type:circle">That is P(n) is true for each integer n&gt;=0.</li></ul></li></ul><h2 id="2e3a48b7-c22e-8130-aa27-ff2200c50477" class="" dir="auto">Mathematical Induction II</h2><ul id="2e3a48b7-c22e-8160-b097-de374eacd930" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>The Principle of Strong Mathematical Induction</strong>: Let P(n) be a formula over N. If<ul id="2e3a48b7-c22e-81d8-a794-f60aaa9698e8" class="bulleted-list" dir="auto"><li style="list-style-type:circle">P(0) is true; and</li></ul><ul id="2e3a48b7-c22e-810d-a3ba-e12d49a0942e" class="bulleted-list" dir="auto"><li style="list-style-type:circle">for each k &gt;= 0, if P(0), P(1), . . . , P(k) are all true, then P(k + 1) is true,</li></ul></li></ul><ul id="2e3a48b7-c22e-81d1-a3be-c83f63f01021" class="bulleted-list" dir="auto"><li style="list-style-type:disc">A <strong>conjecture</strong> is a guess at something that might be true. Once we have a proof for our conjecture it becomes a theorem then P(n) is true for all integers n ∈ N.</li></ul><h2 id="2e3a48b7-c22e-813d-90d2-fd3af474c0ae" class="" dir="auto">An Introduction to Graph Theory</h2><ul id="2e3a48b7-c22e-81d4-a18d-f21c4d8cf970" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Graph / Edge / Vertices (pl. of Vertex)</strong>: A graph G is a pair G = (VG,EG) where VG is a set called vertices and EG is a set called edges. The elements of EG are subsets of VG that contain two elements.<ul id="2e3a48b7-c22e-81df-b218-edc6caa1abaf" class="bulleted-list" dir="auto"><li style="list-style-type:circle">order of a graph refers to the number of vertices (nodes) in the graph. |VG|</li></ul></li></ul><blockquote id="2e3a48b7-c22e-81cb-8033-cb7d9ea0f124" class="" dir="auto"><figure id="2e3a48b7-c22e-8159-97a3-fdd56515e343" class="image" data-notion-image="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image8.png" dir="ltr"><a href="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image8.png"><img style="width:657px" src="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image8.png"/></a></figure><figure id="2e3a48b7-c22e-81a5-8286-dac808cb0318" class="image" data-notion-image="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image9.png" dir="ltr"><a href="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image9.png"><img style="width:228px" src="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image9.png"/></a></figure></blockquote><ul id="2e3a48b7-c22e-813f-9f4f-f3580e7c2f6e" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Adjacent</strong>: Two vertices are said to be adjacent if they are connected directly by an edge. For example, in a graph with vertices A and B, if there is an edge connecting A to B, then A and B are adjacent.</li></ul><ul id="2e3a48b7-c22e-8108-b879-cfe3709c5a9e" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Incident</strong>: An edge is incident to a vertex if the vertex is one of the endpoints of the edge. So, in the same example, the edge connecting vertices A and B is incident to both A and B.</li></ul><ul id="2e3a48b7-c22e-81ed-bb12-fe5c85a3d9c9" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Path</strong>:</li></ul><blockquote id="2e3a48b7-c22e-8176-921b-f32556f37bfe" class="" dir="auto"><figure id="2e3a48b7-c22e-8163-a9a4-cc41fab7c810" class="image" data-notion-image="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image10.png" dir="ltr"><a href="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image10.png"><img style="width:700px" src="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image10.png"/></a></figure></blockquote><ul id="2e3a48b7-c22e-8103-9991-e483de88ff33" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Cycle</strong>: A cycle in graph theory is a path that starts and ends at the same vertex without revisiting any other vertex more than once.</li></ul><blockquote id="2e3a48b7-c22e-8136-9d3d-dfa87d4d51be" class="" dir="auto"><figure id="2e3a48b7-c22e-8144-94e3-f26bafba110d" class="image" data-notion-image="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image11.png" dir="ltr"><a href="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image11.png"><img style="width:700px" src="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image11.png"/></a></figure></blockquote><ul id="2e3a48b7-c22e-811e-865e-ced154eca314" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Degree</strong>: Let G be a graph, let v be a vertex of G and let k be a natural number. We say v has degree k when v is incident with exactly k edges.</li></ul><ul id="2e3a48b7-c22e-81a2-bca6-f18c84cd065e" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Connected</strong>: A graph G is connected when we can get from every vertex to every other vertex. Or Let G = (VG,EG) be a graph, and let x and y be vertices of G. We say there is a path from x to y when there is a sequence of distinct vertices</li></ul><ul id="2e3a48b7-c22e-811f-885f-ea62e8927a48" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Complete</strong>: Let G be a graph. If every pair of vertices in G is adjacent, then we say G is complete.<ul id="2e3a48b7-c22e-81fc-a1e4-c205007ce614" class="bulleted-list" dir="auto"><li style="list-style-type:circle">A complete graph with n ≥ 1 vertices has (n(n−1))/2 edges.</li></ul></li></ul><ul id="2e3a48b7-c22e-8156-9f87-c1580b273ddf" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Tree</strong>: Let G be a connected graph. We say that G is a tree when G has no cycles.</li></ul><ul id="2e3a48b7-c22e-817a-9e1d-e3d451380a2d" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>k-colouring</strong>: Let G be a graph and let k ≥ 1 be an integer. A k-colouring of G is a function c : V → {1, 2, 3, . . . , k} so that for all edges {u, v} ∈ E we have c(u) ̸= c(v). We refer to the elements of the set {1, 2, 3, . . . , k} as colours.</li></ul><ul id="2e3a48b7-c22e-81d9-a825-ebed982b4266" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Δ(G)</strong>: The maximum degree of a graph 𝐺, which is the highest number of edges incident to any vertex in 𝐺</li></ul><ul id="2e3a48b7-c22e-81e2-b3f5-f604563dd851" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Chromatic number / χ(G)</strong>: Let G be a graph. The chromatic number of G is the smallest k so that G has a k-colouring. We denote the chromatic number of G with the notation χ(G).<ul id="2e3a48b7-c22e-81c0-a50a-d8ed28c270a8" class="bulleted-list" dir="auto"><li style="list-style-type:circle">In a complete graph every pair of vertices is adjacent. Therefore every vertex must be assigned a unique colour. And so χ(Kn) = n.</li></ul></li></ul><ul id="2e3a48b7-c22e-8121-9886-f24cea1c623e" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>x|(G)/ ΔG</strong>: For every graph G we have χ(G) ≤ ΔG + 1.<ul id="2e3a48b7-c22e-81c9-9a05-cfd37ae5603b" class="bulleted-list" dir="auto"><li style="list-style-type:circle">This theorem states that the chromatic number of any graph 𝐺 is at most one more than the maximum degree of any vertex in the graph.</li></ul></li></ul><ul id="2e3a48b7-c22e-81f5-8963-e1c80acb8cf2" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Possible graphs: For a set of nn vertices, the number of possible edges is given by the combination formula (n 2), which represents the number of ways to choose 2 vertices out of n to form an edge.</li></ul><ul id="2e3a48b7-c22e-81f4-b75b-d6017181b245" class="bulleted-list" dir="auto"><li style="list-style-type:disc">2^15</li></ul><ul id="2e3a48b7-c22e-812a-8da3-d6b28c715f8b" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Theorem 8.9</strong><ul id="2e3a48b7-c22e-8174-9c0b-ca88098f4d7e" class="bulleted-list" dir="auto"><li style="list-style-type:circle">A tree with n vertices has n − 1 edges.</li></ul><ul id="2e3a48b7-c22e-81db-a827-e2ef597b9c80" class="bulleted-list" dir="auto"><li style="list-style-type:circle">We aim to show that P(n) is true for all n ≥ 1. To prove our theorem we show that both hypotheses in the Principle of Mathematical Induction hold.</li></ul><ul id="2e3a48b7-c22e-8160-9d0a-e393f439d3b4" class="bulleted-list" dir="auto"><li style="list-style-type:circle">(1) P(1) is true. Let T be a tree with a single vertex. Since T has only one vertex it has no edges. Therefore T has 0 = 1 − 1 edges. Therefore a tree with 1 vertex has 1 − 1 edges. And so P(1) is true.</li></ul><ul id="2e3a48b7-c22e-8111-ba21-da56e0e6fa8a" class="bulleted-list" dir="auto"><li style="list-style-type:circle">(2) if P(k) is true, then P(k + 1) is true. Let T be a tree with n = k+1 vertices. By Lemma 8.8, T has a vertex of degree 1. Let v be a vertex of degree 1 in T. Let Tv be the tree formed from T by removing v and its incident edge. The tree Tv has k vertices. Since P(k) is true, Tv has k − 1 edges. Therefore T has k + 1 vertices and k edges. And so it follows that P(k + 1) is true.</li></ul></li></ul><ul id="2e3a48b7-c22e-810e-ab37-e8849be92cc5" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Corollary 8.10.</strong> Let G be a connected graph with n ≥ 3 vertices. If G has at least n edges then G has a cycle.<ul id="2e3a48b7-c22e-8113-a14a-e16c69e2ca93" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Proof. Let G be a connected graph with n vertices and at least n edges. By Theorem 8.8, since G does not have n − 1 edges, G cannot be a tree. Since G is connected and is not a tree, G must have a cycle.</li></ul></li></ul><ul id="2e3a48b7-c22e-8158-abe4-c2d0c12e691e" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Let T be a tree with n vertices. From our work in Section 8.2 we showed that T has at least one vertex of degree 1. Of course T may have many more than one vertex of degree 1. Find a formula for the maximum number of vertices of degree 1 that T can have.<ul id="2e3a48b7-c22e-8180-8e31-e2481971cdef" class="bulleted-list" dir="auto"><li style="list-style-type:circle">A tree with n ≥ 3 vertices can have at most n−1 vertices of degree 1. Such a tree has a vertex of degree n − 1 adjacent to n − 1 vertices of degree 1.</li></ul></li></ul><h2 id="2e3a48b7-c22e-81d2-b61c-ec0298de0ea9" class="" dir="auto">Complex Numbers</h2><ul id="2e3a48b7-c22e-8154-9466-c8940ab36483" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Complex number / C</strong>: we define the set of complex numbers :<ul id="2e3a48b7-c22e-81e2-a28d-e75b60b12313" class="bulleted-list" dir="auto"><li style="list-style-type:circle">C = {a + bi | a, b ∈ R} . i^2 = -1</li></ul><ul id="2e3a48b7-c22e-8177-a593-d8c13b2fe5ab" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Every real number is a complex number</li></ul><ul id="2e3a48b7-c22e-81ca-bbee-db8db3ea34b7" class="bulleted-list" dir="auto"><li style="list-style-type:circle">The imaginary number 𝑖 satisfies 𝑖^2=−1</li></ul><ul id="2e3a48b7-c22e-81a1-9dcd-fde6b739fbc5" class="bulleted-list" dir="auto"><li style="list-style-type:circle">A complex number has the form 𝑎+𝑏𝑖, where 𝑎 and 𝑏 are real numbers</li></ul><ul id="2e3a48b7-c22e-81cd-82c0-ef140c50a51b" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><span style="border-bottom:0.05em solid">Real and Imaginary Parts</span>: In a+bi, a is the real part, and be is the imaginary part.</li></ul><ul id="2e3a48b7-c22e-814d-a294-dec5615a9391" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><span style="border-bottom:0.05em solid">Equality</span>: Two complex numbers a + bi and c + di are equal if and only if their real and imaginary parts are equal.</li></ul><ul id="2e3a48b7-c22e-81b4-9fc2-dc16b86aaf24" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><span style="border-bottom:0.05em solid">Addition and Subtraction</span>: To add or subtract complex numbers, you add or subtract their real and imaginary parts separately: (a + bi) +- (c + di) = (a+-c) + (b+-d))i.</li></ul><ul id="2e3a48b7-c22e-8172-99a2-de59dae689af" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><span style="border-bottom:0.05em solid">Multiplication</span>: To multiply two complex numbers (a+bi)(c+di), you use the distributive property.<ul id="2e3a48b7-c22e-81ed-84a9-e1456ae04ad1" class="bulleted-list" dir="auto"><li style="list-style-type:square">(a+bi)(c+di) = ac+adi+bci+bdi^2</li></ul></li></ul><ul id="2e3a48b7-c22e-81e0-96b2-e1008952ba29" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Since i^2 = -1, this simplifies to:<ul id="2e3a48b7-c22e-81d8-a9ab-c71154f54f05" class="bulleted-list" dir="auto"><li style="list-style-type:square">(a+bi)(c+di) = (ac-bd) + (ad+bc)i</li></ul></li></ul><ul id="2e3a48b7-c22e-8183-a719-f3e18763ccb0" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><span style="border-bottom:0.05em solid">Magnitude / Modulus</span>: The magnitude or modulus of a complex number a + bi is given by:<ul id="2e3a48b7-c22e-8185-aef7-d2ba4bd21204" class="bulleted-list" dir="auto"><li style="list-style-type:square">|a+bi| = sqrt(a^2 + b^2)</li></ul></li></ul><ul id="2e3a48b7-c22e-8193-8079-cb477bf59979" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><span style="border-bottom:0.05em solid">Conjugate</span>: The conjugate of a complex number a + bi is a - bi. Conjugates are useful in division and simplifying expressions involving complex numbers. If z=a+bi (where a and b are real numbers), then ¯z=a−bi .</li></ul><ul id="2e3a48b7-c22e-8172-ac72-da546377b64b" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><span style="border-bottom:0.05em solid">Division</span>: To divide complex numbers, multiply the numerator and denominator by the conjugate of the denominator:</li></ul><figure id="2e3a48b7-c22e-811c-aa0f-eead3ad8d577" class="image" data-notion-image="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image13.png" dir="ltr"><a href="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image13.png"><img style="width:339px" src="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image13.png"/></a></figure><ul id="2e3a48b7-c22e-81a7-bb78-c58510e09d4b" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><span style="border-bottom:0.05em solid">Polar Form</span>: Complex numbers can also be represented in polar form r(cosθ + isinθ), where r is the magnitude and θ is the argument (angle).<ul id="2e3a48b7-c22e-8190-a5c9-c9ff5be64117" class="bulleted-list" dir="auto"><li style="list-style-type:square">𝑥=𝑟cos⁡𝜃</li></ul><ul id="2e3a48b7-c22e-8123-a31b-d4328b29c88b" class="bulleted-list" dir="auto"><li style="list-style-type:square">𝑦=𝑟sin⁡𝜃</li></ul><ul id="2e3a48b7-c22e-814e-9194-d5eae0a16d38" class="bulleted-list" dir="auto"><li style="list-style-type:square">R=sqrt(x^2+y^2)</li></ul><ul id="2e3a48b7-c22e-8191-aaa2-c633623dba73" class="bulleted-list" dir="auto"><li style="list-style-type:square">Convert radians to degrees by multiplying by (180/pi)</li></ul></li></ul></li></ul><figure id="2e3a48b7-c22e-81b7-9b86-d79a8bc2d5e0" class="image" data-notion-image="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image14.png" dir="ltr"><a href="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image14.png"><img style="width:666px" src="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image14.png"/></a></figure><ul id="2e3a48b7-c22e-814d-b919-c70c7ae67798" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Re(z)</strong> / <strong>Im(z)</strong>: For a complex number z = a + bi we say a is the real part of z and b is the imaginary part of z. We denote these parts respectively as Re(z) and Im(z).</li></ul><ul id="2e3a48b7-c22e-814b-9d31-c21a83877fe4" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Review</strong>:</li></ul><ul id="2e3a48b7-c22e-8181-a3dc-d360cb0dc925" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Let cos(d) denote the x-coordinate of the point on the unit circle reached by traveling distance d anti-clockwise around the circle starting at (1, 0).</li></ul><ul id="2e3a48b7-c22e-818d-93ec-d838df75e827" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Let sin(d) denote the y-coordinate of the point on the unit circle reached by traveling distance d anti-clockwise around the circle starting at (1, 0).</li></ul><ul id="2e3a48b7-c22e-81a9-9a3a-c64e14c3c25c" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Let ℓ be a line with one end at the origin. We denote the angle formed between ℓ and the positive x-axis as θ where d = θ is the distance around the unit circle from (1, 0) to the point of intersection between ℓ and the unit circle. We call θ the radian angle.<ul id="2e3a48b7-c22e-81aa-bce1-eac52cb4645f" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Multiplying a fraction by 2pi.</li></ul></li></ul><h2 id="2e3a48b7-c22e-8107-93d7-e9b87beadc36" class="" dir="auto">Set Cardinality I</h2><ul id="2e3a48b7-c22e-81d8-b005-f5c82de19d2d" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Cardinality</strong>: Set cardinality is a concept in mathematics that refers to the number of elements in a set. It&#x27;s essentially the &quot;size&quot; of the set, whether that set is finite or infinite.<ul id="2e3a48b7-c22e-81dd-b72c-d9c12743edd9" class="bulleted-list" dir="auto"><li style="list-style-type:circle">You can determine if the cardinality is the same between two sets by establishing if there’s a bijection. As in, an element in A cannot map to multiple elements in B and every element in B is covered by the mapping from A.</li></ul></li></ul><ul id="2e3a48b7-c22e-81fb-aed5-d5b89d7d73ce" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>|A| = k</strong>: The cardinality of a set 𝐴 is often denoted by ∣𝐴∣. For example, if 𝐴={1,2,3,4}, then ∣𝐴∣=4.</li></ul><ul id="2e3a48b7-c22e-818b-9149-d66ae301e792" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>|A| = |B|</strong>: We say A and B have the same cardinality when there exists a bijection f: A → B. When A and B have the same cardinality we write|A| = |B|.</li></ul><ul id="2e3a48b7-c22e-8167-8173-c89307af1207" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>[n]</strong>:</li></ul><ul id="2e3a48b7-c22e-817a-9528-fb8f380684b6" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Binary string</strong>: A binary string of length n is a sequence of length n where each entry is either 0 or 1. The number of binary strings of length 𝑛 is 2𝑛, not (𝑛𝑘).</li></ul><ul id="2e3a48b7-c22e-810c-9dbe-d21d17e51bea" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Proof by contradiction:</li></ul><ul id="2e3a48b7-c22e-8133-bf10-fbe189c810dc" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>[n]k / n choose k / (n k)</strong>: :</li></ul><blockquote id="2e3a48b7-c22e-81a7-b30c-ca51e6344e41" class="" dir="auto"><p id="2e3a48b7-c22e-8116-aa1a-f222edc5f025" class="" dir="auto">That is, [n]k is a set whose elements are the subsets of [n] of size k.</p></blockquote><figure id="2e3a48b7-c22e-81e0-aba1-f5245cf3f060" class="image" data-notion-image="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image16.png" dir="ltr"><a href="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image16.png"><img style="width:268px" src="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image16.png"/></a></figure><ul id="2e3a48b7-c22e-81e0-a2c4-dd3e626c1b93" class="bulleted-list" dir="auto"><li style="list-style-type:disc">the number of ways to choose 𝑘 elements from a set of 𝑛 elements without regard to order.</li></ul><ul id="2e3a48b7-c22e-812c-9f8f-c0b965ce79af" class="bulleted-list" dir="auto"><li style="list-style-type:disc">In the binomial expansion of (1+𝑥)^𝑛, the coefficient of 𝑥^𝑘 is (𝑛𝑘).</li></ul><ul id="2e3a48b7-c22e-8103-9108-d116a90ba5c2" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Binomial coefficient</strong>:</li></ul><blockquote id="2e3a48b7-c22e-8129-85e3-c9c0e526e934" class="" dir="auto"><figure id="2e3a48b7-c22e-811c-a9fb-f08ea5dce3f2" class="image" data-notion-image="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image18.png" dir="ltr"><a href="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image18.png"><img style="width:222px" src="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image18.png"/></a></figure></blockquote><ul id="2e3a48b7-c22e-8150-9f8e-c28cdfdb2409" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Combinatory proof</strong>: A combinatorial proof is a method in mathematics where one demonstrates the truth of an identity or formula by counting the elements of a set in two different ways.</li></ul><ul id="2e3a48b7-c22e-81e4-afb9-dc7e485908db" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Proof by contradiction</strong>: A proof by contradiction is a common technique in mathematics and logic used to prove the truth of a statement by assuming its opposite (negation) and showing that this assumption leads to a contradiction. This contradiction implies that the original assumption must be false, thereby proving the original statement to be true.</li></ul><blockquote id="2e3a48b7-c22e-81e4-945f-d6a1726a13cf" class="" dir="auto"><figure id="2e3a48b7-c22e-8169-a496-e6a1e8fc1028" class="image" data-notion-image="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image19.png" dir="ltr"><a href="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image19.png"><img style="width:700px" src="MATH%20163%20%E2%80%94%20Intro%20to%20Mathematical%20Reasoning/image19.png"/></a></figure></blockquote><h2 id="2e3a48b7-c22e-811d-8ef1-f7c30c504c7e" class="" dir="auto">Set Cardinality II</h2><ul id="2e3a48b7-c22e-8133-a070-de9a44276c17" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Finite set</strong>: Let A be a set. We say A is finite when there exists k ∈ N so that |A| = k.</li></ul><ul id="2e3a48b7-c22e-8113-b656-f9ed9ab18f6b" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Infinite set</strong>: When A is not finite we say A is infinite.</li></ul><ul id="2e3a48b7-c22e-8112-8d06-d79c1d86d676" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>|A| &lt;= |B|</strong>: Let A and B be sets. We say that |A| ≤ |B| if there exists an injection f: A → B.</li></ul><ul id="2e3a48b7-c22e-817d-958e-c14be7338821" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>|A| &lt; |B|</strong>: Furthermore, if |A| ≤ |B| and there does not exist a surjection from A to B, then we write |A| &lt; |B|.</li></ul><ul id="2e3a48b7-c22e-81e0-aee9-e8afdbafd1c8" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Countable</strong>: Given an infinite set S, we say that S is countable if |S| = |N|. The same amount of elements in the set of natural numbers.</li></ul><ul id="2e3a48b7-c22e-8186-a22b-e39a49a19ffc" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Uncountable</strong>: Otherwise, we say that S is uncountable.</li></ul></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

@@ -1,0 +1,796 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>MATH 116 — Calculus II</title><meta name="data-notion-page-icon" content="🦋"/><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%A6%8B%3C%2Ftext%3E%3C%2Fsvg%3E"/><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+/*
+ * Toggles and callouts hold arbitrary content, so they can easily be taller
+ * than a page. They must stay breakable: avoiding breaks inside them makes
+ * Chromium push the whole block onto the next page, which leaves the previous
+ * page mostly empty before every long toggle.
+ */
+details,
+aside {
+	margin: 1.25em 0;
+}
+
+/* Keep a toggle's title on the same page as the start of its content. */
+summary {
+	page-break-after: avoid;
+	break-after: avoid;
+}
+
+/*
+ * Toggle headings render as <h1/h2/h3 style="display:inline-block"> inside
+ * <summary>. Without this reset, the heading's margin-top pushes it below the
+ * ::marker (▼), so the triangle and the title appear on separate lines.
+ */
+summary h1,
+summary h2,
+summary h3,
+summary h4 {
+	margin-top: 0;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="39ca48b7-c22e-8048-be44-f53abf9e8278" class="page mono" data-notion-page-icon="🦋"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1531366936337-7c912a4589a7?ixlib=rb-4.1.0&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon" data-emoji="🦋"></span></div><h1 class="page-title" dir="auto">MATH 116 — Calculus II</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><nav id="3c7a48b7-c22e-80ad-91cf-d5509cb5eb14" class="block-color-blue table_of_contents" data-notion-highlight="blue" data-notion-toc="" dir="ltr"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3baa48b7-c22e-8010-98aa-da8f01fa22bd">Review</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#39da48b7-c22e-80f1-add5-c96277124803">Lecture 1 — 7/3/2026</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#39da48b7-c22e-8064-b6f9-ea26d49ee51b">Introduction to Notation</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#39da48b7-c22e-80ee-973d-dedbc85cacba">Properties of Summation</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#39da48b7-c22e-80af-81ef-eb9681170ab3">Extra Notes in Notation</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3baa48b7-c22e-80bf-9e60-fdcc34c5456c">Logarithm Review</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3baa48b7-c22e-80e4-b00c-c959899e1e73">Trigonometry Review</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3aaa48b7-c22e-8062-bd26-f647b9ebf4a0">Derivatives and Limits Review</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3baa48b7-c22e-8076-9f76-d6c7bc4e0b94">Integrals Sheet</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#39da48b7-c22e-80bd-8fc0-c2c9da423b4f">Lecture 2 — 7/6/2026</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#39da48b7-c22e-802a-817b-fe59f4187fae">Section 5.1: Area and Distance Problems</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3a4a48b7-c22e-802f-b5ed-c310b77636e4">Left and Right Approximating Sums</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3a4a48b7-c22e-80e1-8c88-fe1734499d32">Midpoint Approximating Sums</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#39da48b7-c22e-8064-8198-d2f7c468fa29">General Form and Limit</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#39da48b7-c22e-804b-81a3-d6ccc3175b0c">Definition of Definite Integral</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#39da48b7-c22e-8006-bde8-f65ca929274b">Lecture 3 — 7/7/2026</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3a4a48b7-c22e-808c-8df0-d9c460d8a9f3">Riemann Sum</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#39da48b7-c22e-80d5-9702-d2e4c7ecee74">Existence of Integrable Function</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#39da48b7-c22e-8003-a71b-d145f143d68c">Properties of Definite Integral</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3a6a48b7-c22e-8080-ad1b-c47b1fb35e53">Section 5.3: Fundamental Theory of Calculus I</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#39da48b7-c22e-8018-a37f-c050d04b68dd">Lecture 4 — 7/8/2026</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#39da48b7-c22e-80fd-a6c9-fff53962b6cf">Antiderivatives + Chain Rule</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#39da48b7-c22e-80d2-8810-c70a8a41a7f5">Lecture 5 — 7/13/2026</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#39da48b7-c22e-80f0-934a-f6112096e1c2">Fundamental Theory of Calculus II</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3a6a48b7-c22e-8015-92d5-ed49f8dfca6a">How to Evaluate a Definite Integral</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#39da48b7-c22e-80b8-8d88-cdf055d2981f">Section 5.4: Indefinite Integrals + Net Change Theorem</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#39da48b7-c22e-803a-95f2-d0f198d509c6">Lecture 6 — 7/14/2026</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3a4a48b7-c22e-805b-ba20-d8ade3252fe5">Velocity/Word Problems for Integrals</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3a4a48b7-c22e-80e7-9e8f-e22c0a5a78d8">Substitution Rule</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3a4a48b7-c22e-8090-bbc8-e8226889f775">Definite Integral Substitution Rule</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#3a4a48b7-c22e-8085-a407-c3f24ae15b15">Lecture 7 — 7/15/26</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3a4a48b7-c22e-80c8-9a71-ed1624d09d4f">Integrals + Symmetry</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3a4a48b7-c22e-807f-acff-fca40ca51317">Section 6.1: Area Between Curves</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3a4a48b7-c22e-805e-bbee-cdba2730b2f8">Lecture 8 — 7/20/2026</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3a6a48b7-c22e-80b6-8624-cc84e920b729">Disc Method</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#3a5a48b7-c22e-804e-83e4-f12b2b86c435">Lecture 9 — 7/21/2026</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3a6a48b7-c22e-800e-bf06-ea35b06839f7">Solid of Revolution and Washer Method</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3a6a48b7-c22e-808c-9c7e-e98be0eafec1">Section 6.3: Volumes by Cylindrical Shells</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3aba48b7-c22e-8018-aa9c-c9e2664bbf96">Comparing Methods</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#3aba48b7-c22e-80d5-9bb6-ceb26a04a0bf">Lecture 10 - 7/22/2026</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3aba48b7-c22e-80fc-beb9-d58b8d89b9ec">Section 6.4: Work</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3aba48b7-c22e-80d9-8234-d5090885a92a">Lecture 11 — 7/27/2026</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3aba48b7-c22e-80ec-a980-eb09db789932">Section 6.5: Average Value of a Function</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3aba48b7-c22e-803f-a09e-d31147922a64">Mean Value Theorem for Integrals</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3aba48b7-c22e-8096-87cd-dec2a92f99ad">Section 7.1: Integration by Parts</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3aba48b7-c22e-8079-8c2f-e40f76ca59db">Lecture 12 — 7/28/2026</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3b2a48b7-c22e-8046-a5a3-f327aa17375e">Section 7.1: Integration by Parts</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3b2a48b7-c22e-80e2-b2e9-c0c1a1dc1015">Reduction Formulas</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#3b2a48b7-c22e-808c-a573-e456e89309f8">Lecture 13 — 7/29/2026</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3b2a48b7-c22e-80c0-adda-d50a25186953">Section 7.2: Trigonometric Integrals</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3b2a48b7-c22e-80fd-8ef8-c620d387d070">Integrals of Secant and Tangent</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3b2a48b7-c22e-80dd-8e2b-ff91728db0c7">Product-to-Sum Expression</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3baa48b7-c22e-8070-999c-fb699fc4d510">Section 7.3: Trigonometric Substitution</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3baa48b7-c22e-8004-9da0-f316150e6cdf">Lecture 14</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3baa48b7-c22e-80cd-869f-ecd340cb1319">Section 7.4: Integration of Rational Functions by Partial Fractions</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3baa48b7-c22e-8060-a1ec-ec664b29a9dc">Lecture 15</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3baa48b7-c22e-80a9-be78-f0dc212a6533">Section 7.5: Strategy for Integration</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3baa48b7-c22e-807a-a715-f98e1dc44f9b">Lecture 16</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3baa48b7-c22e-8049-9a1e-d837297cd79f">Section 7.7: Approximate Integration</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3baa48b7-c22e-80f1-be5e-e9e85237ad1c">Section 4.4: Indeterminant Forms and L’Hospital’s Rule</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3baa48b7-c22e-8079-b7fc-c6d67f110b51">Lecture 17</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3baa48b7-c22e-80d6-9625-f84ad04aac34">Section 7.8: Improper Integrals</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#3bca48b7-c22e-80b7-8695-d209fea1aa47">Lecture 18</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3bca48b7-c22e-80df-823a-ec79b7461c06">Section 8.1: Arc Length</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3bca48b7-c22e-8065-9759-d04c1a4b74c0">Section 8.2: Area of a Surface of Revolution</a></div></nav><h2 id="3baa48b7-c22e-8010-98aa-da8f01fa22bd" class="" dir="auto">Review</h2><h4 id="39da48b7-c22e-80f1-add5-c96277124803" class="" dir="auto">Lecture 1 — 7/3/2026</h4><h3 id="39da48b7-c22e-8064-b6f9-ea26d49ee51b" class="" dir="auto">Introduction to Notation</h3><figure id="3a4a48b7-c22e-80f2-9e91-f0d95cf70a87" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/9d895700-e7c7-4827-bc1e-25faf18d2e2d.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/9d895700-e7c7-4827-bc1e-25faf18d2e2d.png"><img style="width:216.48466716529546px" src="MATH%20116%20%E2%80%94%20Calculus%20II/9d895700-e7c7-4827-bc1e-25faf18d2e2d.png"/></a></figure><h3 id="39da48b7-c22e-80ee-973d-dedbc85cacba" class="" dir="auto">Properties of Summation</h3><figure id="3a4a48b7-c22e-808d-b7ee-d202752dbfbe" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/7034d75e-430d-40d6-8f54-29aadf4d07ce.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/7034d75e-430d-40d6-8f54-29aadf4d07ce.png"><img style="width:216.0301886792453px" src="MATH%20116%20%E2%80%94%20Calculus%20II/7034d75e-430d-40d6-8f54-29aadf4d07ce.png"/></a></figure><figure id="3a4a48b7-c22e-8012-8793-e23bf5524b8b" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/4c1a6fe1-6ed7-4d31-bf7c-e2f210e63a0d.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/4c1a6fe1-6ed7-4d31-bf7c-e2f210e63a0d.png"><img style="width:205.20446096654274px" src="MATH%20116%20%E2%80%94%20Calculus%20II/4c1a6fe1-6ed7-4d31-bf7c-e2f210e63a0d.png"/></a></figure><h3 id="39da48b7-c22e-80af-81ef-eb9681170ab3" class="" dir="auto">Extra Notes in Notation</h3><ul id="39da48b7-c22e-801c-b5aa-f70dd86792da" class="bulleted-list" dir="auto"><li style="list-style-type:disc">d = differential</li></ul><ul id="39da48b7-c22e-80c1-924f-ed2f65390481" class="bulleted-list" dir="auto"><li style="list-style-type:disc">dx = an infinitesimally small change</li></ul><ul id="39da48b7-c22e-8074-84c3-e2aa82e813e5" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Δx = an actual finite change</li></ul><ul id="39da48b7-c22e-80ec-995c-eb90c7c81bae" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Suppose y = x^2. <ul id="39da48b7-c22e-8076-8e30-d744078cbfc9" class="bulleted-list" dir="auto"><li style="list-style-type:circle">If x changes a little, then y also changes.</li></ul><ul id="39da48b7-c22e-801b-80c5-f5f33586026e" class="bulleted-list" dir="auto"><li style="list-style-type:circle">We write that tiny change as dy. </li></ul></li></ul><ul id="39da48b7-c22e-8072-a17b-d66238034450" class="bulleted-list" dir="auto"><li style="list-style-type:disc">dy/dx: The change in y with respect to the change in x. Or how fast y changes as x changes. Resulting derivative when y is the function being differentiated. </li></ul><ul id="39da48b7-c22e-80ad-adc7-dc14c449da04" class="bulleted-list" dir="auto"><li style="list-style-type:disc">d/dx take the derivative with respect to x. Instruction.    </li></ul><ul id="39da48b7-c22e-8049-96cd-d9990422f6cf" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Integrals: dx tells you which variable you’re integrating with respect to. Read it as “integrate x^2 with respect to x.  </li></ul><ul id="39da48b7-c22e-8001-8955-da2b64b3d6b9" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><span data-notion-inline-equation="\int _0 ^3x^2\, dx" class="notion-text-equation-token" contenteditable="false"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.3648em;vertical-align:-0.3558em;"></span><span class="mop"><span class="mop op-symbol small-op" style="margin-right:0.19445em;position:relative;top:-0.0006em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.009em;"><span style="top:-2.3442em;margin-left:-0.1945em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span><span style="top:-3.2579em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3558em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">x</span></span></span></span></span> means add up lots of tiny rectangles, width dx, height x^2. So one rectangle has area x^2dx. <ul id="39da48b7-c22e-807d-a2d9-efaaa18824e1" class="bulleted-list" dir="auto"><li style="list-style-type:circle">The integral says add infinitely many tiny areas together. That’s why you see Area = <span data-notion-inline-equation="Area = ∑(height)(width) = ∑x^2Δz" class="notion-text-equation-token" contenteditable="false"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span><span class="mord mathnormal">re</span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="mopen">(</span><span class="mord mathnormal">h</span><span class="mord mathnormal">e</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">h</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mord mathnormal">i</span><span class="mord mathnormal">d</span><span class="mord mathnormal">t</span><span class="mord mathnormal">h</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord">Δ</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span></span></span></span></span> becoming <span data-notion-inline-equation="\int x^2 \ dx  " class="notion-text-equation-token" contenteditable="false"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1202em;vertical-align:-0.3061em;"></span><span class="mop op-symbol small-op" style="margin-right:0.19445em;position:relative;top:-0.0006em;">∫</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace"> </span><span class="mord mathnormal">d</span><span class="mord mathnormal">x</span></span></span></span></span></li></ul><ul id="39da48b7-c22e-80d8-ad2a-ca063de9475f" class="bulleted-list" dir="auto"><li style="list-style-type:circle">The Δx from the Riemann sum becomes the infinitesimal width dx. </li></ul></li></ul><h3 id="3baa48b7-c22e-80bf-9e60-fdcc34c5456c" class="" dir="auto">Logarithm Review</h3><figure id="3b8a48b7-c22e-80a2-af15-e30532b4289f" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/image.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/image.png"><img style="width:288px" src="MATH%20116%20%E2%80%94%20Calculus%20II/image.png"/></a></figure><p id="3bfa48b7-c22e-8065-9306-dba19d2e596d" class="" dir="auto">
+</p><h3 id="3baa48b7-c22e-80e4-b00c-c959899e1e73" class="" dir="auto">Trigonometry Review</h3><figure id="3a7a48b7-c22e-805a-976f-ee8b9ea53128" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/image%201.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/image%201.png"><img style="width:384px" src="MATH%20116%20%E2%80%94%20Calculus%20II/image%201.png"/></a></figure><p id="3aaa48b7-c22e-801b-93c9-c9bf97a3a951" class="" dir="auto">(cos, sin)</p><figure id="3b8a48b7-c22e-80ef-bbe1-e2f5f06b4db4" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/image%202.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/image%202.png"><img style="width:368px" src="MATH%20116%20%E2%80%94%20Calculus%20II/image%202.png"/></a></figure><figure id="3a7a48b7-c22e-80d9-ba12-e102a21ae152" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/image%203.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/image%203.png"><img style="width:665.984375px" src="MATH%20116%20%E2%80%94%20Calculus%20II/image%203.png"/></a></figure><h3 id="3aaa48b7-c22e-8062-bd26-f647b9ebf4a0" class="" dir="auto">Derivatives and Limits Review</h3><figure id="3aaa48b7-c22e-80ba-9e1c-e693c650c36e" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/image%204.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/image%204.png"><img style="width:665.984375px" src="MATH%20116%20%E2%80%94%20Calculus%20II/image%204.png"/></a></figure><figure id="3aaa48b7-c22e-800d-91a8-ffd181adc93f" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/image%205.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/image%205.png"><img style="width:665.96875px" src="MATH%20116%20%E2%80%94%20Calculus%20II/image%205.png"/></a></figure><ul id="3aaa48b7-c22e-801f-ba58-e781f68c1771" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Exponential rule</strong>: For a base <strong>e </strong>function, the exponent stays exactly the same, and you multiply by the derivative of the exponent</li></ul><figure id="3aaa48b7-c22e-806f-badb-feb00824823b" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/image%206.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/image%206.png"><img style="width:192.96875px" src="MATH%20116%20%E2%80%94%20Calculus%20II/image%206.png"/></a></figure><figure id="3ada48b7-c22e-808a-bb6e-e4fcd4433806" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/image%207.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/image%207.png"><img style="width:336px" src="MATH%20116%20%E2%80%94%20Calculus%20II/image%207.png"/></a></figure><h3 id="3baa48b7-c22e-8076-9f76-d6c7bc4e0b94" class="" dir="auto">Integrals Sheet</h3><figure id="3aea48b7-c22e-806a-b448-d373cd9064e7" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/image%208.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/image%208.png"><img style="width:672px" src="MATH%20116%20%E2%80%94%20Calculus%20II/image%208.png"/></a></figure><ul id="3aaa48b7-c22e-8059-9878-e888ecb4752f" class="bulleted-list" dir="auto"><li style="list-style-type:disc">Antiderivative of cot(x) is ln|sin(x)| + C</li></ul><figure id="3aea48b7-c22e-807a-a649-cd2b33a2ca1e" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/image%209.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/image%209.png"><img style="width:665.984375px" src="MATH%20116%20%E2%80%94%20Calculus%20II/image%209.png"/></a></figure><figure id="3b8a48b7-c22e-80fc-9404-d0b6ed7c6391" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/image%2010.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/image%2010.png"><img style="width:496px" src="MATH%20116%20%E2%80%94%20Calculus%20II/image%2010.png"/></a></figure><h4 id="39da48b7-c22e-80bd-8fc0-c2c9da423b4f" class="" dir="auto">Lecture 2 — 7/6/2026</h4><h2 id="39da48b7-c22e-802a-817b-fe59f4187fae" class="" dir="auto">Section 5.1: Area and Distance Problems</h2><h4 id="3a4a48b7-c22e-802f-b5ed-c310b77636e4" class="" dir="auto">Left and Right Approximating Sums</h4><figure id="3a4a48b7-c22e-80f4-87d3-dd99b41d3b6f" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/a3863a51-ccfb-4f3a-bbe1-a56a718a4d9f.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/a3863a51-ccfb-4f3a-bbe1-a56a718a4d9f.png"><img style="width:213.45413363533407px" src="MATH%20116%20%E2%80%94%20Calculus%20II/a3863a51-ccfb-4f3a-bbe1-a56a718a4d9f.png"/></a></figure><h4 id="3a4a48b7-c22e-80e1-8c88-fe1734499d32" class="" dir="auto">Midpoint Approximating Sums</h4><figure id="3a4a48b7-c22e-80e5-a10f-eb738e666609" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/7ca1ca4f-70d8-49b9-a24b-bb3e92a3b38d.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/7ca1ca4f-70d8-49b9-a24b-bb3e92a3b38d.png"><img style="width:228.25347758887173px" src="MATH%20116%20%E2%80%94%20Calculus%20II/7ca1ca4f-70d8-49b9-a24b-bb3e92a3b38d.png"/></a></figure><h3 id="39da48b7-c22e-8064-8198-d2f7c468fa29" class="" dir="auto">General Form and Limit</h3><h3 id="39da48b7-c22e-804b-81a3-d6ccc3175b0c" class="" dir="auto">Definition of Definite Integral</h3><figure id="3a4a48b7-c22e-8040-853a-f32bcc17f105" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/ebd4b08d-95e7-4cd6-bd5b-3289d6f485db.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/ebd4b08d-95e7-4cd6-bd5b-3289d6f485db.png"><img style="width:219.82089552238804px" src="MATH%20116%20%E2%80%94%20Calculus%20II/ebd4b08d-95e7-4cd6-bd5b-3289d6f485db.png"/></a></figure><h4 id="39da48b7-c22e-8006-bde8-f65ca929274b" class="" dir="auto">Lecture 3 — 7/7/2026</h4><h3 id="3a4a48b7-c22e-808c-8df0-d9c460d8a9f3" class="" dir="auto">Riemann Sum</h3><figure id="3a4a48b7-c22e-8066-ae1f-cc0d36749145" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/b192f5fa-a705-40a3-a91c-8598f02d388f.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/b192f5fa-a705-40a3-a91c-8598f02d388f.png"><img style="width:218.46392552366177px" src="MATH%20116%20%E2%80%94%20Calculus%20II/b192f5fa-a705-40a3-a91c-8598f02d388f.png"/></a></figure><figure id="3a4a48b7-c22e-80e8-95f0-f0ca077051c4" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/564a5815-99da-4337-ac09-d6db010d50a4.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/564a5815-99da-4337-ac09-d6db010d50a4.png"><img style="width:212.96845305967315px" src="MATH%20116%20%E2%80%94%20Calculus%20II/564a5815-99da-4337-ac09-d6db010d50a4.png"/></a></figure><figure id="3a4a48b7-c22e-802f-a19b-fbd34393e9c5" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/c5b655c2-f4a1-49e4-927d-8769edd4434d.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/c5b655c2-f4a1-49e4-927d-8769edd4434d.png"><img style="width:230.64849235852955px" src="MATH%20116%20%E2%80%94%20Calculus%20II/c5b655c2-f4a1-49e4-927d-8769edd4434d.png"/></a></figure><h3 id="39da48b7-c22e-80d5-9702-d2e4c7ecee74" class="" dir="auto">Existence of Integrable Function</h3><h3 id="39da48b7-c22e-8003-a71b-d145f143d68c" class="" dir="auto">Properties of Definite Integral</h3><figure id="3a7a48b7-c22e-804d-be7b-ea9909c77cdd" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/0fda2e75-56f6-4514-a1e8-5179c7262bb9.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/0fda2e75-56f6-4514-a1e8-5179c7262bb9.png"><img style="width:212.9968454258675px" src="MATH%20116%20%E2%80%94%20Calculus%20II/0fda2e75-56f6-4514-a1e8-5179c7262bb9.png"/></a></figure><h2 id="3a6a48b7-c22e-8080-ad1b-c47b1fb35e53" class="" dir="auto">Section 5.3: Fundamental Theory of Calculus I</h2><h4 id="39da48b7-c22e-8018-a37f-c050d04b68dd" class="" dir="auto">Lecture 4 — 7/8/2026</h4><p id="39da48b7-c22e-806d-a21f-ec574bbc644f" class="" dir="auto">
+</p><figure id="3a4a48b7-c22e-80d3-8d1c-f1556facc67b" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/4f08426f-1ae3-4b2a-b687-5d4e19396187.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/4f08426f-1ae3-4b2a-b687-5d4e19396187.png"><img style="width:220.7539836766421px" src="MATH%20116%20%E2%80%94%20Calculus%20II/4f08426f-1ae3-4b2a-b687-5d4e19396187.png"/></a></figure><h3 id="39da48b7-c22e-80fd-a6c9-fff53962b6cf" class="" dir="auto">Antiderivatives + Chain Rule</h3><figure id="3a4a48b7-c22e-8060-9b0f-ff6b5b19f5ad" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/7dd1a186-18e3-46f3-938a-477ac3fc7733.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/7dd1a186-18e3-46f3-938a-477ac3fc7733.png"><img style="width:213.41742215214822px" src="MATH%20116%20%E2%80%94%20Calculus%20II/7dd1a186-18e3-46f3-938a-477ac3fc7733.png"/></a></figure><figure id="3a4a48b7-c22e-809a-95b4-fefdebf7fe3b" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/e1795f51-ed96-41aa-8f5a-3a5f03f92cf2.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/e1795f51-ed96-41aa-8f5a-3a5f03f92cf2.png"><img style="width:243.49579831932772px" src="MATH%20116%20%E2%80%94%20Calculus%20II/e1795f51-ed96-41aa-8f5a-3a5f03f92cf2.png"/></a></figure><figure id="3a6a48b7-c22e-807c-83a2-f8210c697f9a" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/image%2011.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/image%2011.png"><img style="width:266.984375px" src="MATH%20116%20%E2%80%94%20Calculus%20II/image%2011.png"/></a></figure><ul id="3a6a48b7-c22e-8068-971c-c93b8f7465e8" class="bulleted-list" dir="auto"><li style="list-style-type:disc">When an integral has variables at both limits, you can find its derivative using this shortcut:</li></ul><figure id="3a6a48b7-c22e-807f-86b9-ed87fe1305c1" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/image%2012.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/image%2012.png"><img style="width:417.984375px" src="MATH%20116%20%E2%80%94%20Calculus%20II/image%2012.png"/></a></figure><h4 id="39da48b7-c22e-80d2-8810-c70a8a41a7f5" class="" dir="auto">Lecture 5 — 7/13/2026</h4><h3 id="39da48b7-c22e-80f0-934a-f6112096e1c2" class="" dir="auto">Fundamental Theory of Calculus II</h3><figure id="3a4a48b7-c22e-800a-ac7a-d6036776cda7" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/c52fe6c3-ee9a-4d4b-a0bd-62cb5177a923.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/c52fe6c3-ee9a-4d4b-a0bd-62cb5177a923.png"><img style="width:208.2804923535994px" src="MATH%20116%20%E2%80%94%20Calculus%20II/c52fe6c3-ee9a-4d4b-a0bd-62cb5177a923.png"/></a></figure><h3 id="3a6a48b7-c22e-8015-92d5-ed49f8dfca6a" class="" dir="auto">How to Evaluate a Definite Integral</h3><figure id="3a4a48b7-c22e-80ad-87dc-ffe4f3756ed5" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/354bed3f-c42f-4575-9323-c787fd2c8cca.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/354bed3f-c42f-4575-9323-c787fd2c8cca.png"><img style="width:216.8766704849179px" src="MATH%20116%20%E2%80%94%20Calculus%20II/354bed3f-c42f-4575-9323-c787fd2c8cca.png"/></a></figure><figure id="3a4a48b7-c22e-80d5-8172-f9f3500e4cc0" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/f6486d23-2dfe-4571-b81a-756b6edffd2a.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/f6486d23-2dfe-4571-b81a-756b6edffd2a.png"><img style="width:217.95369678864824px" src="MATH%20116%20%E2%80%94%20Calculus%20II/f6486d23-2dfe-4571-b81a-756b6edffd2a.png"/></a></figure><h2 id="39da48b7-c22e-80b8-8d88-cdf055d2981f" class="" dir="auto">Section 5.4: Indefinite Integrals + Net Change Theorem</h2><figure id="3a4a48b7-c22e-808b-b463-d1c862444b96" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/e773d7fd-0bad-405d-a09b-544e203b5118.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/e773d7fd-0bad-405d-a09b-544e203b5118.png"><img style="width:240.13468013468014px" src="MATH%20116%20%E2%80%94%20Calculus%20II/e773d7fd-0bad-405d-a09b-544e203b5118.png"/></a></figure><figure id="3a4a48b7-c22e-8051-a7da-dee283ef398d" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/10dddd2a-c2f9-448e-a0d7-edef406e4148.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/10dddd2a-c2f9-448e-a0d7-edef406e4148.png"><img style="width:207.8092399403875px" src="MATH%20116%20%E2%80%94%20Calculus%20II/10dddd2a-c2f9-448e-a0d7-edef406e4148.png"/></a></figure><h4 id="39da48b7-c22e-803a-95f2-d0f198d509c6" class="" dir="auto">Lecture 6 — 7/14/2026</h4><h3 id="3a4a48b7-c22e-805b-ba20-d8ade3252fe5" class="" dir="auto">Velocity/Word Problems for Integrals</h3><figure id="3a4a48b7-c22e-8090-8ab8-d395b544faa1" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/9ef09e5b-4dca-494e-8456-689a0dd54b6f.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/9ef09e5b-4dca-494e-8456-689a0dd54b6f.png"><img style="width:244.2140750105352px" src="MATH%20116%20%E2%80%94%20Calculus%20II/9ef09e5b-4dca-494e-8456-689a0dd54b6f.png"/></a></figure><h3 id="3a4a48b7-c22e-80e7-9e8f-e22c0a5a78d8" class="" dir="auto">Substitution Rule</h3><figure id="3a4a48b7-c22e-80bd-885c-fd63d67d3f2d" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/2ba4a5cf-e445-4677-8599-de0b526d0644.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/2ba4a5cf-e445-4677-8599-de0b526d0644.png"><img style="width:221.75000000000003px" src="MATH%20116%20%E2%80%94%20Calculus%20II/2ba4a5cf-e445-4677-8599-de0b526d0644.png"/></a></figure><h3 id="3a4a48b7-c22e-8090-bbc8-e8226889f775" class="" dir="auto">Definite Integral Substitution Rule</h3><figure id="3a4a48b7-c22e-8077-ae1e-c5efcf7d1180" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/edf96ffb-e480-478c-906c-b0e9037c56f9.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/edf96ffb-e480-478c-906c-b0e9037c56f9.png"><img style="width:198.83265607683782px" src="MATH%20116%20%E2%80%94%20Calculus%20II/edf96ffb-e480-478c-906c-b0e9037c56f9.png"/></a></figure><p id="3a7a48b7-c22e-8006-b9b1-f640d4b43789" class="" dir="auto">Choose u: Pick the &quot;inside&quot; or more complex part of the function (often inside a power, root, or exponent).</p><p id="3a7a48b7-c22e-8075-8693-dcb09ee74ed8" class="" dir="auto">Find du: Take the derivative of u with respect to x, then write du/dt = u&#x27;. Multiply both sides by dt to give the differential relationship du = u’dx. </p><p id="3a7a48b7-c22e-807e-a40f-cd3c070ab8ee" class="" dir="auto">Isolate dt: Divide both sides by u’. </p><p id="3a7a48b7-c22e-800d-b6ba-e4e9c103293c" class="" dir="auto">Substitute: Replace all x terms and dx parts completely with u and du. Adjust integration limits by converting using u. </p><p id="3a7a48b7-c22e-80b9-aeab-d31822e52a6c" class="" dir="auto">Integrate: Solve the new, simpler integral using basic rules. Take antiderivative. </p><p id="3a7a48b7-c22e-80a3-80cd-dbe489e17a24" class="" dir="auto">Substitute back: Replace u with the original x expression to finish</p><h4 id="3a4a48b7-c22e-8085-a407-c3f24ae15b15" class="" dir="auto">Lecture 7 — 7/15/26</h4><figure id="3a4a48b7-c22e-802f-a66a-d078df0cc7e9" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/4456530b-20cb-4b7e-aac7-dd8faaa57856.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/4456530b-20cb-4b7e-aac7-dd8faaa57856.png"><img style="width:248.8421052631579px" src="MATH%20116%20%E2%80%94%20Calculus%20II/4456530b-20cb-4b7e-aac7-dd8faaa57856.png"/></a></figure><figure id="3a4a48b7-c22e-80ea-b5bb-d3c32df00197" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/67f37c00-9415-45d2-98f2-3af3b27096dd.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/67f37c00-9415-45d2-98f2-3af3b27096dd.png"><img style="width:222.79406166730107px" src="MATH%20116%20%E2%80%94%20Calculus%20II/67f37c00-9415-45d2-98f2-3af3b27096dd.png"/></a></figure><h3 id="3a4a48b7-c22e-80c8-9a71-ed1624d09d4f" class="" dir="auto">Integrals + Symmetry</h3><h2 id="3a4a48b7-c22e-807f-acff-fca40ca51317" class="" dir="auto">Section 6.1: Area Between Curves</h2><figure id="3a4a48b7-c22e-8086-baf9-dc7b7fbb7ac2" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/e74eb8e4-83ee-4944-8a08-98fcfff727f4.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/e74eb8e4-83ee-4944-8a08-98fcfff727f4.png"><img style="width:220.97968936678615px" src="MATH%20116%20%E2%80%94%20Calculus%20II/e74eb8e4-83ee-4944-8a08-98fcfff727f4.png"/></a></figure><p id="3a7a48b7-c22e-8007-8f59-c8b648d6a223" class="" dir="auto">To test for symmetry, replace every x with  (-x) and check if f(-x) equals -f(x)</p><h4 id="3a4a48b7-c22e-805e-bbee-cdba2730b2f8" class="" dir="auto">Lecture 8 — 7/20/2026</h4><figure id="3a5a48b7-c22e-8083-8350-cd29e367dd0a" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/f4b1ec1e-5fd9-40ae-b4e5-f4d0b0c65694.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/f4b1ec1e-5fd9-40ae-b4e5-f4d0b0c65694.png"><img style="width:215.81945985941547px" src="MATH%20116%20%E2%80%94%20Calculus%20II/f4b1ec1e-5fd9-40ae-b4e5-f4d0b0c65694.png"/></a></figure><h3 id="3a6a48b7-c22e-80b6-8624-cc84e920b729" class="" dir="auto">Disc Method</h3><figure id="3aba48b7-c22e-8053-bfcd-f233efd9c33d" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/image%2013.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/image%2013.png"><img style="width:703.984375px" src="MATH%20116%20%E2%80%94%20Calculus%20II/image%2013.png"/></a></figure><figure id="3a5a48b7-c22e-80eb-95d4-feae9fcdfe09" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/d0fed07f-cdbc-4b77-b857-29ead34b9e88.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/d0fed07f-cdbc-4b77-b857-29ead34b9e88.png"><img style="width:768px" src="MATH%20116%20%E2%80%94%20Calculus%20II/d0fed07f-cdbc-4b77-b857-29ead34b9e88.png"/></a></figure><h4 id="3a5a48b7-c22e-804e-83e4-f12b2b86c435" class="" dir="auto">Lecture 9 — 7/21/2026</h4><figure id="3a5a48b7-c22e-80d3-a8c4-d72a0093f93c" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/fc061f80-3b35-46ca-9f38-f3229f07ebcf.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/fc061f80-3b35-46ca-9f38-f3229f07ebcf.png"><img style="width:227.9311724689876px" src="MATH%20116%20%E2%80%94%20Calculus%20II/fc061f80-3b35-46ca-9f38-f3229f07ebcf.png"/></a></figure><h3 id="3a6a48b7-c22e-800e-bf06-ea35b06839f7" class="" dir="auto">Solid of Revolution and Washer Method</h3><figure id="3aba48b7-c22e-80ce-a479-d0bef54e9c7d" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/image%2014.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/image%2014.png"><img style="width:703.984375px" src="MATH%20116%20%E2%80%94%20Calculus%20II/image%2014.png"/></a></figure><figure id="3a5a48b7-c22e-80f8-9dcb-d5c5dee7fed6" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/14ef3ebf-8413-494a-a516-bcbd0714d086.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/14ef3ebf-8413-494a-a516-bcbd0714d086.png"><img style="width:211.2094395280236px" src="MATH%20116%20%E2%80%94%20Calculus%20II/14ef3ebf-8413-494a-a516-bcbd0714d086.png"/></a></figure><h2 id="3a6a48b7-c22e-808c-9c7e-e98be0eafec1" class="" dir="auto">Section 6.3: Volumes by Cylindrical Shells</h2><figure id="3aba48b7-c22e-8061-b724-ca25a381c397" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/image%2015.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/image%2015.png"><img style="width:703.96875px" src="MATH%20116%20%E2%80%94%20Calculus%20II/image%2015.png"/></a></figure><figure id="3a5a48b7-c22e-80b0-96ab-e87480b3a0ef" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/4911c96d-d596-468b-ae2b-9bf04c8b1e97.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/4911c96d-d596-468b-ae2b-9bf04c8b1e97.png"><img style="width:249.9913867355728px" src="MATH%20116%20%E2%80%94%20Calculus%20II/4911c96d-d596-468b-ae2b-9bf04c8b1e97.png"/></a></figure><h3 id="3aba48b7-c22e-8018-aa9c-c9e2664bbf96" class="" dir="auto">Comparing Methods</h3><figure id="3a7a48b7-c22e-80a5-b5a4-f6f83c922401" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/image%2016.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/image%2016.png"><img style="width:703.984375px" src="MATH%20116%20%E2%80%94%20Calculus%20II/image%2016.png"/></a></figure><ul id="3aba48b7-c22e-8097-8a92-c2d50c07aade" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Look at Your Equations First (The Easiest Route)</strong><ul id="3aba48b7-c22e-8078-a932-fb1cce6dbb2a" class="bulleted-list" dir="auto"><li style="list-style-type:circle">Most of the time, the way your equations are written tells you the best variable to use<ul id="3aba48b7-c22e-80d3-b5a1-e4469882aa7c" class="bulleted-list" dir="auto"><li style="list-style-type:square"><strong>Use dx</strong> if your equations look like <strong>y = something with x</strong>. This is usually the easiest because you don&#x27;t have to change any algebra.</li></ul><ul id="3aba48b7-c22e-808d-a448-fd06df0325bb" class="bulleted-list" dir="auto"><li style="list-style-type:square"><strong>Use dy</strong> if your equations look like <strong>x = something with y</strong>, or if the region is bounded by horizontal lines like y = 2 and y = 5. </li></ul></li></ul></li></ul><ul id="3aba48b7-c22e-80ff-82e2-d1f68f3caf80" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>2. Visualize Your &quot;Slices&quot; </strong>Think of your region as a loaf of bread that you need to slice into thin pieces.<ul id="3aba48b7-c22e-80f5-977c-fe779ce03822" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><strong>Vertical Slices = Integrating with dx</strong><ul id="3aba48b7-c22e-80e3-8e39-c2c5433bd78d" class="bulleted-list" dir="auto"><li style="list-style-type:square">Your slices are standing up straight.</li></ul><ul id="3aba48b7-c22e-80d3-9ba0-c771386a418c" class="bulleted-list" dir="auto"><li style="list-style-type:square">The width of each slice is a tiny change in x (dx).</li></ul><ul id="3aba48b7-c22e-806b-808f-f24ef6908278" class="bulleted-list" dir="auto"><li style="list-style-type:square">Move your eyes from <strong>left to right</strong> to find your numerical integration bounds (x = a to x = b). </li></ul></li></ul><ul id="3aba48b7-c22e-80e5-b2de-d64adc89766c" class="bulleted-list" dir="auto"><li style="list-style-type:circle"> <strong>Horizontal Slices = Integrating with dy</strong><ul id="3aba48b7-c22e-80aa-901d-cd5db971153d" class="bulleted-list" dir="auto"><li style="list-style-type:square">Your slices are lying down flat.</li></ul><ul id="3aba48b7-c22e-8050-8fe0-f6170a444dd8" class="bulleted-list" dir="auto"><li style="list-style-type:square">The thickness of each slice is a tiny change in y (dy).</li></ul><ul id="3aba48b7-c22e-8042-b5ca-c5679c15fb3f" class="bulleted-list" dir="auto"><li style="list-style-type:square">Move your eyes from <strong>bottom to top</strong> to find your numerical integration bounds (y = c to y = d). </li></ul></li></ul></li></ul><ul id="3aba48b7-c22e-8099-ae62-f5cf111ac22a" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Connect the Slices to Your Rotation Axis</strong></li></ul><figure id="3aba48b7-c22e-8025-b52e-e7b7b46982ea" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/image%2017.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/image%2017.png"><img style="width:642.984375px" src="MATH%20116%20%E2%80%94%20Calculus%20II/image%2017.png"/></a></figure><h4 id="3aba48b7-c22e-80d5-9bb6-ceb26a04a0bf" class="" dir="auto">Lecture 10 - 7/22/2026</h4><figure id="3aba48b7-c22e-8041-9539-e78056228146" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/e047b701-965a-494a-a044-16739e0a3435.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/e047b701-965a-494a-a044-16739e0a3435.png"><img style="width:220.6767794632439px" src="MATH%20116%20%E2%80%94%20Calculus%20II/e047b701-965a-494a-a044-16739e0a3435.png"/></a></figure><h2 id="3aba48b7-c22e-80fc-beb9-d58b8d89b9ec" class="" dir="auto">Section 6.4: Work</h2><figure id="3aba48b7-c22e-80f6-88b1-e24dddd47395" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/image%2018.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/image%2018.png"><img style="width:768px" src="MATH%20116%20%E2%80%94%20Calculus%20II/image%2018.png"/></a></figure><p id="3b5a48b7-c22e-80bb-a6da-e1edeb6a0a9c" class="" dir="auto"><strong>Type 1: Single Object with a Variable Force </strong><em>Use this for: Springs (Hooke&#x27;s Law), particles moved by a known force formula, or gravity fields.</em></p><ul id="3b5a48b7-c22e-801c-acba-e4542dbc0552" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Step 1: Identify the position variable (x).</strong> Define where (x=0) is. For springs, (x=0) is always the natural, unstretched length. For objects moving away from an origin, (x=0) is the origin</li></ul><ul id="3b5a48b7-c22e-809c-90da-f0979330fb14" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Step 2: Find the Force Function (F(x).</strong><ul id="3b5a48b7-c22e-8078-9c74-ff1333526ef6" class="bulleted-list" dir="auto"><li style="list-style-type:circle">If given explicitly, use it directly.</li></ul><ul id="3b5a48b7-c22e-8052-a18f-f9786231b558" class="bulleted-list" dir="auto"><li style="list-style-type:circle">For springs, use Hooke&#x27;s Law ((F(x) = kx). You will usually be given a reference force and distance to solve for the constant k. K = force/distance. Make sure your units are consistent (convert inches to feet, or cm to meters).</li></ul></li></ul><ul id="3b5a48b7-c22e-80ad-801c-dc3538367ba5" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Step 3: Determine the limits of integration ((a) and (b)).</strong> Identify the exact starting position (a) and ending position (b) in terms of your variable (x).</li></ul><ul id="3b5a48b7-c22e-804d-a20b-c6ee1d7ac16e" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Step 4: Set up and evaluate the integral.</strong> Plug your components into the work formula and solve. </li></ul><p id="3b5a48b7-c22e-8011-a00c-de14772cef10" class="" dir="auto"><strong>Type 2: Slicing Problems (Cables, Chains, and Tank Pumping) </strong><em>Use this when different parts of the system travel different distances (e.g., the top of a heavy rope only moves 1 foot, but the bottom link must be hauled up 50 feet).</em></p><ul id="3b5a48b7-c22e-8024-b3dc-c8f9e1e40122" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Step 1: Set up a coordinate axis.</strong> Choose an orientation.<ul id="3b5a48b7-c22e-8037-8345-cab748897af3" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><em>Tip:</em> For tanks, setting (x=0) at the top lip of the tank and letting (x) represent the depth downwards usually makes the algebra simplest.</li></ul></li></ul><ul id="3b5a48b7-c22e-80e3-b064-cac179588750" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Step 2: Isolate a tiny &quot;sample slice&quot; at position (x) with thickness (dx).</strong></li></ul><ul id="3b5a48b7-c22e-807b-be78-c20729a7afc9" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Step 3: Write an expression for the Volume or Mass of that slice.</strong><ul id="3b5a48b7-c22e-80a2-9661-fea9440259c5" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><em>For Cables/Chains:</em> Mass of slice = (linear density) * dx</li></ul><ul id="3b5a48b7-c22e-801e-b15b-cae4a13f623e" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><em>For Tanks:</em> Volume of slice = (Cross-sectional Area at depth x) * dx</li></ul></li></ul><ul id="3b5a48b7-c22e-803b-bb42-c8ecfb227eb1" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Step 4: Turn that mass into a Force (Weight).</strong><ul id="3b5a48b7-c22e-802a-b3e4-d8915abc7e8b" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><em>Metric System:</em> Multiply mass by gravity g (9.8 m/s^2) or use water density pg = 9800N/m^3</li></ul><ul id="3b5a48b7-c22e-800c-97ce-fe84e8365e6a" class="bulleted-list" dir="auto"><li style="list-style-type:circle"><em>US Customary System:</em> Imperial weight density is already a force (e.g., water is 62.5 lb/ft^3, so no gravity multiplication is needed.</li></ul></li></ul><ul id="3b5a48b7-c22e-809a-9d9d-d1c5c821796c" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Step 5: Write the Distance formula for that specific slice.</strong> Determine how far that slice at position (x) must travel to reach its destination (e.g., if (x) is depth from the top lip, the distance to the top is simply (x).</li></ul><ul id="3b5a48b7-c22e-80c5-a79f-fa30f553bd63" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Step 6: Combine into the Work Integral.</strong> Work is int([Weight density * Area(x) dx] * Distance(x)</li></ul><ul id="3b5a48b7-c22e-80e7-87cf-d041bf54008a" class="bulleted-list" dir="auto"><li style="list-style-type:disc"><strong>Step 7: Set the limits ((a) and (b)) to match the material.</strong> The bounds (a) and (b) must strictly span <strong>where the material actually is</strong> (e.g., if a 5-meter tank only contains 3 meters of water at the bottom, your bounds are from (x=2) to (x=5)).</li></ul><p id="3b5a48b7-c22e-80e0-a548-d0e33c8c5fbc" class="" dir="auto">Angled force: W = F*d*cos(theta) where theta is the angle b/t the force and displacement</p><h4 id="3aba48b7-c22e-80d9-8234-d5090885a92a" class="" dir="auto">Lecture 11 — 7/27/2026</h4><figure id="3aba48b7-c22e-80d9-be58-d544d766c321" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/eb6fc6d1-1a59-4dc6-9b5a-04fd95218422.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/eb6fc6d1-1a59-4dc6-9b5a-04fd95218422.png"><img style="width:225.91828942344407px" src="MATH%20116%20%E2%80%94%20Calculus%20II/eb6fc6d1-1a59-4dc6-9b5a-04fd95218422.png"/></a></figure><h2 id="3aba48b7-c22e-80ec-a980-eb09db789932" class="" dir="auto">Section 6.5: Average Value of a Function</h2><figure id="3aba48b7-c22e-804a-a918-d17f23bcc453" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/32656e36-5621-45ff-9051-3dbee272843b.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/32656e36-5621-45ff-9051-3dbee272843b.png"><img style="width:240.10475774770845px" src="MATH%20116%20%E2%80%94%20Calculus%20II/32656e36-5621-45ff-9051-3dbee272843b.png"/></a></figure><h3 id="3aba48b7-c22e-803f-a09e-d31147922a64" class="" dir="auto">Mean Value Theorem for Integrals</h3><figure id="3aba48b7-c22e-808b-8d4d-cb09e9e62cdb" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/443aa601-bdde-4edb-8fa4-92c235ae0fb5.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/443aa601-bdde-4edb-8fa4-92c235ae0fb5.png"><img style="width:212.16502373128878px" src="MATH%20116%20%E2%80%94%20Calculus%20II/443aa601-bdde-4edb-8fa4-92c235ae0fb5.png"/></a></figure><h2 id="3aba48b7-c22e-8096-87cd-dec2a92f99ad" class="" dir="auto">Section 7.1: Integration by Parts</h2><figure id="3aba48b7-c22e-8055-8b9d-fb4c9e696d51" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/6444af62-2935-44c2-9132-44c389207eb1.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/6444af62-2935-44c2-9132-44c389207eb1.png"><img style="width:239.42543303760033px" src="MATH%20116%20%E2%80%94%20Calculus%20II/6444af62-2935-44c2-9132-44c389207eb1.png"/></a></figure><h4 id="3aba48b7-c22e-8079-8c2f-e40f76ca59db" class="" dir="auto">Lecture 12 — 7/28/2026</h4><h2 id="3b2a48b7-c22e-8046-a5a3-f327aa17375e" class="" dir="auto">Section 7.1: Integration by Parts</h2><figure id="3b2a48b7-c22e-80cf-827d-d7e553157100" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/c0189748-6638-4e04-b3b3-a03bd8fa2311.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/c0189748-6638-4e04-b3b3-a03bd8fa2311.png"><img style="width:237.3236598145909px" src="MATH%20116%20%E2%80%94%20Calculus%20II/c0189748-6638-4e04-b3b3-a03bd8fa2311.png"/></a></figure><figure id="3b2a48b7-c22e-80e3-b0a3-f26b740ddba6" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/f038d7bf-1a0e-4350-96b1-6ae31023101f.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/f038d7bf-1a0e-4350-96b1-6ae31023101f.png"><img style="width:231.74654752233954px" src="MATH%20116%20%E2%80%94%20Calculus%20II/f038d7bf-1a0e-4350-96b1-6ae31023101f.png"/></a></figure><figure id="3b2a48b7-c22e-8022-8fc5-f4adb6ce7c4c" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/3b3bbea3-4972-43cd-bb0b-cfe3e2d5f460.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/3b3bbea3-4972-43cd-bb0b-cfe3e2d5f460.png"><img style="width:235.64906709011512px" src="MATH%20116%20%E2%80%94%20Calculus%20II/3b3bbea3-4972-43cd-bb0b-cfe3e2d5f460.png"/></a></figure><h3 id="3b2a48b7-c22e-80e2-b2e9-c0c1a1dc1015" class="" dir="auto">Reduction Formulas</h3><figure id="3b2a48b7-c22e-80f0-88e8-d37483a993d8" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/1bd7052e-5066-4dde-814d-50dc3529403e.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/1bd7052e-5066-4dde-814d-50dc3529403e.png"><img style="width:231.24847498983326px" src="MATH%20116%20%E2%80%94%20Calculus%20II/1bd7052e-5066-4dde-814d-50dc3529403e.png"/></a></figure><h4 id="3b2a48b7-c22e-808c-a573-e456e89309f8" class="" dir="auto">Lecture 13 — 7/29/2026</h4><figure id="3b2a48b7-c22e-80b5-9717-fc91a030ede3" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/a81bf105-3e9a-4e0c-85e8-c8fdaa7a5cfa.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/a81bf105-3e9a-4e0c-85e8-c8fdaa7a5cfa.png"><img style="width:215.57894736842104px" src="MATH%20116%20%E2%80%94%20Calculus%20II/a81bf105-3e9a-4e0c-85e8-c8fdaa7a5cfa.png"/></a></figure><h2 id="3b2a48b7-c22e-80c0-adda-d50a25186953" class="" dir="auto">Section 7.2: Trigonometric Integrals</h2><figure id="3b2a48b7-c22e-80d9-bf7b-e4fdcc00cb6d" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/180a7134-4df4-4923-99d1-5a1e17eb6efd.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/180a7134-4df4-4923-99d1-5a1e17eb6efd.png"><img style="width:230.30205396697542px" src="MATH%20116%20%E2%80%94%20Calculus%20II/180a7134-4df4-4923-99d1-5a1e17eb6efd.png"/></a></figure><h3 id="3b2a48b7-c22e-80fd-8ef8-c620d387d070" class="" dir="auto">Integrals of Secant and Tangent</h3><figure id="3b2a48b7-c22e-8097-b301-d00b8bdff403" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/261ff6d3-b4b4-482c-a78f-880d36ab2c7c.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/261ff6d3-b4b4-482c-a78f-880d36ab2c7c.png"><img style="width:224.9770992366412px" src="MATH%20116%20%E2%80%94%20Calculus%20II/261ff6d3-b4b4-482c-a78f-880d36ab2c7c.png"/></a></figure><h3 id="3b2a48b7-c22e-80dd-8e2b-ff91728db0c7" class="" dir="auto">Product-to-Sum Expression</h3><h2 id="3baa48b7-c22e-8070-999c-fb699fc4d510" class="" dir="auto">Section 7.3: Trigonometric Substitution</h2><h4 id="3baa48b7-c22e-8004-9da0-f316150e6cdf" class="" dir="auto">Lecture 14</h4><figure id="3baa48b7-c22e-8083-af49-d0f00c95e6cc" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/40c4b27f-7b8a-44c2-b69e-f01997124dec.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/40c4b27f-7b8a-44c2-b69e-f01997124dec.png"><img style="width:222.0432966198253px" src="MATH%20116%20%E2%80%94%20Calculus%20II/40c4b27f-7b8a-44c2-b69e-f01997124dec.png"/></a></figure><figure id="3baa48b7-c22e-8067-9ab5-ea5b1f8cd4d4" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/7002ca75-92f5-4dca-8c93-cd899149c4e6.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/7002ca75-92f5-4dca-8c93-cd899149c4e6.png"><img style="width:203.1492696829355px" src="MATH%20116%20%E2%80%94%20Calculus%20II/7002ca75-92f5-4dca-8c93-cd899149c4e6.png"/></a></figure><figure id="3baa48b7-c22e-806e-9cea-f4ea3e7929e9" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/36730476-c492-49cc-8727-ccf1c0839c19.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/36730476-c492-49cc-8727-ccf1c0839c19.png"><img style="width:196.987012987013px" src="MATH%20116%20%E2%80%94%20Calculus%20II/36730476-c492-49cc-8727-ccf1c0839c19.png"/></a></figure><h2 id="3baa48b7-c22e-80cd-869f-ecd340cb1319" class="" dir="auto">Section 7.4: Integration of Rational Functions by Partial Fractions</h2><figure id="3baa48b7-c22e-80d9-b157-ca641fb64abf" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/image%2019.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/image%2019.png"><img style="width:672px" src="MATH%20116%20%E2%80%94%20Calculus%20II/image%2019.png"/></a></figure><h4 id="3baa48b7-c22e-8060-a1ec-ec664b29a9dc" class="" dir="auto">Lecture 15</h4><figure id="3baa48b7-c22e-80bd-9f8a-d85314f2dbd7" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/29375797-4777-44fe-b069-6ab8c9e7e58e.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/29375797-4777-44fe-b069-6ab8c9e7e58e.png"><img style="width:231.09707971586423px" src="MATH%20116%20%E2%80%94%20Calculus%20II/29375797-4777-44fe-b069-6ab8c9e7e58e.png"/></a></figure><figure id="3baa48b7-c22e-8004-8ea4-c86ad9c27cee" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/aaef911f-473f-4a3c-9f10-e34a1ac2076f.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/aaef911f-473f-4a3c-9f10-e34a1ac2076f.png"><img style="width:213.97808840196453px" src="MATH%20116%20%E2%80%94%20Calculus%20II/aaef911f-473f-4a3c-9f10-e34a1ac2076f.png"/></a></figure><figure id="3baa48b7-c22e-80a7-83ce-e411678bff6c" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/568daaf0-910a-48cc-8d38-fa2c531491a7.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/568daaf0-910a-48cc-8d38-fa2c531491a7.png"><img style="width:226.93877551020407px" src="MATH%20116%20%E2%80%94%20Calculus%20II/568daaf0-910a-48cc-8d38-fa2c531491a7.png"/></a></figure><h2 id="3baa48b7-c22e-80a9-be78-f0dc212a6533" class="" dir="auto">Section 7.5: Strategy for Integration</h2><h4 id="3baa48b7-c22e-807a-a715-f98e1dc44f9b" class="" dir="auto">Lecture 16</h4><figure id="3baa48b7-c22e-8053-8e94-cffc7675da0a" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/583cc9ef-4dba-4d9c-b583-c2d6d852741b.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/583cc9ef-4dba-4d9c-b583-c2d6d852741b.png"><img style="width:206.3343108504399px" src="MATH%20116%20%E2%80%94%20Calculus%20II/583cc9ef-4dba-4d9c-b583-c2d6d852741b.png"/></a></figure><figure id="3baa48b7-c22e-800d-afec-f1edf0b58db9" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/9bd3de91-66ed-40d8-946a-0285a7330488.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/9bd3de91-66ed-40d8-946a-0285a7330488.png"><img style="width:228.84462151394422px" src="MATH%20116%20%E2%80%94%20Calculus%20II/9bd3de91-66ed-40d8-946a-0285a7330488.png"/></a></figure><h2 id="3baa48b7-c22e-8049-9a1e-d837297cd79f" class="" dir="auto">Section 7.7: Approximate Integration</h2><figure id="3baa48b7-c22e-8036-9d75-da3a02462d6a" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/3e35f0ea-b8f0-4bf6-ae5e-6219a1547c6f.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/3e35f0ea-b8f0-4bf6-ae5e-6219a1547c6f.png"><img style="width:235.8796868562011px" src="MATH%20116%20%E2%80%94%20Calculus%20II/3e35f0ea-b8f0-4bf6-ae5e-6219a1547c6f.png"/></a></figure><figure id="3baa48b7-c22e-80f4-82e6-ed635445ae0e" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/8d5c9248-cc48-4e79-9d70-0cc58cdc52cb.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/8d5c9248-cc48-4e79-9d70-0cc58cdc52cb.png"><img style="width:243.27564373153228px" src="MATH%20116%20%E2%80%94%20Calculus%20II/8d5c9248-cc48-4e79-9d70-0cc58cdc52cb.png"/></a></figure><h2 id="3baa48b7-c22e-80f1-be5e-e9e85237ad1c" class="" dir="auto">Section 4.4: Indeterminant Forms and L’Hospital’s Rule</h2><figure id="3baa48b7-c22e-80c5-9a4b-c0be68754082" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/8e7928bc-cb36-401e-907f-30922e9351be.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/8e7928bc-cb36-401e-907f-30922e9351be.png"><img style="width:257.37855178735106px" src="MATH%20116%20%E2%80%94%20Calculus%20II/8e7928bc-cb36-401e-907f-30922e9351be.png"/></a></figure><h4 id="3baa48b7-c22e-8079-b7fc-c6d67f110b51" class="" dir="auto">Lecture 17</h4><figure id="3baa48b7-c22e-80b6-a45b-d02c089ebdb7" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/3459be08-81a3-489f-8a46-07ba2d65573c.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/3459be08-81a3-489f-8a46-07ba2d65573c.png"><img style="width:222.64788732394365px" src="MATH%20116%20%E2%80%94%20Calculus%20II/3459be08-81a3-489f-8a46-07ba2d65573c.png"/></a></figure><h2 id="3baa48b7-c22e-80d6-9625-f84ad04aac34" class="" dir="auto">Section 7.8: Improper Integrals</h2><figure id="3baa48b7-c22e-801b-b59f-c602fddb0298" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/4ab59198-c058-41d4-a9bb-08b4ee320882.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/4ab59198-c058-41d4-a9bb-08b4ee320882.png"><img style="width:249.845031905196px" src="MATH%20116%20%E2%80%94%20Calculus%20II/4ab59198-c058-41d4-a9bb-08b4ee320882.png"/></a></figure><figure id="3baa48b7-c22e-8080-8dcb-edd47eb693fc" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/bf41b273-28ca-434e-b981-e708da5755ca.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/bf41b273-28ca-434e-b981-e708da5755ca.png"><img style="width:215.35305719921107px" src="MATH%20116%20%E2%80%94%20Calculus%20II/bf41b273-28ca-434e-b981-e708da5755ca.png"/></a></figure><figure id="3baa48b7-c22e-80de-b885-c6185edad60a" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/c13aaeb2-44af-49a2-b8f0-b9b90fd50e9c.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/c13aaeb2-44af-49a2-b8f0-b9b90fd50e9c.png"><img style="width:205.43209876543207px" src="MATH%20116%20%E2%80%94%20Calculus%20II/c13aaeb2-44af-49a2-b8f0-b9b90fd50e9c.png"/></a></figure><figure id="3baa48b7-c22e-806b-855f-c13ef14abe04" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/d803fe64-2446-4f35-ad76-a8a26cdf6ce6.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/d803fe64-2446-4f35-ad76-a8a26cdf6ce6.png"><img style="width:219.57115009746585px" src="MATH%20116%20%E2%80%94%20Calculus%20II/d803fe64-2446-4f35-ad76-a8a26cdf6ce6.png"/></a></figure><h4 id="3bca48b7-c22e-80b7-8695-d209fea1aa47" class="" dir="auto">Lecture 18</h4><figure id="3bca48b7-c22e-8053-b1f1-d4071dbe844e" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/image%2020.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/image%2020.png"><img style="width:720px" src="MATH%20116%20%E2%80%94%20Calculus%20II/image%2020.png"/></a></figure><figure id="3bca48b7-c22e-80ce-8a84-df6ea9304b7a" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/image%2021.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/image%2021.png"><img style="width:720px" src="MATH%20116%20%E2%80%94%20Calculus%20II/image%2021.png"/></a></figure><figure id="3bca48b7-c22e-806e-b22b-ca6ca7302d0e" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/image%2022.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/image%2022.png"><img style="width:720px" src="MATH%20116%20%E2%80%94%20Calculus%20II/image%2022.png"/></a></figure><figure id="3bca48b7-c22e-80be-a904-e30d78e3ad69" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/image%2023.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/image%2023.png"><img style="width:720px" src="MATH%20116%20%E2%80%94%20Calculus%20II/image%2023.png"/></a></figure><h2 id="3bca48b7-c22e-80df-823a-ec79b7461c06" class="" dir="auto">Section 8.1: Arc Length</h2><figure id="3bca48b7-c22e-801a-89d8-cc362b6666c2" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/image%2024.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/image%2024.png"><img style="width:672px" src="MATH%20116%20%E2%80%94%20Calculus%20II/image%2024.png"/></a></figure><figure id="3bca48b7-c22e-80ca-b886-e18106ba3456" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/image%2025.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/image%2025.png"><img style="width:672px" src="MATH%20116%20%E2%80%94%20Calculus%20II/image%2025.png"/></a></figure><h2 id="3bca48b7-c22e-8065-9759-d04c1a4b74c0" class="" dir="auto">Section 8.2: Area of a Surface of Revolution</h2><figure id="3bca48b7-c22e-80f1-a696-d951d9a1cae2" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/image%2026.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/image%2026.png"><img style="width:672px" src="MATH%20116%20%E2%80%94%20Calculus%20II/image%2026.png"/></a></figure><figure id="3bca48b7-c22e-8033-b3c6-e666bd9a3df0" class="image" data-notion-image="MATH%20116%20%E2%80%94%20Calculus%20II/image%2027.png" dir="ltr"><a href="MATH%20116%20%E2%80%94%20Calculus%20II/image%2027.png"><img style="width:720px" src="MATH%20116%20%E2%80%94%20Calculus%20II/image%2027.png"/></a></figure></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
