@@ -292,6 +292,26 @@ p {
     object-fit: cover; 
 }
 
+/* MOBILE RESPONSIVE STYLES */
+@media (max-width: 768px) {
+    .homepagebody {
+        padding-top: 100px;
+        padding-left: 20px; 
+        padding-right: 20px;
+    }
+
+    .homepageheader {
+        font-size: 24px;   
+        text-align: center; 
+    }
+
+    .homepagesubtitle {
+        flex-wrap: wrap;    
+        text-align: center;
+        line-height: 1.5;   
+    }
+}
+
 /* Resume section */
 .resumestats {
     display: flex;
@@ -426,6 +446,45 @@ p {
     text-shadow: 0 0 10px var(--brandaccent);
 }
 
+/* MOBILE RESPONSIVE STYLES */
+@media (max-width: 768px) {
+    .carousel {
+        max-width: 100%;
+        padding: 0 15px; /* Adds safe padding on mobile edges */
+    }
+
+    .carouseltrack {
+        gap: 15px; /* Shrinks the gap slightly for smaller screens */
+    }
+
+    .carouselitem {
+        /* Displays 1 item at a time instead of 3 */
+        flex: 0 0 100%; 
+        height: auto;   /* Allows text content to dictate height safely */
+        min-height: 250px;
+    }
+
+    /* Reposition buttons into absolute top or bottom areas, or over the cards */
+    #backbutton {
+        transform: scale(-1, 1) translateY(0);
+        left: 10px;
+        top: 40%;
+        font-size: 35px; /* Shrinks button size slightly */
+    }
+
+    #nextbutton {
+        transform: translateY(0);
+        right: 10px;
+        top: 40%;
+        font-size: 35px; /* Shrinks button size slightly */
+    }
+    
+    .carouselbutton {
+        background: rgba(0, 0, 0, 0.5); /* Adds an overlay bg so buttons are readable over images */
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+    
 /* ╔══════════════════════════════════╗ */
 /* ║           ABOUT ME               ║ */
 /* ╚══════════════════════════════════╝ */
