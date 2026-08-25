@@ -484,7 +484,7 @@ p {
         padding: 5px 10px;
         border-radius: 5px;
     }
-    
+
 /* ╔══════════════════════════════════╗ */
 /* ║           ABOUT ME               ║ */
 /* ╚══════════════════════════════════╝ */
@@ -1004,4 +1004,4 @@ p {
     text-align: center;
     border: 2px solid var(--brandaccent);
     box-shadow: 0 0 20px var(--brandaccent);
-}
+}}
