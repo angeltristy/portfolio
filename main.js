@@ -136,6 +136,30 @@ if (contactform) {
     contactform.addEventListener("submit", (event) => {
     event.preventDefault();
     popup.classList.add("show");
+    const formData = new FormData(contactform);
+
+    formData.append("form-name", "contact");
+
+    if (window.grecaptcha) {
+      const recaptchaResponse = window.grecaptcha.getResponse();
+      formData.append("g-recaptcha-response", recaptchaResponse);
+    }
+
+    // Send data to Netlify via AJAX
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData).toString(),
+    })
+      .then((response) => {
+        if (response.ok) {
+          popup.classList.add("show"); // Display your popup
+          contactform.reset();         // Clear the form fields
+        } else {
+          console.error("Netlify server submission failed");
+        }
+      })
+      .catch((error) => console.error("Network error:", error));
   })
 }
 
