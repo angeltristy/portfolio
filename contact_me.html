@@ -36,7 +36,7 @@
           Fill out this form and I'll get back to you!</p>
       </div>
       
-      <form name="contact" class="contact-form" netlify>
+      <form name="contact" class="contact-form" netlify data-netlify-recaptcha="true">
         <!-- ╔══════════════════════════════════╗ -->
         <!-- ║           CONTACT FORM           ║ -->
         <!-- ╚══════════════════════════════════╝ -->
@@ -60,6 +60,7 @@
           <label for="message">Your message</label>
           <textarea id="message" name="message" placeholder="Enter your question or message"></textarea>
         </div>
+        <div data-netlify-recaptcha="true"></div>
         <button type="submit" id="submitbutton">SUBMIT</button>
       </form>
     
