@@ -13,77 +13,75 @@
 </head>
 <body>
   <div class="background">
-        <!--Top bar-->
-        <header class="topbar">
-            <a href="index.html" class="fa-solid fa-house"></a>
-        
-            <nav class="navbar">
-                <a href="about.html">ABOUT</a>
-                <a href="resume.html">RESUME</a>
-                <a href="projects.html">PROJECTS</a>
-                <a href="contact_me.html" class="contact-button active" class>CONTACT</a>
-            </nav>
-        </header>
+    <!--Top bar-->
+    <header class="topbar" id="topbar">
+      <nav class="navbar">            
+        <a href="index.html">HOME</a>
+        <a href="about.html">ABOUT</a>
+        <a href="resume.html">RESUME</a>
+        <a href="projects.html">PROJECTS</a>
+        <a class="contact-button" href="contact_me.html">CONTACT</a>
+      </nav>
+    </header>
 
-  <!--Body-->
+    <!--Body-->
     <main class="contactbody">
       <div class="leftside">
         <!-- ╔══════════════════════════════════╗ -->
         <!-- ║           LEFT SIDE              ║ -->
         <!-- ╚══════════════════════════════════╝ -->
         <h1>contact me</h1>
-        <p>Have any questions? Just want to chat? <br>
+        <p>Have any questions? Just want to chat? <br><br>
           Fill out this form and I'll get back to you!</p>
       </div>
-      
-      <form name="contact" class="contact-form" method="POST" data-netlify="true" data-netlify-recaptcha="true">
-        <!-- ╔══════════════════════════════════╗ -->
-        <!-- ║           CONTACT FORM           ║ -->
-        <!-- ╚══════════════════════════════════╝ -->
-        <div class="field-row">
-          <div class="field">
-            <label for="first">First name</label>
-            <input type="text" id="first" name="first" placeholder="Jason" />
-          </div>
-          <div class="field">
-            <label for="last">Last name</label>
-            <input type="text" id="last" name="last" placeholder="Hudson" />
-          </div>
-        </div>
-
-        <div class="field">
-          <label for="email">Email address</label>
-          <input type="email" id="email" name="email" placeholder="jasonhudson@email.com">
-        </div>
-
-        <div class="field">
-          <label for="message">Your message</label>
-          <textarea id="message" name="message" placeholder="Enter your question or message"></textarea>
-        </div>
-        <div data-netlify-recaptcha="true"></div>
-        <button type="submit" id="submitbutton">SUBMIT</button>
-      </form>
     
+    <form name="contact" class="contact-form" method="POST" data-netlify="true" data-netlify-recaptcha="true">
+    <!-- ╔══════════════════════════════════╗ -->
+    <!-- ║           CONTACT FORM           ║ -->
+    <!-- ╚══════════════════════════════════╝ -->
+      <div class="field-row">
+        <div class="field">
+          <label for="first">First name</label>
+          <input type="text" id="first" name="first" placeholder="Jason" />
+        </div>
+        <div class="field">
+          <label for="last">Last name</label>
+          <input type="text" id="last" name="last" placeholder="Hudson" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="email">Email address</label>
+        <input type="email" id="email" name="email" placeholder="jasonhudson@email.com">
+      </div>
+
+      <div class="field">
+        <label for="message">Your message</label>
+        <textarea id="message" name="message" placeholder="Enter your question or message"></textarea>
+      </div>
+      <div data-netlify-recaptcha="true"></div>
+      <button type="submit" id="submitbutton">SUBMIT</button>
+    </form>
+  
     <div id="popup" class="popup">
       <div class="popupbox">
-          <p>Your message has been sent! 💕</p>
-          <button id="closepopup">OK</button>
+        <p>Your message has been sent! 💕</p>
+        <button id="closepopup">OK</button>
       </div>
     </div>
-
     </main>
 
     <!--Footer-->
     <footer class="footer">
-        <div class="footer-line"></div>
-        <div class="footer-inner">
-            <span class="footer-name">Angel Clarke</span>
-            <div class="footer-icons">
-                <a href="https://github.com/angeltristy" class="fa-brands fa-github"></a>
-                <a href="https://www.youtube.com/@angeltristy/videos" class="fa-brands fa-youtube"></a>
-                <a href="https://www.instagram.com/angeltristy/" class="fa-brands fa-instagram"></a>
-            </div>
+      <div class="footer-line"></div>
+      <div class="footer-inner">
+        <span class="footer-name">Angel Clarke</span>
+        <div class="footer-icons">
+          <a href="https://github.com/angeltristy" class="fa-brands fa-github"></a>
+          <a href="https://www.youtube.com/@angeltristy/videos" class="fa-brands fa-youtube"></a>
+          <a href="https://www.instagram.com/angeltristy/" class="fa-brands fa-instagram"></a>
         </div>
+      </div>
     </footer>
   </div>
 </body>

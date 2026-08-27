@@ -17,11 +17,10 @@
         
         <!--Top bar-->
         <header class="topbar" id="topbar">
-            <a href="index.html" class="fa-solid fa-house"></a>
-        
-            <nav class="navbar">
+            <nav class="navbar">            
+                <a href="index.html">HOME</a>
                 <a href="about.html">ABOUT</a>
-                <a href="resume.html" class="active">RESUME</a>
+                <a href="resume.html">RESUME</a>
                 <a href="projects.html">PROJECTS</a>
                 <a class="contact-button" href="contact_me.html">CONTACT</a>
             </nav>
@@ -146,9 +145,11 @@
             <!-- ║           PROJECT CARDS          ║ -->
             <!-- ╚══════════════════════════════════╝ -->
             <h2>Recent Projects</h2>
-            <section id="resumecarousel">
                 <div class="carousel">
-                    <button class="carouselbutton" id="backbutton">▶</button>
+                    <div class="carouselbuttons">
+                        <button class="carouselbutton" id="backbutton">></button>
+                        <button class="carouselbutton" id="nextbutton">></button>   
+                    </div>
                     <div class="carouseltrack">
                         <article class="carouselitem">
                             <div class="carouseldescription">
@@ -200,9 +201,7 @@
                             </div>
                         </article>
                     </div>
-                    <button class="carouselbutton" id="nextbutton">▶</button>
                 </div>
-            </section>
         </main>
 
         <!--Footer-->

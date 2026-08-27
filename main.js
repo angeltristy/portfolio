@@ -68,26 +68,35 @@ const backbutton = document.getElementById("backbutton");
 
 if (carouseltrack && nextbutton && backbutton) {
   const carouselwindow = document.querySelector(".carousel");
-
   const cards = Array.from(document.querySelectorAll(".carouselitem"));
-  const count = 3;
   let index = 0;
+
+  function getCarouselSpecs() {
+    const cardwidth = cards[0].getBoundingClientRect().width;
+    const gap=27;
+    const step = cardwidth + gap;
+
+    // Calculate how many items are currently visible on screen
+    const visibleWidth = carouselwindow.offsetWidth;
+    const visibleCount = Math.max(1, Math.floor(visibleWidth / step));
+
+    const maxIndex = Math.max(0, cards.length - visibleCount);
+    return {step, maxIndex};
+  }
+
 
   /**
    * Function: Updates the carousel for when you scroll past it
    */
   function updateCarousel() {
-    const cardwidth = cards[0].offsetWidth;
-    const gap = 32;
-    const step = cardwidth + gap;
-
+    const { step } = getCarouselSpecs();
     carouseltrack.style.transform = `translateX(-${index * step}px)`;
-    carouseltrack.style.transition = "transform 0.4s ease";
   }
 
   backbutton.addEventListener("click", () => {
+    const { maxIndex } = getCarouselSpecs();
     if (index == 0) {
-      index = cards.length - count;
+      index = maxIndex;
     } else {
       index -= 1;
     }
@@ -95,18 +104,21 @@ if (carouseltrack && nextbutton && backbutton) {
   })
 
   nextbutton.addEventListener("click", () => {
-    if (index < cards.length - count) {
+    const { maxIndex } = getCarouselSpecs();
+    if (index < maxIndex) {
       index++;
-      updateCarousel();
     } else {
       index = 0;
-      updateCarousel();
     }
+    updateCarousel();
   })
 
   window.addEventListener("load", updateCarousel);
-  window.addEventListener("resize", updateCarousel);
-
+  window.addEventListener("resize", () => {
+    const { maxIndex } = getCarouselSpecs();
+    if (index > maxIndex) index = maxIndex;
+    updateCarousel();
+  });
 }
 
 /* ╔══════════════════════════════════╗ */
