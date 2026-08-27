@@ -72,18 +72,20 @@ if (carouseltrack && nextbutton && backbutton) {
   let index = 0;
 
   function getCarouselSpecs() {
-    const cardwidth = cards[0].getBoundingClientRect().width;
-    const gap=27;
+    const cardwidth = cards[0].getBoundingClientRect().width; // Keeps track of active decimal widths
+    const gap = 27;
     const step = cardwidth + gap;
 
-    // Calculate how many items are currently visible on screen
-    const visibleWidth = carouselwindow.offsetWidth;
-    const visibleCount = Math.max(1, Math.floor(visibleWidth / step));
+    // Use clientWidth to fetch inner structural width minus scrollbars
+    const visibleWidth = carouselwindow.clientWidth;
+    
+    // Add gap adjustments to get clean integer divisions for desktop multi-columns
+    const visibleCount = Math.max(1, Math.floor((visibleWidth + gap) / step));
 
+    // Caps your slide index safely based on what is currently displayed on screen
     const maxIndex = Math.max(0, cards.length - visibleCount);
-    return {step, maxIndex};
+    return { step, maxIndex };
   }
-
 
   /**
    * Function: Updates the carousel for when you scroll past it

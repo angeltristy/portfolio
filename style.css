@@ -341,12 +341,15 @@ p {
 
 /* Project section */
 .carousel {
-    max-width: 75%;
+    width: 100%;
+    max-width: 1212px; 
     display: flex;
     flex-direction: column;
     overflow: hidden;
     flex: 1;
     margin: 0 auto;
+    padding: 0 24px;
+    box-sizing: border-box;
 }
 
 .carouselbuttons {
@@ -378,9 +381,10 @@ p {
     background-repeat: no-repeat;
     background-image: linear-gradient(rgba(0,0,0,0.77), rgba(0,0,0,0.77)), url(cover.jpg);
     border: 2px solid var(--brandaccent);
-    width: 350px;
+    width: 370px; 
+    max-width: 100%; 
     flex-shrink: 0;
-    max-width: 85vw;
+    box-sizing: border-box;
 }
 
 .carouselitem p {
@@ -433,7 +437,15 @@ p {
     text-shadow: 0 0 10px var(--brandaccent);
 }
 
-
+@media (max-width: 768px) {
+    .carousel {
+        padding: 0 16px; 
+    }
+    .carouselitem {
+        
+        width: 89vw;
+        max-width: 100%;
+    }
 
 /* ╔══════════════════════════════════╗ */
 /* ║           ABOUT ME               ║ */
@@ -465,6 +477,7 @@ p {
     max-width: 450px; 
     padding-top: 40px;
     box-sizing: border-box;
+    justify-content: space-between;
 }
 
 .aboutimage {
@@ -479,20 +492,23 @@ p {
 .funfactwindow {
     display: flex;
     flex-wrap: wrap;
-    gap: 24px;
+    gap: 12px;
     width: 100%;
+    justify-content: center;
 }
 
 .funfactcard {
-    flex: 1 1 150px;
+    flex-shrink: 0;  
+    flex-grow: 0;   
+    width: 160px;   
     max-width: 180px;
-    height: 200px;
+    height: 210px;  
     position: relative;
     background-color: transparent;
     border: none;
     cursor: pointer;
     perspective: 1000px;
-    transform-style: preserve-3d;
+    z-index: 1;
 }
 
 .funfactcard:hover .funfactcard-inner {
@@ -508,10 +524,10 @@ p {
     width: 100%;
     height: 100%;
     transform-style: preserve-3d;
-    transition: transform 0.5s ease, box-shadow 0.3s ease; 
-        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease; 
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease; 
     box-shadow: 0 0 12px var(--brandaccent);
     border-radius: 8px;
+    will-change: transform;
 }
 
 .funfactcard.flipped .funfactcard-inner {
@@ -534,8 +550,10 @@ p {
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
     inset: 0;
     border-radius: 8px;
+    transform: translateZ(0);
 }
 
 .cardimage {
@@ -544,25 +562,21 @@ p {
     display: block;
     object-fit: cover;
     border-radius: 8px;
+    
 }
 .flipcardback {
     background-color: white;
-    transform: rotateY(180deg);
+    transform: rotateY(180deg) translateZ(1px);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
     .aboutbody {
         flex-direction: column;  
         text-align: center;      
         padding-top: 20px;
-    }
-    
-    .collage {
-        padding-top: 0;          
-        max-width: 100%;        
     }
     
     .funfactwindow {
@@ -703,6 +717,7 @@ p {
     display: flex;
     align-items: center;
     margin-top: 150px;
+    justify-content: center;
 }
 .projectmain {
     margin: 140px auto 0 auto;
@@ -715,6 +730,8 @@ p {
     column-gap: 40px;
     max-width: 1200px;
     width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 .topofpagebar { 
@@ -727,7 +744,6 @@ p {
 
 .topofpagebar p {
     margin: 0;
-    align-items: center;
 }
 
 
@@ -747,13 +763,15 @@ p {
     -webkit-appearance: none;
     -moz-appearance: none;
     cursor: pointer;
-    position: relative;
 }
 
 .filterlist {
     list-style: none;
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .filters { 
@@ -782,7 +800,7 @@ p {
 }
 
 .checkboxcontainer input:checked + .newcheckbox {
-    background-color: var(--brandaccent); /* your purple-blue */
+    background-color: var(--brandaccent);
     border-color: var(--brandaccent);
 }
 
@@ -813,6 +831,7 @@ p {
     display: flex;
     flex-direction: column;
     gap: 32px;
+    margin-bottom: 40px;
 }
 
 .projectitem {
@@ -870,6 +889,64 @@ p {
     cursor: pointer;
     position: relative;
 }
+
+/* ╔══════════════════════════════════╗ */
+/* ║       MOBILE RESPONSIVENESS      ║ */
+/* ╚══════════════════════════════════╝ */
+@media (max-width: 830px) {
+    #projecttitle {
+        margin-top: 60px;
+        align-content: center;
+        justify-content: center;
+    }
+
+    .projectmain {
+        margin-top: 30px;
+        grid-template-columns: 1fr; 
+        grid-template-rows: auto auto 1fr;
+        grid-template-areas:
+            "topbar"
+            "filters"
+            "cards";
+        row-gap: 30px;
+        padding: 0 16px; 
+    }
+
+    .topofpagebar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 10px;
+    }
+
+    #sortingalgo {
+        width: 100%; 
+        box-sizing: border-box;
+    }
+
+    .filters {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .filterlist {
+        gap: 8px;
+    }
+
+    .projectitem {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+    }
+
+    .projectthumbs {
+        width: 100%;
+        height: 200px;
+    }
+}
+
 /* ╔══════════════════════════════════╗ */
 /* ║           CONTACT FORM           ║ */
 /* ╚══════════════════════════════════╝ */
